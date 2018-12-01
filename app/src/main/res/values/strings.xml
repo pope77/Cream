@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Cream</string>
+    <string name="application_id">584a5d86859e123714248bc91b4e0bb9</string>
+    <string name="be_a_creamer"> BE A CREAMER BE A CREAMER BE A CREAMER BE A CREAMER BE A CREAMER
+        BE A CREAMER BE A CREAMER BE A CREAMER BE A CREAMER BE A CREAMER</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
