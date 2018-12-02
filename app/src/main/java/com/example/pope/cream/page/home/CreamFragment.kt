@@ -2,11 +2,11 @@ package com.example.pope.cream.page.home
 
 
 import android.annotation.TargetApi
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v4.app.Fragment
-import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +16,7 @@ import android.widget.ImageView
 import com.example.pope.cream.R
 import com.example.pope.cream.page.base.BaseFragment
 import com.example.pope.cream.page.home.adapter.CreamAreaAdapter
+import com.example.pope.cream.page.program.ContentActivity
 import com.example.pope.cream.utils.ScreenUtil
 
 import java.util.ArrayList
@@ -30,17 +31,84 @@ import kotlinx.android.synthetic.main.fragment_cream.*
  */
 class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.CreamView {
 
+    /**
+     * 加载兴趣标签数据
+     */
+    override fun loadInterestData(interestList: MutableList<String>) {
+
+        val titleList = interestList
+        var picList = ArrayList<Int>()
+        for (element in interestList) {
+            when (element) {
+                "美食" -> picList.add(R.mipmap.bg_type_food)
+                "电影" -> picList.add(R.mipmap.bg_type_movie)
+                "外卖" -> picList.add(R.mipmap.bg_type_take_out)
+                "音乐" -> picList.add(R.mipmap.bg_type_music)
+                "饮品" -> picList.add(R.mipmap.bg_type_drink)
+                "综艺" -> picList.add(R.mipmap.bg_type_variety)
+                "书籍" -> picList.add(R.mipmap.bg_type_book)
+                "网文" -> picList.add(R.mipmap.bg_type_internet_article)
+                "软件" -> picList.add(R.mipmap.bg_type_software)
+                "硬件" -> picList.add(R.mipmap.bg_type_hardware)
+                "生活" -> picList.add(R.mipmap.bg_type_life)
+                "风景" -> picList.add(R.mipmap.bg_type_scenery)
+            }
+        }
+        val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        recyclerView_creamArea.layoutManager = layoutManager
+        val areaAdapter = CreamAreaAdapter(titleList, picList, activity)
+        recyclerView_creamArea.adapter = areaAdapter
+        //TODO 根据用户兴趣数量更改最小高度
+//        changeCreamAreaMinHeight(576)
+        recyclerView_creamArea.isNestedScrollingEnabled = false
+        recyclerView_creamArea.isFocusable = false
+
+        scrollView_cream.isFocusable = true
+        scrollView_cream.isFocusableInTouchMode = true
+        scrollView_cream.requestFocus()
+
+        areaAdapter.setItemOnClickListener(object : CreamAreaAdapter.OnItemClickListener{
+            override fun onClick(title: String?) {
+                //TODO 各个按键监听
+                when(title!!){
+//                    "美食" ->
+                    "电影" ->{
+                        val intent = Intent(activity,ContentActivity::class.java)
+                        intent.putExtra("fragmentName",title)
+                        startActivity(intent)
+                    }
+//                    "外卖" ->
+//                    "音乐" ->
+//                    "饮品" ->
+//                    "综艺" ->
+//                    "书籍" ->
+//                    "网文" ->
+//                    "软件" ->
+//                    "硬件" ->
+//                    "生活" ->
+//                    "风景" ->
+                }
+            }
+        })
+
+    }
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_cream, container, false)
+        var view = inflater!!.inflate(R.layout.fragment_cream, container, false)
+
+        CreamPresenter(this)
+
+        return view
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initBanner()
-        initCreamArea()
         setScrollListener()
+        initBanner()
+        mPresenter!!.getInterestData(activity)
+//        initCreamArea()
     }
 
     @TargetApi(Build.VERSION_CODES.M)

@@ -7,6 +7,8 @@ import com.example.pope.cream.biz.home.HomeInterface
 import com.example.pope.cream.biz.home.HomeLogic
 import com.example.pope.cream.biz.login.LoginInterface
 import com.example.pope.cream.biz.login.LoginLogic
+import com.example.pope.cream.biz.program.ProgramInterface
+import com.example.pope.cream.biz.program.ProgramLogic
 
 /**
  * 获取M层接口唯一对象的集合类
@@ -18,10 +20,11 @@ object ModelFactory {
     val loginInterface: LoginInterface
         get() = LoginLogic.instance
 
-    val homeInterface:HomeInterface
+    val homeInterface: HomeInterface
         get() = HomeLogic.instance
 
-    val txt = ""
+    val programInterface: ProgramInterface
+        get() = ProgramLogic.instance
 
     fun init(context: Context) {
         BaseLogic.initialize(context)

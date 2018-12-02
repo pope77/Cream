@@ -155,7 +155,7 @@ class InterestPointActivity : AppCompatActivity() {
 
         startActivity(Intent(this, MainActivity::class.java))
         progressDialog.dismiss()
-        finish()
+        this.finish()
     }
 
     override fun onResume() {

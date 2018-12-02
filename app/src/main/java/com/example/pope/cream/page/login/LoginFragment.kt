@@ -29,7 +29,7 @@ class LoginFragment : BaseFragment<LoginContract.Presenter>(), LoginContract.Vie
      * 显示或消失ProgressDialog
      */
     override fun showOrHideProgressDialog() {
-        if (progressDialog == null) {progressDialog = ProgressDialog(activity)}
+        if (progressDialog == null) {progressDialog = ProgressDialog(activity!!)}
         if (progressDialog!!.isShowing) hideProgressDialog() else showProgressDialog()
     }
 
@@ -105,12 +105,5 @@ class LoginFragment : BaseFragment<LoginContract.Presenter>(), LoginContract.Vie
         return SystemUtil.getIMEI(activity)
     }
 
-    companion object {
-
-        fun newInstance(): LoginFragment {
-            return LoginFragment()
-        }
-
-    }
 
 }

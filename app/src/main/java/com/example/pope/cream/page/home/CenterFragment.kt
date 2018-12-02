@@ -15,16 +15,18 @@ import com.example.pope.cream.page.base.BaseFragment
  * A simple [Fragment] subclass.
  * @author popeg
  */
-class CenterFragment : BaseFragment<HomeContract.CenterPresenter>(),HomeContract.CenterView {
+class CenterFragment : BaseFragment<HomeContract.CenterPresenter>(), HomeContract.CenterView {
 
     override fun toast(msg: String, length: Int) {
-        tst(msg,length)
+        tst(msg, length)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        return inflater!!.inflate(R.layout.fragment_center, container, false)
+        val view = inflater!!.inflate(R.layout.fragment_center, container, false)
+        CenterPresenter(this)
+        return view
     }
 
 }

@@ -22,6 +22,8 @@ class LoginLogic : BaseLogic(), LoginInterface {
         userBean.userIMEI = userImei
         userBean.userPhoneNum = phoneNum
         userBean.userName = "UserName"
+        userBean.userCollection = 0
+        userBean.userViews = 0
         userBean.save(object : SaveListener<String>() {
             override fun done(p0: String?, p1: BmobException?) {
                 if (p1 != null) onCreateNewUserCallback.onGetFailed(p1.toString(), "70003")

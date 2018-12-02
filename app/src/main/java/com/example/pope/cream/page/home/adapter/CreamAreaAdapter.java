@@ -24,6 +24,7 @@ public class CreamAreaAdapter extends RecyclerView.Adapter<CreamAreaAdapter.View
     private List<String> titleList;
     private List<Integer> picList;
     private Context context;
+    private OnItemClickListener onItemClickListener = null;
 
     public CreamAreaAdapter(List<String> titleList, List<Integer> picList, Context context) {
         this.titleList = titleList;
@@ -40,11 +41,19 @@ public class CreamAreaAdapter extends RecyclerView.Adapter<CreamAreaAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         String title = titleList.get(position);
         int path = picList.get(position);
         holder.title.setText(title);
         Glide.with(context).load(path).into(holder.imageView);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onItemClickListener!=null){
+                    onItemClickListener.onClick(holder.title.getText().toString());
+                }
+            }
+        });
     }
 
     @Override
@@ -63,4 +72,13 @@ public class CreamAreaAdapter extends RecyclerView.Adapter<CreamAreaAdapter.View
             title = itemView.findViewById(R.id.textView_creamArea_item);
         }
     }
+
+    public interface OnItemClickListener{
+        void onClick(String title);
+    }
+
+    public void setItemOnClickListener(OnItemClickListener onClickListener){
+        this.onItemClickListener = onClickListener;
+    }
+
 }

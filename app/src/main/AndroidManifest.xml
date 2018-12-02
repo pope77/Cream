@@ -5,7 +5,6 @@
 
     <uses-sdk tools:overrideLibrary="com.igalata.bubblepicker" />
 
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -35,7 +34,8 @@
         </activity>
         <activity android:name=".page.login.LoginActivity" />
         <activity android:name=".InterestPointActivity" />
-        <activity android:name=".page.home.MainActivity"></activity>
+        <activity android:name=".page.home.MainActivity" />
+        <activity android:name=".page.program.ContentActivity"></activity>
     </application>
 
 </manifest>
