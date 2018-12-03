@@ -28,8 +28,11 @@ class ProgramFragment : BaseFragment<ProgramContract.ProgramPresenter>(),Program
         recyclerView_programList.layoutManager = LinearLayoutManager(activity)
         val adapter = ProgramListAdapter(activity,programList)
         recyclerView_programList.adapter = adapter
-        adapter.setCardOnClickListener { programBean -> tst(programBean!!.programName) }
-        adapter.setOnPlayListener { programBean -> tst("播放"+programBean!!.programName) }
+        adapter.setCardOnClickListener { programBean ->
+            (activity as ContentActivity).changeFragment(ProgramDetailFragment(programBean))
+         }
+        adapter.setOnPlayListener { programBean ->
+            (activity as ContentActivity).changeFragment(ProgramDetailFragment(programBean))}
     }
 
     override fun toast(msg: String, length: Int) {
@@ -53,6 +56,6 @@ class ProgramFragment : BaseFragment<ProgramContract.ProgramPresenter>(),Program
             activity.finish()
         }
         //查询节目数据
-        mPresenter!!.getProgramRecommend((activity as ContentActivity).program_type)
+        mPresenter!!.getProgramRecommend((activity as ContentActivity).programType)
     }
 }

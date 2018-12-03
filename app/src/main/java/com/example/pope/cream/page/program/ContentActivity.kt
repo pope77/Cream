@@ -10,7 +10,9 @@ import com.example.pope.cream.biz.beans.ProgramBean
 
 class ContentActivity : AppCompatActivity() {
 
-    var program_type = 0
+    var programType = 0
+    lateinit var programBean:ProgramBean
+    private lateinit var programFragment: ProgramFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +33,9 @@ class ContentActivity : AppCompatActivity() {
             "美食" -> {
             }
             "电影" -> {
-                program_type = ProgramBean.PROGRAM_TYPE_MOVIE
-                supportFragmentManager.beginTransaction().replace(R.id.frameLayout_contentActivity_container,ProgramFragment()).commit()
+                programType = ProgramBean.PROGRAM_TYPE_MOVIE
+                programFragment = ProgramFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.frameLayout_contentActivity_container,programFragment).commit()
             }
             "外卖" -> {
             }
@@ -41,8 +44,9 @@ class ContentActivity : AppCompatActivity() {
             "饮品" -> {
             }
             "综艺" -> {
-                program_type = ProgramBean.PROGRAM_TYPE_VIRTY
-                supportFragmentManager.beginTransaction().replace(R.id.frameLayout_contentActivity_container,ProgramFragment()).commit()
+                programType = ProgramBean.PROGRAM_TYPE_VIRTY
+                programFragment = ProgramFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.frameLayout_contentActivity_container,programFragment).commit()
             }
             "书籍" -> {
             }
@@ -55,6 +59,16 @@ class ContentActivity : AppCompatActivity() {
             "生活" -> {
             }
             "风景" -> {
+            }
+        }
+
+    }
+
+    fun changeFragment(fragment:Any){
+
+        when(fragment){
+            is ProgramDetailFragment ->{
+                supportFragmentManager.beginTransaction().replace(R.id.frameLayout_contentActivity_container,fragment).commit()
             }
         }
 

@@ -34,27 +34,21 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="12dp"
-                app:srcCompat="@mipmap/ic_logo_no_background_blue" />
+                app:srcCompat="@mipmap/ic_bottombar_cream_blue" />
 
-            <!--手机   padding 4dp-->
-            <!--虚拟机 padding 8dp-->
             <ImageView
                 android:id="@+id/imageView_bottombar_collection"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="8dp"
-                app:srcCompat="@mipmap/ic_collection_black" />
+                app:srcCompat="@mipmap/ic_bottombar_collection_blue" />
 
-            <!--手机 padding 13dp-->
             <ImageView
                 android:id="@+id/imageView_bottombar_center"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="12dp"
-                app:srcCompat="@mipmap/ic_center_black" />
+                app:srcCompat="@mipmap/ic_bottombar_center_blue" />
 
         </LinearLayout>
     </android.support.v7.widget.CardView>

@@ -87,24 +87,22 @@ class MainActivity : AppCompatActivity() {
     private fun changeSelectedBottomBar(newPos: Int) {
         when (newPos) {
             1 -> {
-                imageView_bottombar_cream.setImageResource(R.mipmap.ic_logo_no_background_blue)
-                imageView_bottombar_collection.setImageResource(R.mipmap.ic_collection_black)
-                imageView_bottombar_center.setImageResource(R.mipmap.ic_center_black)
+                imageView_bottombar_cream.setImageResource(R.mipmap.ic_bottombar_cream_blue)
+                imageView_bottombar_collection.setImageResource(R.mipmap.ic_bottombar_collection_grey)
+                imageView_bottombar_center.setImageResource(R.mipmap.ic_bottombar_center_grey)
                 viewPager_mainActivity.currentItem = 0
             }
             2 -> {
-                imageView_bottombar_cream.setImageResource(R.mipmap.ic_logo_no_background_black)
-                imageView_bottombar_collection.setImageResource(R.mipmap.ic_collection_blue)
-                imageView_bottombar_center.setImageResource(R.mipmap.ic_center_black)
+                imageView_bottombar_cream.setImageResource(R.mipmap.ic_bottombar_cream_grey)
+                imageView_bottombar_collection.setImageResource(R.mipmap.ic_bottombar_collection_blue)
+                imageView_bottombar_center.setImageResource(R.mipmap.ic_bottombar_center_grey)
                 viewPager_mainActivity.currentItem = 1
             }
             3 -> {
-                imageView_bottombar_cream.setImageResource(R.mipmap.ic_logo_no_background_black)
-                imageView_bottombar_collection.setImageResource(R.mipmap.ic_collection_black)
-                imageView_bottombar_center.setImageResource(R.mipmap.ic_center_blue)
+                imageView_bottombar_cream.setImageResource(R.mipmap.ic_bottombar_cream_grey)
+                imageView_bottombar_collection.setImageResource(R.mipmap.ic_bottombar_collection_grey)
+                imageView_bottombar_center.setImageResource(R.mipmap.ic_bottombar_center_blue)
                 viewPager_mainActivity.currentItem = 2
-            }
-            else -> {
             }
         }
 
