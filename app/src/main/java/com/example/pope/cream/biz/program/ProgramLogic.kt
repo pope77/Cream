@@ -3,10 +3,23 @@ package com.example.pope.cream.biz.program
 import cn.bmob.v3.BmobQuery
 import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.FindListener
+import cn.bmob.v3.listener.UpdateListener
+import com.example.pope.cream.biz.base.BaseDataCallback
 import com.example.pope.cream.biz.base.BaseLogic
 import com.example.pope.cream.biz.beans.ProgramBean
 
 class ProgramLogic:BaseLogic(),ProgramInterface {
+    override fun addHit(programBean: ProgramBean, baseDataCallback: BaseDataCallback) {
+        programBean.programHits = programBean.programHits++
+        programBean.update(object: UpdateListener(){
+            override fun done(p0: BmobException?) {
+                if (p0!=null) {
+                    baseDataCallback.onGetFailed(p0.toString(),"70008")
+                }
+            }
+
+        })
+    }
 
     /**
      * 获取推荐节目数据

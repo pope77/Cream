@@ -33,7 +33,12 @@
         <activity android:name=".page.login.LoginActivity" />
         <activity android:name=".InterestPointActivity" />
         <activity android:name=".page.home.MainActivity" />
-        <activity android:name=".page.program.ContentActivity"></activity>
+        <activity
+            android:name=".page.creamarea.program.ProgramActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity android:name=".page.creamarea.takeout.TakeOutActivity" />
+        <activity android:name=".page.creamarea.delicious.CateActivity"></activity>
     </application>
 
 </manifest>

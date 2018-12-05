@@ -5,13 +5,15 @@ import cn.bmob.v3.BmobObject;
 /**
  * @author popeg
  */
-public class TakeOutBean extends BmobObject {
+public class TakeOutBean {
+
+    public TakeOutBean(String takeoutFoodName, String takeoutPicUrl) {
+        this.takeoutFoodName = takeoutFoodName;
+        this.takeoutPicUrl = takeoutPicUrl;
+    }
 
     private String takeoutFoodName;
-    private Integer takeoutPrice;
-    private Integer takeoutLikes;
-    private Integer takeoutCalm;
-    private Integer takeoutDislikes;
+    private String takeoutPicUrl;
 
     public String getTakeoutFoodName() {
         return takeoutFoodName;
@@ -21,35 +23,11 @@ public class TakeOutBean extends BmobObject {
         this.takeoutFoodName = takeoutFoodName;
     }
 
-    public Integer getTakeoutPrice() {
-        return takeoutPrice;
+    public String getTakeoutPicUrl() {
+        return takeoutPicUrl;
     }
 
-    public void setTakeoutPrice(Integer takeoutPrice) {
-        this.takeoutPrice = takeoutPrice;
-    }
-
-    public Integer getTakeoutLikes() {
-        return takeoutLikes;
-    }
-
-    public void setTakeoutLikes(Integer takeoutLikes) {
-        this.takeoutLikes = takeoutLikes;
-    }
-
-    public Integer getTakeoutCalm() {
-        return takeoutCalm;
-    }
-
-    public void setTakeoutCalm(Integer takeoutCalm) {
-        this.takeoutCalm = takeoutCalm;
-    }
-
-    public Integer getTakeoutDislikes() {
-        return takeoutDislikes;
-    }
-
-    public void setTakeoutDislikes(Integer takeoutDislikes) {
-        this.takeoutDislikes = takeoutDislikes;
+    public void setTakeoutPicUrl(String takeoutPicUrl) {
+        this.takeoutPicUrl = takeoutPicUrl;
     }
 }

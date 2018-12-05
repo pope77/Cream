@@ -16,4 +16,6 @@ interface ProgramInterface {
 
     fun getProgramRecommend(programType:Int,onProgramDataCallback: OnProgramDataCallback)
 
+    fun addHit(programBean: ProgramBean,baseDataCallback: BaseDataCallback)
+
 }

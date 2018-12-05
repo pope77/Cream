@@ -53,12 +53,11 @@ class LoginFragment : BaseFragment<LoginContract.Presenter>(), LoginContract.Vie
             1 -> startActivity(Intent(activity, InterestPointActivity::class.java))
             -1 -> startActivity(Intent(activity, MainActivity::class.java))
         }
-        activity.finish()
+        activity!!.finish()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater!!.inflate(R.layout.fragment_login, container, false)
 
@@ -68,7 +67,7 @@ class LoginFragment : BaseFragment<LoginContract.Presenter>(), LoginContract.Vie
         return view
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListener()
     }
@@ -90,10 +89,10 @@ class LoginFragment : BaseFragment<LoginContract.Presenter>(), LoginContract.Vie
 
         //更改状态栏为透明并将状态栏图标颜色改为暗色图标
         if (Build.VERSION.SDK_INT >= 21) {
-            val decorView = activity.window.decorView
+            val decorView = activity!!.window.decorView
             val option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             decorView.systemUiVisibility = option
-            activity.window.statusBarColor = Color.TRANSPARENT
+            activity!!.window.statusBarColor = Color.TRANSPARENT
         }
 
         mPresenter!!.checkIsOldUser(SystemUtil.getIMEI(activity))

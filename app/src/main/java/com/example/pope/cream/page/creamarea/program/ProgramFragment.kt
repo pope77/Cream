@@ -1,4 +1,4 @@
-package com.example.pope.cream.page.program
+package com.example.pope.cream.page.creamarea.program
 
 
 import android.os.Bundle
@@ -11,14 +11,14 @@ import android.view.ViewGroup
 import com.example.pope.cream.R
 import com.example.pope.cream.biz.beans.ProgramBean
 import com.example.pope.cream.page.base.BaseFragment
-import com.example.pope.cream.page.program.adapter.ProgramListAdapter
+import com.example.pope.cream.page.creamarea.program.adapter.ProgramListAdapter
 import kotlinx.android.synthetic.main.fragment_program.*
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class ProgramFragment : BaseFragment<ProgramContract.ProgramPresenter>(),ProgramContract.ProgramView {
+class ProgramFragment : BaseFragment<ProgramContract.ProgramPresenter>(), ProgramContract.ProgramView {
 
     /**
      * 加载节目数据
@@ -26,13 +26,16 @@ class ProgramFragment : BaseFragment<ProgramContract.ProgramPresenter>(),Program
     override fun loadProgramData(programList: MutableList<ProgramBean>) {
 
         recyclerView_programList.layoutManager = LinearLayoutManager(activity)
-        val adapter = ProgramListAdapter(activity,programList)
+        val adapter = ProgramListAdapter(activity, programList)
         recyclerView_programList.adapter = adapter
         adapter.setCardOnClickListener { programBean ->
-            (activity as ContentActivity).changeFragment(ProgramDetailFragment(programBean))
+            (activity as ProgramActivity).changeFragment(ProgramDetailFragment(programBean))
+            mPresenter!!.addHit(programBean)
          }
         adapter.setOnPlayListener { programBean ->
-            (activity as ContentActivity).changeFragment(ProgramDetailFragment(programBean))}
+            (activity as ProgramActivity).changeFragment(ProgramDetailFragment(programBean))
+            mPresenter!!.addHit(programBean)
+        }
     }
 
     override fun toast(msg: String, length: Int) {
@@ -48,14 +51,14 @@ class ProgramFragment : BaseFragment<ProgramContract.ProgramPresenter>(),Program
         return view
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //初始化ToolBar
-        toolbar_movieList.setNavigationIcon(R.mipmap.ic_arrow_back)
+        toolbar_movieList.setNavigationIcon(R.mipmap.ic_arrow_back_white)
         toolbar_movieList.setNavigationOnClickListener{
-            activity.finish()
+            activity!!.finish()
         }
         //查询节目数据
-        mPresenter!!.getProgramRecommend((activity as ContentActivity).programType)
+        mPresenter!!.getProgramRecommend((activity as ProgramActivity).programType)
     }
 }

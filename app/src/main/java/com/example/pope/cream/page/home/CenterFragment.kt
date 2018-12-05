@@ -21,8 +21,7 @@ class CenterFragment : BaseFragment<HomeContract.CenterPresenter>(), HomeContrac
         tst(msg, length)
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater!!.inflate(R.layout.fragment_center, container, false)
         CenterPresenter(this)

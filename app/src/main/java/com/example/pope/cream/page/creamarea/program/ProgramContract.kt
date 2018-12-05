@@ -1,4 +1,4 @@
-package com.example.pope.cream.page.program
+package com.example.pope.cream.page.creamarea.program
 
 import com.example.pope.cream.biz.beans.ProgramBean
 import com.example.pope.cream.page.base.BasePresenter
@@ -9,6 +9,8 @@ interface ProgramContract{
     interface ProgramPresenter:BasePresenter{
 
         fun getProgramRecommend(programType:Int)
+
+        fun addHit(programBean: ProgramBean)
 
     }
 

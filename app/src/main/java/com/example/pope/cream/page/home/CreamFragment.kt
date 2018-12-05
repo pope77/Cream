@@ -15,12 +15,13 @@ import android.widget.ImageView
 
 import com.example.pope.cream.R
 import com.example.pope.cream.page.base.BaseFragment
+import com.example.pope.cream.page.creamarea.delicious.CateActivity
 import com.example.pope.cream.page.home.adapter.CreamAreaAdapter
-import com.example.pope.cream.page.program.ContentActivity
+import com.example.pope.cream.page.creamarea.program.ProgramActivity
+import com.example.pope.cream.page.creamarea.takeout.TakeOutActivity
 import com.example.pope.cream.utils.ScreenUtil
 
 import java.util.ArrayList
-import java.util.Arrays
 
 import kotlinx.android.synthetic.main.fragment_cream.*
 
@@ -36,7 +37,6 @@ class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.
      */
     override fun loadInterestData(interestList: MutableList<String>) {
 
-        val titleList = interestList
         var picList = ArrayList<Int>()
         for (element in interestList) {
             when (element) {
@@ -56,7 +56,7 @@ class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.
         }
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         recyclerView_creamArea.layoutManager = layoutManager
-        val areaAdapter = CreamAreaAdapter(titleList, picList, activity)
+        val areaAdapter = CreamAreaAdapter(interestList, picList, activity)
         recyclerView_creamArea.adapter = areaAdapter
         //TODO 根据用户兴趣数量更改最小高度
 //        changeCreamAreaMinHeight(576)
@@ -67,48 +67,58 @@ class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.
         scrollView_cream.isFocusableInTouchMode = true
         scrollView_cream.requestFocus()
 
-        areaAdapter.setItemOnClickListener(object : CreamAreaAdapter.OnItemClickListener{
-            override fun onClick(title: String?) {
-                //TODO 各个按键监听
-                when(title!!){
-//                    "美食" ->
-                    "电影" ->{
-                        val intent = Intent(activity,ContentActivity::class.java)
-                        intent.putExtra("fragmentName",title)
-                        startActivity(intent)
-                    }
-//                    "外卖" ->
+        areaAdapter.setItemOnClickListener { title ->
+            //TODO 各个按键监听
+            when (title!!) {
+                "电影" -> {
+                    val intent = Intent(activity, ProgramActivity::class.java)
+                    intent.putExtra("fragmentName", title)
+                    startActivity(intent)
+                }
+                "综艺" -> {
+                    val intent = Intent(activity, ProgramActivity::class.java)
+                    intent.putExtra("fragmentName", title)
+                    startActivity(intent)
+                }
+                "美食" -> {
+                    val intent = Intent(activity, CateActivity::class.java)
+                    intent.putExtra("fragmentName", title)
+                    startActivity(intent)
+                }
+                "饮品" -> {
+                    val intent = Intent(activity, CateActivity::class.java)
+                    intent.putExtra("fragmentName", title)
+                    startActivity(intent)
+                }
+                "外卖" -> {
+                    startActivity(Intent(activity, TakeOutActivity::class.java))
+                }
 //                    "音乐" ->
-//                    "饮品" ->
-//                    "综艺" ->
 //                    "书籍" ->
 //                    "网文" ->
 //                    "软件" ->
 //                    "硬件" ->
 //                    "生活" ->
 //                    "风景" ->
-                }
             }
-        })
+        }
 
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        var view = inflater!!.inflate(R.layout.fragment_cream, container, false)
+        val view = inflater.inflate(R.layout.fragment_cream, container, false)
 
         CreamPresenter(this)
 
         return view
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setScrollListener()
         initBanner()
-        mPresenter!!.getInterestData(activity)
-//        initCreamArea()
+        mPresenter!!.getInterestData(activity!!)
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -129,41 +139,13 @@ class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.
 
     }
 
-    private fun initCreamArea() {
-
-        val titleList = Arrays.asList(*resources.getStringArray(R.array.pickerPoints))
-        val picList = ArrayList<Int>()
-        picList.add(R.mipmap.bg_type_food)
-        picList.add(R.mipmap.bg_type_movie)
-        picList.add(R.mipmap.bg_type_take_out)
-        picList.add(R.mipmap.bg_type_music)
-        picList.add(R.mipmap.bg_type_drink)
-        picList.add(R.mipmap.bg_type_variety)
-        picList.add(R.mipmap.bg_type_book)
-        picList.add(R.mipmap.bg_type_internet_article)
-        picList.add(R.mipmap.bg_type_software)
-        picList.add(R.mipmap.bg_type_hardware)
-        picList.add(R.mipmap.bg_type_life)
-        picList.add(R.mipmap.bg_type_scenery)
-        val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        recyclerView_creamArea.layoutManager = layoutManager
-        val areaAdapter = CreamAreaAdapter(titleList, picList, activity)
-        recyclerView_creamArea.adapter = areaAdapter
-        //TODO 根据用户兴趣数量更改最小高度
-        changeCreamAreaMinHeight(576)
-        recyclerView_creamArea.isNestedScrollingEnabled = false
-        recyclerView_creamArea.isFocusable = false
-
-        scrollView_cream.isFocusable = true
-        scrollView_cream.isFocusableInTouchMode = true
-        scrollView_cream.requestFocus()
-
-    }
-
     private fun changeCreamAreaMinHeight(minHeight: Int) {
         recyclerView_creamArea!!.minimumHeight = minHeight
     }
 
+    /**
+     * 初始化Banner
+     */
     private fun initBanner() {
 
         val layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ScreenUtil.getScreenWidth(activity) / 2)

@@ -39,12 +39,30 @@ public class ProgramBean extends BmobObject {
     private String programAWord;
     private double programScore;
     private String programSourceUrl;
+    private String programVideoTitle;
     private String programPosterUrl;
     private String programIntroduce;
+    private Integer programHits;
     private List<String> programComments;
     private List<String> programActorList;
     private List<String> programRoleList;
     private List<String> programActorImage;
+
+    public Integer getProgramHits() {
+        return programHits;
+    }
+
+    public void setProgramHits(Integer programHits) {
+        this.programHits = programHits;
+    }
+
+    public String getProgramVideoTitle() {
+        return programVideoTitle;
+    }
+
+    public void setProgramVideoTitle(String programVideoTitle) {
+        this.programVideoTitle = programVideoTitle;
+    }
 
     public String getProgramPosterUrl() {
         return programPosterUrl;
