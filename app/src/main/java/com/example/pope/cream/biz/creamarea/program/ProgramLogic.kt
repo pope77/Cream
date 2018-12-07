@@ -1,4 +1,4 @@
-package com.example.pope.cream.biz.program
+package com.example.pope.cream.biz.creamarea.program
 
 import cn.bmob.v3.BmobQuery
 import cn.bmob.v3.exception.BmobException
@@ -8,7 +8,7 @@ import com.example.pope.cream.biz.base.BaseDataCallback
 import com.example.pope.cream.biz.base.BaseLogic
 import com.example.pope.cream.biz.beans.ProgramBean
 
-class ProgramLogic:BaseLogic(),ProgramInterface {
+class ProgramLogic:BaseLogic(), ProgramInterface {
     override fun addHit(programBean: ProgramBean, baseDataCallback: BaseDataCallback) {
         programBean.programHits = programBean.programHits++
         programBean.update(object: UpdateListener(){

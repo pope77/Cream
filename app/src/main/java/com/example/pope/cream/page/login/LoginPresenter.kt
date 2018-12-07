@@ -77,13 +77,6 @@ class LoginPresenter
 
     }
 
-
-    private val loginInterface = ModelFactory.loginInterface
-
-    init {
-        view.bindPresenter(this)
-    }
-
     override fun checkIsOldUser(imei: String) {
 
         loginInterface.checkIsOldUser(imei, object : LoginInterface.OnCheckIsOldUserCallback {
@@ -100,6 +93,13 @@ class LoginPresenter
 
         })
 
+    }
+
+
+    private val loginInterface = ModelFactory.loginInterface
+
+    init {
+        view.bindPresenter(this)
     }
 
 }

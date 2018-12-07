@@ -10,7 +10,11 @@ import cn.bmob.v3.BmobObject;
  */
 public class CateBean extends BmobObject {
 
+    public static final Integer CATE_TYPE_FOOD = 1;
+    public static final Integer CATE_TYPE_DRINK = -1;
+
     public static final String CATE_TYPE = "cateType";
+    public static final String CATE_BIG_PIC = "cateCardPic";
     public static final String CATE_NAME = "cateName";
     public static final String CATE_SCORE = "cateScore";
     public static final String CATE_PRICE = "catePrice";
@@ -28,7 +32,9 @@ public class CateBean extends BmobObject {
      *  -1->饮品
      */
     private Integer cateType;
+    private String cateCardPic;
     private String cateName;
+    private String cateDetailBigPic;
     private Double cateScore;
     private Integer catePrice;
     private Integer cateLikes;
@@ -38,6 +44,22 @@ public class CateBean extends BmobObject {
     private List<String> catePics;
     private List<String> cateNames;
     private Integer cateHits;
+
+    public String getCateDetailBigPic() {
+        return cateDetailBigPic;
+    }
+
+    public void setCateDetailBigPic(String cateDetailBigPic) {
+        this.cateDetailBigPic = cateDetailBigPic;
+    }
+
+    public String getCateCardPic() {
+        return cateCardPic;
+    }
+
+    public void setCateCardPic(String cateCardPic) {
+        this.cateCardPic = cateCardPic;
+    }
 
     public Integer getCateHits() {
         return cateHits;

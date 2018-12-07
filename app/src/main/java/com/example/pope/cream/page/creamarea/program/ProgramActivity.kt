@@ -38,12 +38,14 @@ class ProgramActivity : AppCompatActivity() {
         when (fragmentName) {
             "电影" -> {
                 programType = ProgramBean.PROGRAM_TYPE_MOVIE
-                programFragment = ProgramFragment()
+                currentFragmentCode = 1
+                programFragment = ProgramFragment.newInstance()
                 supportFragmentManager.beginTransaction().replace(R.id.frameLayout_contentActivity_container, programFragment).commit()
             }
             "综艺" -> {
                 programType = ProgramBean.PROGRAM_TYPE_VIRTY
-                programFragment = ProgramFragment()
+                currentFragmentCode = 1
+                programFragment = ProgramFragment.newInstance()
                 supportFragmentManager.beginTransaction().replace(R.id.frameLayout_contentActivity_container, programFragment).commit()
             }
         }
@@ -55,23 +57,23 @@ class ProgramActivity : AppCompatActivity() {
         when (fragment) {
             is ProgramDetailFragment -> {
                 programDetailFragment = fragment
-                supportFragmentManager.beginTransaction().replace(R.id.frameLayout_contentActivity_container, fragment).commit()
-                currentFragmentCode = 1
-            }
-            is ProgramFragment -> {
-                supportFragmentManager.beginTransaction().replace(R.id.frameLayout_contentActivity_container, programFragment).commit()
+                supportFragmentManager.beginTransaction().hide(programFragment)
+                        .replace(R.id.frameLayout_contentActivity_container,fragment).commit()
                 currentFragmentCode = 2
             }
+            is ProgramFragment -> {
+                supportFragmentManager.beginTransaction().remove(programDetailFragment)
+                        .replace(R.id.frameLayout_contentActivity_container,programFragment).commit()
+                currentFragmentCode = 1
+            }
         }
-
     }
 
     override fun onBackPressed() {
         when (currentFragmentCode) {
-            0 -> finish()
-            1 -> {
+            1 -> finish()
+            2 -> {
                 changeFragment(programFragment)
-                currentFragmentCode = 0
             }
         }
     }

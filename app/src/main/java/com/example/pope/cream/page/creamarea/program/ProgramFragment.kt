@@ -61,4 +61,11 @@ class ProgramFragment : BaseFragment<ProgramContract.ProgramPresenter>(), Progra
         //查询节目数据
         mPresenter!!.getProgramRecommend((activity as ProgramActivity).programType)
     }
+
+    companion object {
+        fun newInstance():ProgramFragment{
+            return ProgramFragment()
+        }
+    }
+
 }

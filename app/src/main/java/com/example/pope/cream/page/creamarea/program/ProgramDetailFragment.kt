@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.example.pope.cream.R
 import com.example.pope.cream.biz.beans.ProgramBean
 import com.example.pope.cream.page.creamarea.program.adapter.ActorListAdapter
 import kotlinx.android.synthetic.main.fragment_program_detail.*
+import kotlin.math.log
 
 /**
  * A simple [Fragment] subclass.
@@ -57,16 +59,25 @@ class ProgramDetailFragment(programBean: ProgramBean) : Fragment() {
 
     override fun onStop() {
         super.onStop()
+        Log.i("测试","停止了")
         videoPlayer.release()
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (hidden) JzvdStd.goOnPlayOnPause()
+        else JzvdStd.goOnPlayOnResume()
     }
 
     override fun onPause() {
         super.onPause()
+        Log.i("测试","暂停了")
         JzvdStd.goOnPlayOnPause()
     }
 
     override fun onResume() {
         super.onResume()
+        Log.i("测试","继续了")
         JzvdStd.goOnPlayOnResume()
     }
 

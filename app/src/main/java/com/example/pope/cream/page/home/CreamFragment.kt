@@ -148,7 +148,8 @@ class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.
      */
     private fun initBanner() {
 
-        val layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ScreenUtil.getScreenWidth(activity) / 2)
+        val layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,
+                ScreenUtil.getScreenWidth(activity) / 2)
         xBanner_cream_recommend.layoutParams = layoutParams
 
         xBanner_cream_recommend.setOnItemClickListener { banner, model, view, position ->
