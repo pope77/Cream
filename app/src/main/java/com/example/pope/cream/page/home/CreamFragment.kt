@@ -16,8 +16,10 @@ import android.widget.ImageView
 import com.example.pope.cream.R
 import com.example.pope.cream.page.base.BaseFragment
 import com.example.pope.cream.page.creamarea.delicious.CateActivity
+import com.example.pope.cream.page.creamarea.music.MusicActivity
 import com.example.pope.cream.page.home.adapter.CreamAreaAdapter
 import com.example.pope.cream.page.creamarea.program.ProgramActivity
+import com.example.pope.cream.page.creamarea.scenery.SceneryActivity
 import com.example.pope.cream.page.creamarea.takeout.TakeOutActivity
 import com.example.pope.cream.utils.ScreenUtil
 
@@ -93,13 +95,17 @@ class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.
                 "外卖" -> {
                     startActivity(Intent(activity, TakeOutActivity::class.java))
                 }
-//                    "音乐" ->
+                "音乐" -> {
+                    startActivity(Intent(activity, MusicActivity::class.java))
+                }
 //                    "书籍" ->
 //                    "网文" ->
 //                    "软件" ->
 //                    "硬件" ->
 //                    "生活" ->
-//                    "风景" ->
+                    "风景" ->{
+                        startActivity(Intent(activity,SceneryActivity::class.java))
+                    }
             }
         }
 

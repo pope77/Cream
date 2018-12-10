@@ -8,7 +8,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.pope.cream"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -54,4 +54,5 @@ dependencies {
     implementation 'cn.jzvd:jiaozivideoplayer:6.4.1'
     implementation 'com.github.dmytrodanylyk:android-morphing-button:98a4986e56'
     implementation 'rouchuan.viewpagerlayoutmanager:viewpagerlayoutmanager:2.0.22'
+    implementation 'com.github.DingMouRen:LayoutManagerGroup:643fb71c8e'
 }

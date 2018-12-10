@@ -17,4 +17,10 @@
 
     <color name="creamAreaItemShadow">#33000000</color>
     <color name="divideLine">#d5d5d5</color>
+
+    <color name="sceneryRed">#ff6767</color>
+    <color name="sceneryBlue">#2E89FF</color>
+    <color name="sceneryGreen">#68BF43</color>
+    <color name="sceneryPurple">#8568F5</color>
+    <color name="sceneryYellow">#FFB653</color>
 </resources>

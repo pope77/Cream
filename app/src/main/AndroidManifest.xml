@@ -39,7 +39,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".page.creamarea.takeout.TakeOutActivity" />
         <activity android:name=".page.creamarea.delicious.CateActivity" />
-        <activity android:name=".page.creamarea.music.MusicActivity"></activity>
+        <activity android:name=".page.creamarea.music.MusicActivity" />
+        <activity android:name=".page.creamarea.scenery.SceneryActivity"></activity>
     </application>
 
 </manifest>

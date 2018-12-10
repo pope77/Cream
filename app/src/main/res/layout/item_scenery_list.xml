@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView＿sceneryPic"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:srcCompat="@android:color/holo_blue_bright" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView_scenery_group1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout_sceneryGroup1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView_sceneryCard_bg1"
+                android:layout_width="88dp"
+                android:layout_height="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/bg_scenery_card1_red" />
+
+            <ImageView
+                android:id="@+id/imageView_sceneryCard_bg2"
+                android:layout_width="88dp"
+                android:layout_height="28dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:srcCompat="@drawable/bg_scenery_card2_red" />
+
+            <ImageView
+                android:id="@+id/imageView_sceneryCard_bg3"
+                android:layout_width="88dp"
+                android:layout_height="28dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:srcCompat="@drawable/bg_scenery_card3_red" />
+
+            <ImageView
+                android:id="@+id/imageView_scenery_likeIcon"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_sceneryCard_bg1"
+                tools:srcCompat="@mipmap/ic_scenery_like_red" />
+
+            <TextView
+                android:id="@+id/textView_scenery_likes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:textColor="@color/sceneryRed"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView_scenery_likeIcon"
+                app:layout_constraintStart_toEndOf="@+id/imageView_scenery_likeIcon"
+                app:layout_constraintTop_toTopOf="@+id/imageView_scenery_likeIcon"
+                tools:text="8.6k" />
+
+            <ImageView
+                android:id="@+id/imageView_scenery_dislikeIcon"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_scenery_likes"
+                app:layout_constraintStart_toEndOf="@+id/textView_scenery_likes"
+                app:layout_constraintTop_toTopOf="@+id/textView_scenery_likes"
+                tools:srcCompat="@mipmap/ic_scenery_dislike_red" />
+
+            <TextView
+                android:id="@+id/textView_scenery_dislikes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:textColor="@color/sceneryRed"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView_scenery_dislikeIcon"
+                app:layout_constraintStart_toEndOf="@+id/imageView_scenery_dislikeIcon"
+                app:layout_constraintTop_toTopOf="@+id/imageView_scenery_dislikeIcon"
+                tools:text="1.2k" />
+
+            <TextView
+                android:id="@+id/textView_sceneryName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/bb_darkBackgroundColor"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="故宫博物馆" />
+
+            <TextView
+                android:id="@+id/textView_sceneryAddr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_sceneryName"
+                app:layout_constraintEnd_toStartOf="@+id/textView_sceneryName"
+                app:layout_constraintTop_toTopOf="@+id/textView_sceneryName"
+                app:layout_constraintVertical_bias="0.8"
+                tools:text="北京，中国" />
+
+            <TextView
+                android:id="@+id/textView_scenery_collection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="收藏"
+                android:textColor="@color/sceneryRed"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView_sceneryCard_bg2" />
+
+            <ImageView
+                android:id="@+id/imageView_scenery_collection"
+                android:layout_width="11dp"
+                android:layout_height="15dp"
+                android:layout_marginEnd="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_scenery_collection"
+                app:layout_constraintEnd_toStartOf="@+id/textView_scenery_collection"
+                app:layout_constraintTop_toTopOf="@+id/textView_scenery_collection"
+                tools:srcCompat="@mipmap/ic_scenery_collection_red" />
+
+            <ImageView
+                android:id="@+id/imageView_scenery_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/imageView_sceneryCard_bg2"
+                app:layout_constraintTop_toTopOf="@+id/imageView_sceneryCard_bg2"
+                app:srcCompat="@mipmap/ic_next" />
+
+            <TextView
+                android:id="@+id/textView_scenery_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView_scenery_collection"
+                app:layout_constraintEnd_toStartOf="@+id/imageView_scenery_collection"
+                app:layout_constraintTop_toTopOf="@+id/imageView_scenery_collection"
+                tools:text="220"
+                tools:textColor="@color/sceneryRed" />
+
+            <ImageView
+                android:id="@+id/imageView_scenery_price"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginEnd="4dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_scenery_price"
+                app:layout_constraintEnd_toStartOf="@+id/textView_scenery_price"
+                app:layout_constraintTop_toTopOf="@+id/textView_scenery_price"
+                tools:srcCompat="@mipmap/ic_scenery_price_red" />
+
+            <TextView
+                android:id="@+id/textView_scenery_aWord"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/imageView_sceneryCard_bg2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_sceneryName"
+                tools:text="        介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍" />
+
+            <ImageView
+                android:id="@+id/imageView_scenery_preview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView_sceneryCard_bg3"
+                app:layout_constraintEnd_toEndOf="@+id/imageView_sceneryCard_bg3"
+                app:layout_constraintStart_toStartOf="@+id/imageView_sceneryCard_bg3"
+                app:layout_constraintTop_toTopOf="@+id/imageView_sceneryCard_bg3"
+                app:srcCompat="@mipmap/ic_preview" />
+
+            <ScrollView
+                android:id="@+id/scrollView_group2_container"
+                android:layout_width="0dp"
+                android:layout_height="470dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="36dp"
+                android:maxHeight="480dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/imageView_sceneryCard_bg2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_sceneryName">
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/constraintLayout_group2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="介绍："
+                        android:textColor="@color/bb_darkBackgroundColor"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView_sceneryIntroduce"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/bb_darkBackgroundColor"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView7"
+                        tools:text="        介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="参观导览："
+                        android:textColor="@color/bb_darkBackgroundColor"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView_sceneryIntroduce" />
+
+                    <TextView
+                        android:id="@+id/textView_secnery_guide"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:textColor="@color/bb_darkBackgroundColor"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView11"
+                        tools:text="        导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览导览" />
+                </android.support.constraint.ConstraintLayout>
+            </ScrollView>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>
