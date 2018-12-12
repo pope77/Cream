@@ -40,7 +40,9 @@
         <activity android:name=".page.creamarea.takeout.TakeOutActivity" />
         <activity android:name=".page.creamarea.delicious.CateActivity" />
         <activity android:name=".page.creamarea.music.MusicActivity" />
-        <activity android:name=".page.creamarea.scenery.SceneryActivity"></activity>
+        <activity android:name=".page.creamarea.scenery.SceneryActivity" />
+        <activity android:name=".page.creamarea.ware.WareActivity" />
+        <activity android:name=".page.creamarea.book.BookActivity"></activity>
     </application>
 
 </manifest>

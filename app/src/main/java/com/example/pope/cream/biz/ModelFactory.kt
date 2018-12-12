@@ -3,6 +3,8 @@ package com.example.pope.cream.biz
 import android.content.Context
 
 import com.example.pope.cream.biz.base.BaseLogic
+import com.example.pope.cream.biz.creamarea.book.BookInterface
+import com.example.pope.cream.biz.creamarea.book.BookLogic
 import com.example.pope.cream.biz.creamarea.delicious.CateInterface
 import com.example.pope.cream.biz.creamarea.delicious.CateLogic
 import com.example.pope.cream.biz.creamarea.music.MusicInterface
@@ -40,6 +42,9 @@ object ModelFactory {
 
     val sceneryInterface: SceneryInterface
         get() = SceneryLogic.instance
+
+    val bookInterface: BookInterface
+        get() = BookLogic.instance
 
     fun init(context: Context) {
         BaseLogic.initialize(context)

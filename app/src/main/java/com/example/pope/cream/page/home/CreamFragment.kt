@@ -15,6 +15,7 @@ import android.widget.ImageView
 
 import com.example.pope.cream.R
 import com.example.pope.cream.page.base.BaseFragment
+import com.example.pope.cream.page.creamarea.book.BookActivity
 import com.example.pope.cream.page.creamarea.delicious.CateActivity
 import com.example.pope.cream.page.creamarea.music.MusicActivity
 import com.example.pope.cream.page.home.adapter.CreamAreaAdapter
@@ -98,7 +99,9 @@ class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.
                 "音乐" -> {
                     startActivity(Intent(activity, MusicActivity::class.java))
                 }
-//                    "书籍" ->
+                    "书籍" ->{
+                        startActivity(Intent(activity,BookActivity::class.java))
+                    }
 //                    "网文" ->
 //                    "软件" ->
 //                    "硬件" ->

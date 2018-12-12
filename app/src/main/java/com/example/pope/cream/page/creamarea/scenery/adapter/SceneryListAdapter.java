@@ -225,8 +225,15 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
             preview = itemView.findViewById(R.id.imageView_scenery_preview);
         }
 
+        /**
+         * 判断event坐标是否在ScrollView里
+         * @param x event的rowX
+         * @param y event的rowY
+         * @return 这个点在不在ScrollView范围内
+         */
         public boolean isTouchScrollView(float x, float y) {
             int[] pos = new int[2];
+            //获取屏幕上的位置
             scrollView.getLocationOnScreen(pos);
             int width = scrollView.getMeasuredWidth();
             int height = scrollView.getMeasuredHeight();

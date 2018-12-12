@@ -46,7 +46,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="64dp"
                 android:text="谁做的"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -59,13 +59,13 @@
                 android:id="@+id/textView_center_phoneNum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="15968151044"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/textView_center_userName"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textView_center_userName"
-                app:layout_constraintTop_toBottomOf="@+id/textView_center_userName" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_center_userName"
+                tools:text="15968151044" />
 
             <TextView
                 android:id="@+id/textView_center_changeName"
@@ -149,14 +149,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="843"
                         android:textColor="@android:color/white"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/imageView4"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView9"
+                        tools:text="843" />
 
                     <TextView
                         android:id="@+id/textView_center_collections"
@@ -164,14 +164,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="95"
                         android:textColor="@android:color/white"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/imageView4"
-                        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView10"
+                        tools:text="95" />
 
                 </android.support.constraint.ConstraintLayout>
             </android.support.v7.widget.CardView>
@@ -181,7 +181,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Pope Lee"
                 android:textColor="@android:color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"

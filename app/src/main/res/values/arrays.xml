@@ -42,4 +42,31 @@
         <item>@mipmap/bg_type_scenery_round</item>
     </integer-array>
 
+    <string-array name="bookType">
+        <item>青春</item>
+        <item>小说</item>
+        <item>文学</item>
+        <item>艺术</item>
+        <item>幽默</item>
+        <item>时尚</item>
+        <item>旅游</item>
+        <item>地理</item>
+        <item>生活</item>
+        <item>婚恋</item>
+        <item>育儿</item>
+        <item>保健</item>
+        <item>体育</item>
+        <item>管理</item>
+        <item>经济</item>
+        <item>法律</item>
+        <item>政治</item>
+        <item>军事</item>
+        <item>哲学</item>
+        <item>宗教</item>
+        <item>社会</item>
+        <item>古籍</item>
+        <item>历史</item>
+        <item>传记</item>
+    </string-array>
+
 </resources>
