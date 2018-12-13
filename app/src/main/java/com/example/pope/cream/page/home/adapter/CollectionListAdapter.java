@@ -32,7 +32,7 @@ public class CollectionListAdapter extends RecyclerView.Adapter<CollectionListAd
     }
 
     interface OnItemClickListener {
-        void onClick(String type, List<String> idList);
+        void onClick(String type, String id);
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
@@ -55,7 +55,7 @@ public class CollectionListAdapter extends RecyclerView.Adapter<CollectionListAd
             @Override
             public void onClick(View view) {
                 if (onItemClickListener != null) {
-                    onItemClickListener.onClick(type, idList);
+                    onItemClickListener.onClick(type,idList.get(position));
                 }
             }
         });

@@ -61,8 +61,6 @@ class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.
         recyclerView_creamArea.layoutManager = layoutManager
         val areaAdapter = CreamAreaAdapter(interestList, picList, activity)
         recyclerView_creamArea.adapter = areaAdapter
-        //TODO 根据用户兴趣数量更改最小高度
-//        changeCreamAreaMinHeight(576)
         recyclerView_creamArea.isNestedScrollingEnabled = false
         recyclerView_creamArea.isFocusable = false
 
@@ -71,7 +69,7 @@ class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.
         scrollView_cream.requestFocus()
 
         areaAdapter.setItemOnClickListener { title ->
-            //TODO 各个按键监听
+            //各个按键监听
             when (title!!) {
                 "电影" -> {
                     val intent = Intent(activity, ProgramActivity::class.java)

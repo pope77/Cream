@@ -2,6 +2,7 @@ package com.example.pope.cream.page.home
 
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import com.example.pope.cream.biz.beans.CateBean
 import com.example.pope.cream.biz.beans.ProgramBean
 import com.example.pope.cream.biz.beans.SceneryBean
 import com.example.pope.cream.page.base.BaseFragment
+import com.example.pope.cream.page.creamarea.book.BookActivity
 import com.example.pope.cream.page.home.adapter.CollectionListAdapter
 import kotlinx.android.synthetic.main.fragment_collection_list.*
 import kotlinx.android.synthetic.main.item_collectionlist.*
@@ -59,6 +61,12 @@ class CollectionListFragment(collectionType: String, pointIdList: ArrayList<Stri
         }
         recyclerView_collectionList.layoutManager = LinearLayoutManager(activity)
         recyclerView_collectionList.adapter = CollectionListAdapter(type, idList, picUrls, titles, activity)
+        (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener { type, id ->
+            val intent = Intent(activity,BookActivity::class.java)
+            intent.putExtra("特殊",true)
+            intent.putExtra("id",id)
+            startActivity(intent)
+        }
     }
 
     override fun loadBeans3(beans: ArrayList<SceneryBean>) {
