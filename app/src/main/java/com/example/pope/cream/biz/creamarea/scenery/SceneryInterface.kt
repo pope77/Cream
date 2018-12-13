@@ -22,4 +22,12 @@ interface SceneryInterface{
 
     fun changeCollectState(context: Context,type:String,id:String,collectThisScenery:Boolean,onCollectStateChangeCallback: OnCollectStateChangeCallback)
 
+    interface OnCollectElmentDataCallback:BaseDataCallback{
+
+        fun onGetSuccess(sceneryBeans: MutableList<SceneryBean>,isCollectedList: ArrayList<Boolean>)
+
+    }
+
+    fun getCollectElmentData(id: String,onCollectElmentDataCallback: OnCollectElmentDataCallback)
+
 }

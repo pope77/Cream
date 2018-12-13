@@ -13,6 +13,8 @@ interface SceneryContract {
 
         fun collectStateChange(context: Context,type:String,id:String,collectThisScenery:Boolean)
 
+        fun getCollectElemntData(id: String)
+
     }
 
     interface View:BaseView<Presenter>{

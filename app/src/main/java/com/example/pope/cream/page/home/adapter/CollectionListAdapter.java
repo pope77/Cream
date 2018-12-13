@@ -48,7 +48,6 @@ public class CollectionListAdapter extends RecyclerView.Adapter<CollectionListAd
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Log.i("error7", "运行到了");
         Glide.with(context).load(coverUrls.get(position)).into(holder.itemPic);
         holder.itemTitle.setText(titles.get(position));
         holder.itemView.setOnClickListener(new View.OnClickListener() {

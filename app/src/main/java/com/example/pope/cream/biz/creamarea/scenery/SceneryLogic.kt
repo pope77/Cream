@@ -13,6 +13,23 @@ import com.example.pope.cream.biz.beans.UserBean
 class SceneryLogic : BaseLogic(), SceneryInterface {
 
     /**
+     * 从收藏列表跳转过来 获取被查看的收藏项的数据
+     */
+    override fun getCollectElmentData(id: String, onCollectElmentDataCallback: SceneryInterface.OnCollectElmentDataCallback) {
+
+        val query = BmobQuery<SceneryBean>()
+        query.getObject(id, object : QueryListener<SceneryBean>() {
+            override fun done(p0: SceneryBean?, p1: BmobException?) {
+                if (p1 != null) onCollectElmentDataCallback.onGetFailed(p1.toString(), "70039")
+                else {
+                    onCollectElmentDataCallback.onGetSuccess(arrayListOf(p0!!), arrayListOf(true))
+                }
+            }
+        })
+
+    }
+
+    /**
      * 改变收藏状态
      */
     override fun changeCollectState(context: Context, type: String, id: String, collectThisScenery: Boolean, onCollectStateChangeCallback: SceneryInterface.OnCollectStateChangeCallback) {
@@ -31,26 +48,26 @@ class SceneryLogic : BaseLogic(), SceneryInterface {
                             for ((index, element) in interestList.withIndex()) {
                                 if (type == element) {
                                     itemNumList[index]++
-                                    idList.add(count,id)
+                                    idList.add(count, id)
                                     break
-                                }else{
+                                } else {
                                     count += itemNumList[index]
                                 }
                             }
                             p0.pointItemNum = itemNumList
                             p0.pointId = idList
                             p0.userCollection++
-                            p0.update(object:UpdateListener(){
+                            p0.update(object : UpdateListener() {
                                 override fun done(p0: BmobException?) {
-                                    if (p0!=null) onCollectStateChangeCallback.onGetFailed(p0.toString(),"70026")
+                                    if (p0 != null) onCollectStateChangeCallback.onGetFailed(p0.toString(), "70026")
                                     else onCollectStateChangeCallback.onGetSuccess()
                                 }
                             })
                         }
                         //取消收藏
                         false -> {
-                            for ((index,element) in interestList.withIndex()){
-                                if (element == type){
+                            for ((index, element) in interestList.withIndex()) {
+                                if (element == type) {
                                     itemNumList[index]--
                                     break
                                 }
@@ -59,9 +76,9 @@ class SceneryLogic : BaseLogic(), SceneryInterface {
                             p0.pointItemNum = itemNumList
                             p0.pointId = idList
                             p0.userCollection--
-                            p0.update(object:UpdateListener(){
+                            p0.update(object : UpdateListener() {
                                 override fun done(p0: BmobException?) {
-                                    if (p0!=null) onCollectStateChangeCallback.onGetFailed(p0.toString(),"70027")
+                                    if (p0 != null) onCollectStateChangeCallback.onGetFailed(p0.toString(), "70027")
                                     else onCollectStateChangeCallback.onGetSuccess()
                                 }
                             })
@@ -73,7 +90,7 @@ class SceneryLogic : BaseLogic(), SceneryInterface {
     }
 
     /**
-     * 获取风景数据
+     * 获取风景数据 同时检测是否收藏
      */
     override fun getSceneryData(context: Context, onGetSceneryDataCallback: SceneryInterface.OnGetSceneryDataCallback) {
 
@@ -93,12 +110,12 @@ class SceneryLogic : BaseLogic(), SceneryInterface {
                         val isCollectedList = arrayListOf<Boolean>()
                         for (element in beans) {
                             val id = element.objectId
-                            for ((index,element1 )in idList.withIndex()) {
+                            for ((index, element1) in idList.withIndex()) {
                                 if (element1 == id) {
                                     isCollectedList.add(true)
                                     break
                                 }
-                                if (index == idList.size-1){
+                                if (index == idList.size - 1) {
                                     isCollectedList.add(false)
                                 }
                             }
@@ -120,12 +137,12 @@ class SceneryLogic : BaseLogic(), SceneryInterface {
                         val isCollectedList = arrayListOf<Boolean>()
                         for (element in beans) {
                             val id = element.objectId
-                            for ((index,element1 )in idList.withIndex()) {
+                            for ((index, element1) in idList.withIndex()) {
                                 if (element1 == id) {
                                     isCollectedList.add(true)
                                     break
                                 }
-                                if (index == idList.size-1){
+                                if (index == idList.size - 1) {
                                     isCollectedList.add(false)
                                 }
                             }

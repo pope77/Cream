@@ -18,6 +18,8 @@ import com.example.pope.cream.biz.beans.SceneryBean
 import com.example.pope.cream.page.base.BaseFragment
 import com.example.pope.cream.page.creamarea.book.BookActivity
 import com.example.pope.cream.page.creamarea.delicious.CateActivity
+import com.example.pope.cream.page.creamarea.program.ProgramActivity
+import com.example.pope.cream.page.creamarea.scenery.SceneryActivity
 import com.example.pope.cream.page.home.adapter.CollectionListAdapter
 import kotlinx.android.synthetic.main.fragment_collection_list.*
 import kotlinx.android.synthetic.main.item_collectionlist.*
@@ -56,6 +58,12 @@ class CollectionListFragment(collectionType: String, pointIdList: ArrayList<Stri
         }
         recyclerView_collectionList.layoutManager = LinearLayoutManager(activity)
         recyclerView_collectionList.adapter = CollectionListAdapter(type, idList, picUrls, titles, activity)
+        (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener {
+            val intent = Intent(activity,ProgramActivity::class.java)
+            intent.putExtra("特殊",true)
+            intent.putExtra("id",it)
+            startActivity(intent)
+        }
 
     }
 
@@ -85,6 +93,12 @@ class CollectionListFragment(collectionType: String, pointIdList: ArrayList<Stri
         }
         recyclerView_collectionList.layoutManager = LinearLayoutManager(activity)
         recyclerView_collectionList.adapter = CollectionListAdapter(type, idList, picUrls, titles, activity)
+        (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener{id ->
+            val intent = Intent(activity,SceneryActivity::class.java)
+            intent.putExtra("特殊",true)
+            intent.putExtra("id",id)
+            startActivity(intent)
+        }
 
     }
 
@@ -103,9 +117,16 @@ class CollectionListFragment(collectionType: String, pointIdList: ArrayList<Stri
         return view
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mPresenter!!.getBeans(type, idList)
+    var isFirstLunch = true
+
+    override fun onResume() {
+        super.onResume()
+        if (isFirstLunch) {
+            mPresenter!!.getBeans(type, idList)
+            isFirstLunch = false
+        }else{
+            mPresenter!!.getBeans(activity,type)
+        }
     }
 
 }

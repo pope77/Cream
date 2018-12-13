@@ -36,4 +36,6 @@ interface HomeInterface {
 
     fun getCollectionListBeans(type:String,idList: MutableList<String>, onListBeansCallback: OnListBeansCallback)
 
+    fun getCollectionListBeans(context: Context,type:String,onListBeansCallback: OnListBeansCallback)
+
 }

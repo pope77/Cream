@@ -39,11 +39,11 @@ class SceneryFragment : BaseFragment<SceneryContract.Presenter>(), SceneryContra
     override fun loadSceneryData(sceneryBeans: MutableList<SceneryBean>, isCollectedList: ArrayList<Boolean>) {
         //“抖音”式布局
         recyclerView_seneryList.layoutManager = ViewPagerLayoutManager(activity, 1)
-        recyclerView_seneryList.adapter = SceneryListAdapter(sceneryBeans, activity,isCollectedList)
+        recyclerView_seneryList.adapter = SceneryListAdapter(sceneryBeans, activity, isCollectedList)
 
         //处理ScrollView与RecyclerView滑动冲突
         //重写Touch监听
-        recyclerView_seneryList.addOnItemTouchListener(object:RecyclerView.OnItemTouchListener{
+        recyclerView_seneryList.addOnItemTouchListener(object : RecyclerView.OnItemTouchListener {
             override fun onTouchEvent(rv: RecyclerView?, e: MotionEvent?) {
 
             }
@@ -54,14 +54,14 @@ class SceneryFragment : BaseFragment<SceneryContract.Presenter>(), SceneryContra
 
             //将获取到的event坐标点给ViewHolder判断是否拦截
             override fun onInterceptTouchEvent(rv: RecyclerView?, e: MotionEvent?): Boolean {
-                if (e!=null){
+                if (e != null) {
                     //找到被点击位置的item的rootView
-                    val view = recyclerView_seneryList!!.findChildViewUnder(e.x,e.y)
-                    if (view!=null){
+                    val view = recyclerView_seneryList!!.findChildViewUnder(e.x, e.y)
+                    if (view != null) {
                         //通过rootView找到对应的ViewHolder
                         val holder = recyclerView_seneryList.getChildViewHolder(view) as SceneryListAdapter.ViewHolder
                         //由ViewHolder决定要不要请求不拦截，如果不拦截 event就会一路传到rootView中
-                        recyclerView_seneryList.requestDisallowInterceptTouchEvent(holder.isTouchScrollView(e.rawX,e.rawY))
+                        recyclerView_seneryList.requestDisallowInterceptTouchEvent(holder.isTouchScrollView(e.rawX, e.rawY))
                     }
                 }
                 return false
@@ -69,7 +69,7 @@ class SceneryFragment : BaseFragment<SceneryContract.Presenter>(), SceneryContra
         })
 
         (recyclerView_seneryList.adapter as SceneryListAdapter).setOnCollectionListener { bean, collectThisScenery ->
-            mPresenter!!.collectStateChange(activity,"风景",bean.objectId,collectThisScenery)
+            mPresenter!!.collectStateChange(activity, "风景", bean.objectId, collectThisScenery)
         }
 
     }
@@ -99,7 +99,11 @@ class SceneryFragment : BaseFragment<SceneryContract.Presenter>(), SceneryContra
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mPresenter!!.getSceneryData(activity)
+        if ((activity as SceneryActivity).isSpecial) {
+            mPresenter!!.getCollectElemntData((activity as SceneryActivity).elementId)
+        } else {
+            mPresenter!!.getSceneryData(activity)
+        }
 
         toolbar_sceneryFragment.setNavigationIcon(R.mipmap.ic_arrow_back_white)
         toolbar_sceneryFragment.setNavigationOnClickListener {

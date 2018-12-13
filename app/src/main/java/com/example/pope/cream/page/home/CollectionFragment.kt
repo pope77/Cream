@@ -68,7 +68,7 @@ class CollectionFragment : BaseFragment<HomeContract.CollectionPresenter>(), Hom
         viewPager_collectionFragment.adapter = adapter
         tabLayout_collectionFragment.setupWithViewPager(viewPager_collectionFragment)
         tabLayout_collectionFragment.setTabsFromPagerAdapter(adapter)
-        if (fragmentList.size<=3){
+        if (fragmentList.size <= 3) {
             tabLayout_collectionFragment.tabMode = TabLayout.MODE_FIXED
         }
 
@@ -85,11 +85,6 @@ class CollectionFragment : BaseFragment<HomeContract.CollectionPresenter>(), Hom
         CollectionPresenter(this)
         return view
 
-    }
-
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mPresenter!!.getInterestDetailData(activity)
     }
 
     /**
@@ -134,6 +129,11 @@ class CollectionFragment : BaseFragment<HomeContract.CollectionPresenter>(), Hom
         val interestList = interestList
         val itemNumList = itemNumList
 
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mPresenter!!.getInterestDetailData(activity)
     }
 
 }
