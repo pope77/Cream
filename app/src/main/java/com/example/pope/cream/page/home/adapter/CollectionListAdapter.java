@@ -74,6 +74,9 @@ public class CollectionListAdapter extends RecyclerView.Adapter<CollectionListAd
             super(itemView);
             itemPic = itemView.findViewById(R.id.imageView_collectionItemCover);
             itemTitle = itemView.findViewById(R.id.textView_collectionTitle);
+            if (type.equals("书籍")){
+                itemPic.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+            }
         }
     }
 }

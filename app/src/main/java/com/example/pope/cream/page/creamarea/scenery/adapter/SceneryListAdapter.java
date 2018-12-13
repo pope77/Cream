@@ -25,11 +25,13 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
 
     private List<SceneryBean> sceneryBeans;
     private Context context;
+    private List<Boolean> isCollectedList;
     private OnCollectionListener onCollectionListener;
 
-    public SceneryListAdapter(List<SceneryBean> sceneryBeans, Context context) {
+    public SceneryListAdapter(List<SceneryBean> sceneryBeans, Context context, List<Boolean> isCollectedList) {
         this.sceneryBeans = sceneryBeans;
         this.context = context;
+        this.isCollectedList = isCollectedList;
     }
 
     @Override
@@ -48,12 +50,21 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
         holder.tvLikes.setText(String.valueOf(bean.getSceneryLikes()));
         holder.tvDislikes.setText(String.valueOf(bean.getSceneryDislikes()));
         holder.tvPrice.setText(String.valueOf(bean.getSceneryPrice()));
+        if (isCollectedList.get(position)) {
+            holder.tvCollection.setText("已收藏");
+        } else {
+            holder.tvCollection.setText("收藏");
+        }
         switch (bean.getSceneryUICode()) {
             //red
             case 11:
                 Glide.with(context).load(R.mipmap.ic_scenery_like_red).into(holder.icLike);
                 Glide.with(context).load(R.mipmap.ic_scenery_dislike_red).into(holder.icDislike);
-                Glide.with(context).load(R.mipmap.ic_scenery_collection_red).into(holder.icCollection);
+                if (isCollectedList.get(position)) {
+                    Glide.with(context).load(R.mipmap.ic_scenery_collection_red_selected).into(holder.icCollection);
+                } else {
+                    Glide.with(context).load(R.mipmap.ic_scenery_collection_red).into(holder.icCollection);
+                }
                 Glide.with(context).load(R.mipmap.ic_scenery_price_red).into(holder.icPrice);
                 holder.bg1.setImageDrawable(context.getDrawable(R.drawable.bg_scenery_card1_red));
                 holder.bg2.setImageDrawable(context.getDrawable(R.drawable.bg_scenery_card2_red));
@@ -67,7 +78,11 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
             case 22:
                 Glide.with(context).load(R.mipmap.ic_scenery_like_green).into(holder.icLike);
                 Glide.with(context).load(R.mipmap.ic_scenery_dislike_green).into(holder.icDislike);
-                Glide.with(context).load(R.mipmap.ic_scenery_collection_green).into(holder.icCollection);
+                if (isCollectedList.get(position)) {
+                    Glide.with(context).load(R.mipmap.ic_scenery_collection_green_selected).into(holder.icCollection);
+                } else {
+                    Glide.with(context).load(R.mipmap.ic_scenery_collection_green).into(holder.icCollection);
+                }
                 Glide.with(context).load(R.mipmap.ic_scenery_price_green).into(holder.icPrice);
                 holder.bg1.setImageDrawable(context.getDrawable(R.drawable.bg_scenery_card1_green));
                 holder.bg2.setImageDrawable(context.getDrawable(R.drawable.bg_scenery_card2_green));
@@ -81,7 +96,11 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
             case 33:
                 Glide.with(context).load(R.mipmap.ic_scenery_like_yellow).into(holder.icLike);
                 Glide.with(context).load(R.mipmap.ic_scenery_dislike_yellow).into(holder.icDislike);
-                Glide.with(context).load(R.mipmap.ic_scenery_collection_yellow).into(holder.icCollection);
+                if (isCollectedList.get(position)) {
+                    Glide.with(context).load(R.mipmap.ic_scenery_collection_yellow_selected).into(holder.icCollection);
+                } else {
+                    Glide.with(context).load(R.mipmap.ic_scenery_collection_yellow).into(holder.icCollection);
+                }
                 Glide.with(context).load(R.mipmap.ic_scenery_price_yellow).into(holder.icPrice);
                 holder.bg1.setImageDrawable(context.getDrawable(R.drawable.bg_scenery_card1_yellow));
                 holder.bg2.setImageDrawable(context.getDrawable(R.drawable.bg_scenery_card2_yellow));
@@ -95,7 +114,11 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
             case 44:
                 Glide.with(context).load(R.mipmap.ic_scenery_like_blue).into(holder.icLike);
                 Glide.with(context).load(R.mipmap.ic_scenery_dislike_blue).into(holder.icDislike);
-                Glide.with(context).load(R.mipmap.ic_scenery_collection_blue).into(holder.icCollection);
+                if (isCollectedList.get(position)) {
+                    Glide.with(context).load(R.mipmap.ic_scenery_collection_blue_selected).into(holder.icCollection);
+                } else {
+                    Glide.with(context).load(R.mipmap.ic_scenery_collection_blue).into(holder.icCollection);
+                }
                 Glide.with(context).load(R.mipmap.ic_scenery_price_blue).into(holder.icPrice);
                 holder.bg1.setImageDrawable(context.getDrawable(R.drawable.bg_scenery_card1_blue));
                 holder.bg2.setImageDrawable(context.getDrawable(R.drawable.bg_scenery_card2_blue));
@@ -109,7 +132,11 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
             case 55:
                 Glide.with(context).load(R.mipmap.ic_scenery_like_purple).into(holder.icLike);
                 Glide.with(context).load(R.mipmap.ic_scenery_dislike_purple).into(holder.icDislike);
-                Glide.with(context).load(R.mipmap.ic_scenery_collection_purple).into(holder.icCollection);
+                if (isCollectedList.get(position)) {
+                    Glide.with(context).load(R.mipmap.ic_scenery_collection_purple_selected).into(holder.icCollection);
+                } else {
+                    Glide.with(context).load(R.mipmap.ic_scenery_collection_purple).into(holder.icCollection);
+                }
                 Glide.with(context).load(R.mipmap.ic_scenery_price_purple).into(holder.icPrice);
                 holder.bg1.setImageDrawable(context.getDrawable(R.drawable.bg_scenery_card1_purple));
                 holder.bg2.setImageDrawable(context.getDrawable(R.drawable.bg_scenery_card2_purple));
@@ -148,7 +175,38 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
         holder.tvCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "收藏", Toast.LENGTH_SHORT).show();
+                boolean isCollected = isCollectedList.get(position);
+                if (isCollected) {
+                    holder.changeCollecionUI(1, bean.getSceneryUICode(), position);
+                } else {
+                    holder.changeCollecionUI(-1, bean.getSceneryUICode(), position);
+                }
+                if (onCollectionListener != null) {
+                    if (isCollected){
+                        onCollectionListener.collection(bean,false);
+                    }else{
+                        onCollectionListener.collection(bean,true);
+                    }
+                }
+            }
+        });
+
+        holder.icCollection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean isCollected = isCollectedList.get(position);
+                if (isCollected) {
+                    holder.changeCollecionUI(1, bean.getSceneryUICode(), position);
+                } else {
+                    holder.changeCollecionUI(-1, bean.getSceneryUICode(), position);
+                }
+                if (onCollectionListener != null) {
+                    if (isCollected){
+                        onCollectionListener.collection(bean,false);
+                    }else{
+                        onCollectionListener.collection(bean,true);
+                    }
+                }
             }
         });
 
@@ -227,6 +285,7 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
 
         /**
          * 判断event坐标是否在ScrollView里
+         *
          * @param x event的rowX
          * @param y event的rowY
          * @return 这个点在不在ScrollView范围内
@@ -263,10 +322,63 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
             }
         }
 
+        void changeCollecionUI(int code, int uiCode, int pos) {
+            switch (code) {
+                case 1:
+                    tvCollection.setText("收藏");
+                    switch (uiCode) {
+                        case 11:
+                            Glide.with(context).load(R.mipmap.ic_scenery_collection_red).into(icCollection);
+                            break;
+                        case 22:
+                            Glide.with(context).load(R.mipmap.ic_scenery_collection_green).into(icCollection);
+                            break;
+                        case 33:
+                            Glide.with(context).load(R.mipmap.ic_scenery_collection_yellow).into(icCollection);
+                            break;
+                        case 44:
+                            Glide.with(context).load(R.mipmap.ic_scenery_collection_blue).into(icCollection);
+                            break;
+                        case 55:
+                            Glide.with(context).load(R.mipmap.ic_scenery_collection_purple).into(icCollection);
+                            break;
+                        default:
+                            break;
+                    }
+                    isCollectedList.set(pos, false);
+                    break;
+                case -1:
+                    tvCollection.setText("已收藏");
+                    switch (uiCode) {
+                        case 11:
+                            Glide.with(context).load(R.mipmap.ic_scenery_collection_red_selected).into(icCollection);
+                            break;
+                        case 22:
+                            Glide.with(context).load(R.mipmap.ic_scenery_collection_green_selected).into(icCollection);
+                            break;
+                        case 33:
+                            Glide.with(context).load(R.mipmap.ic_scenery_collection_yellow_selected).into(icCollection);
+                            break;
+                        case 44:
+                            Glide.with(context).load(R.mipmap.ic_scenery_collection_blue_selected).into(icCollection);
+                            break;
+                        case 55:
+                            Glide.with(context).load(R.mipmap.ic_scenery_collection_purple_selected).into(icCollection);
+                            break;
+                        default:
+                            break;
+                    }
+                    isCollectedList.set(pos, true);
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 
     interface OnCollectionListener {
-        void collection();
+        void collection(SceneryBean bean,boolean collectThisScenery);
     }
 
     public void setOnCollectionListener(OnCollectionListener onCollectionListener) {
