@@ -232,7 +232,7 @@
                     tools:text="16元" />
 
                 <ImageView
-                    android:id="@+id/imageView16"
+                    android:id="@+id/imageView_cateDetail_collect"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="8dp"
@@ -245,19 +245,18 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView6546"
+                    android:id="@+id/textView_cateDetail_collect"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:text="收藏"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView16"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView_cateDetail_collect"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/imageView16"
-                    app:layout_constraintTop_toTopOf="@+id/imageView16" />
+                    app:layout_constraintStart_toEndOf="@+id/imageView_cateDetail_collect"
+                    app:layout_constraintTop_toTopOf="@+id/imageView_cateDetail_collect" />
             </android.support.constraint.ConstraintLayout>
 
             <TextView

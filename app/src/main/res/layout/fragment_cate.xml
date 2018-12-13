@@ -7,99 +7,92 @@
     tools:context=".page.creamarea.delicious.CateFragment">
 
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_cateFragment"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/background_light"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_cateFragment">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView65465"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="64dp"
+                android:text="受欢迎的商家"
+                android:textColor="@android:color/background_dark"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <android.support.constraint.ConstraintLayout
+                android:id="@+id/constraintLayout3"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView65465">
 
-                <TextView
-                    android:id="@+id/textView65465"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="8dp"
-                    android:text="受欢迎的商家"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/constraintLayout3"
+                <com.stx.xhb.xbanner.XBanner
+                    android:id="@+id/xBanner_cateFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView65465">
-
-                    <com.stx.xhb.xbanner.XBanner
-                        android:id="@+id/xBanner_cateFragment"
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        app:AutoPlayTime="3000"
-                        app:isAutoPlay="false"
-                        app:isClipChildrenMode="true"
-                        app:isHandLoop="true"
-                        app:isShowIndicatorOnlyOne="true"
-                        app:isShowNumberIndicator="false"
-                        app:pageChangeDuration="800"
-                        app:pointsContainerBackground="@android:color/transparent"
-                        app:pointsPosition="CENTER" />
-
-                </android.support.constraint.ConstraintLayout>
-
-                <TextView
-                    android:id="@+id/textView7524"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="24dp"
-                    android:text="Cream推荐"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerView_cateFragment_cateList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7524" />
+                    android:layout_height="180dp"
+                    app:AutoPlayTime="3000"
+                    app:isAutoPlay="false"
+                    app:isClipChildrenMode="true"
+                    app:isHandLoop="true"
+                    app:isShowIndicatorOnlyOne="true"
+                    app:isShowNumberIndicator="false"
+                    app:pageChangeDuration="800"
+                    app:pointsContainerBackground="@android:color/transparent"
+                    app:pointsPosition="CENTER" />
 
             </android.support.constraint.ConstraintLayout>
-        </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView7524"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Cream推荐"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView_cateFragment_cateList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7524" />
+
+        </android.support.constraint.ConstraintLayout>
     </ScrollView>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_cateFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

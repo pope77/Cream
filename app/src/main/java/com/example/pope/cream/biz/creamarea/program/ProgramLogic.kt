@@ -20,7 +20,7 @@ class ProgramLogic:BaseLogic(), ProgramInterface {
         val query = BmobQuery<UserBean>()
         query.getObject(getLocalUserObjId(context),object :QueryListener<UserBean>(){
             override fun done(p0: UserBean?, p1: BmobException?) {
-                if (p1!=null) collectStateChangeCallback.onGetFailed(p1.toString(),"70030")
+                if (p1!=null) collectStateChangeCallback.onGetFailed(p1.toString(),"70031")
                 else{
                     for (element in p0!!.pointId){
                         if (element == id){
@@ -42,7 +42,7 @@ class ProgramLogic:BaseLogic(), ProgramInterface {
         val query = BmobQuery<UserBean>()
         query.getObject(getLocalUserObjId(context), object : QueryListener<UserBean>() {
             override fun done(p0: UserBean?, p1: BmobException?) {
-                if (p1 != null) onCollectStateChangeCallback.onGetFailed(p1.toString(), "70028")
+                if (p1 != null) onCollectStateChangeCallback.onGetFailed(p1.toString(), "70034")
                 else {
                     val interestList = p0!!.userInterestPoint
                     val itemNumList = p0!!.pointItemNum
@@ -65,7 +65,7 @@ class ProgramLogic:BaseLogic(), ProgramInterface {
                             p0.userCollection++
                             p0.update(object:UpdateListener(){
                                 override fun done(p0: BmobException?) {
-                                    if (p0!=null) onCollectStateChangeCallback.onGetFailed(p0.toString(),"70029")
+                                    if (p0!=null) onCollectStateChangeCallback.onGetFailed(p0.toString(),"70035")
                                     else onCollectStateChangeCallback.onGetSuccess()
                                 }
                             })
@@ -84,7 +84,7 @@ class ProgramLogic:BaseLogic(), ProgramInterface {
                             p0.userCollection--
                             p0.update(object:UpdateListener(){
                                 override fun done(p0: BmobException?) {
-                                    if (p0!=null) onCollectStateChangeCallback.onGetFailed(p0.toString(),"70027")
+                                    if (p0!=null) onCollectStateChangeCallback.onGetFailed(p0.toString(),"70032")
                                     else onCollectStateChangeCallback.onGetSuccess()
                                 }
                             })
