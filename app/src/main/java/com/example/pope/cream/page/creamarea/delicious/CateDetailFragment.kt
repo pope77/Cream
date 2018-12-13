@@ -64,6 +64,13 @@ class CateDetailFragment(cateBean: CateBean) : BaseFragment<CateContract.CateDet
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //初始化toolbar
+        toolbar_cateDetailFragment.setNavigationIcon(R.mipmap.ic_arrow_back_white)
+        toolbar_cateDetailFragment.setNavigationOnClickListener {
+            (activity as CateActivity).onBackPressed()
+        }
+
         loadMsg()
         //检查收藏状态
         mPresenter!!.collectStateCheck(activity,cateBean.objectId)

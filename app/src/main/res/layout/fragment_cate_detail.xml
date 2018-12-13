@@ -201,7 +201,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/guideline5"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/imageView14"
-                    app:layout_constraintTop_toTopOf="@+id/imageView14"/>
+                    app:layout_constraintTop_toTopOf="@+id/imageView14" />
 
                 <ImageView
                     android:id="@+id/imageView15"
@@ -302,5 +302,16 @@
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_cateDetailFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
