@@ -48,14 +48,14 @@ public class CollectionListAdapter extends RecyclerView.Adapter<CollectionListAd
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Log.i("error7","运行到了");
+        Log.i("error7", "运行到了");
         Glide.with(context).load(coverUrls.get(position)).into(holder.itemPic);
         holder.itemTitle.setText(titles.get(position));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (onItemClickListener != null) {
-                    onItemClickListener.onClick(type,idList);
+                    onItemClickListener.onClick(type, idList);
                 }
             }
         });
@@ -74,8 +74,19 @@ public class CollectionListAdapter extends RecyclerView.Adapter<CollectionListAd
             super(itemView);
             itemPic = itemView.findViewById(R.id.imageView_collectionItemCover);
             itemTitle = itemView.findViewById(R.id.textView_collectionTitle);
-            if (type.equals("书籍")){
-                itemPic.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+            //不同类型 图片显示的裁剪方式不同
+            switch (type) {
+                case "书籍":
+                    itemPic.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                    break;
+                case "电影":
+                    itemPic.setScaleType(ImageView.ScaleType.CENTER);
+                    break;
+                case "综艺":
+                    itemPic.setScaleType(ImageView.ScaleType.CENTER);
+                    break;
+                default:
+                    break;
             }
         }
     }

@@ -34,11 +34,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="64dp"
                 android:textColor="@android:color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/imageView_program_collect"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="节目名" />
@@ -47,13 +49,39 @@
                 android:id="@+id/textView_programDetail_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView_programDetail_name"
+                app:layout_constraintEnd_toStartOf="@+id/imageView_program_collect"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/textView_programDetail_name"
                 app:layout_constraintTop_toTopOf="@+id/textView_programDetail_name"
                 app:layout_constraintVertical_bias="1.0"
                 tools:text="节目评分" />
+
+            <TextView
+                android:id="@+id/textView_program_collect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="收藏"
+                android:textColor="@color/bb_darkBackgroundColor"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView_program_collect"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView_program_collect" />
+
+            <ImageView
+                android:id="@+id/imageView_program_collect"
+                android:layout_width="11dp"
+                android:layout_height="15dp"
+                android:layout_marginEnd="4dp"
+                android:src="@mipmap/ic_collection_black_unselected"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_programDetail_score"
+                app:layout_constraintEnd_toStartOf="@+id/textView_program_collect"
+                app:layout_constraintTop_toTopOf="@+id/textView_programDetail_score" />
 
             <TextView
                 android:id="@+id/textView_programDetail_introduce"

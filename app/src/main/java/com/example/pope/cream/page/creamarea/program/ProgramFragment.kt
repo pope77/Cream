@@ -13,12 +13,14 @@ import com.example.pope.cream.biz.beans.ProgramBean
 import com.example.pope.cream.page.base.BaseFragment
 import com.example.pope.cream.page.creamarea.program.adapter.ProgramListAdapter
 import kotlinx.android.synthetic.main.fragment_program.*
+import kotlinx.android.synthetic.main.fragment_program_detail.*
 
 /**
  * A simple [Fragment] subclass.
  *
  */
 class ProgramFragment : BaseFragment<ProgramContract.ProgramPresenter>(), ProgramContract.ProgramView {
+
 
     /**
      * 加载节目数据
@@ -42,6 +44,8 @@ class ProgramFragment : BaseFragment<ProgramContract.ProgramPresenter>(), Progra
         tst(msg,length)
     }
 
+    var isCollected: Boolean = false
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -60,7 +64,9 @@ class ProgramFragment : BaseFragment<ProgramContract.ProgramPresenter>(), Progra
         }
         //查询节目数据
         mPresenter!!.getProgramRecommend((activity as ProgramActivity).programType)
+
     }
+
 
     companion object {
         fun newInstance():ProgramFragment{

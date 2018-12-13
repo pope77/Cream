@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 
 import com.example.pope.cream.R
 import com.example.pope.cream.biz.beans.ProgramBean
+import com.example.pope.cream.page.base.BaseFragment
 import com.example.pope.cream.page.creamarea.program.adapter.ActorListAdapter
 import kotlinx.android.synthetic.main.fragment_program_detail.*
 import kotlin.math.log
@@ -23,15 +24,28 @@ import kotlin.math.log
  *
  */
 @SuppressLint("ValidFragment")
-class ProgramDetailFragment(programBean: ProgramBean) : Fragment() {
+class ProgramDetailFragment(programBean: ProgramBean) : BaseFragment<ProgramContract.ProgramDetailPresenter>(), ProgramContract.ProgramDetailView {
+
+    /**
+     * 收藏状态修改器
+     */
+    override fun collectStateModifier(isCollected: Boolean) {
+        this.isCollected = isCollected
+        changeCollectUi()
+    }
+
+    override fun toast(msg: String, length: Int) {
+        tst(msg, length)
+    }
 
     val mProgramBean = programBean
+    var isCollected = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_program_detail, container, false)
-
+        ProgramDetailPresenter(this)
         return view
     }
 
@@ -55,11 +69,57 @@ class ProgramDetailFragment(programBean: ProgramBean) : Fragment() {
         recyclerView_program_actor.layoutManager = linearLayout
         recyclerView_program_actor.adapter = ActorListAdapter(mProgramBean, activity)
 
+        //检查该节目是否被收藏
+        mPresenter!!.collectStateCheck(activity,mProgramBean.objectId)
+
+        //收藏按钮点击监听
+        imageView_program_collect.setOnClickListener {
+            var type = ""
+            when (mProgramBean.programType) {
+                ProgramBean.PROGRAM_TYPE_MOVIE -> type = "电影"
+                ProgramBean.PROGRAM_TYPE_VIRTY -> type = "综艺"
+            }
+            if (isCollected) {
+                isCollected = false
+                mPresenter!!.collectStateChange(activity,type,mProgramBean.objectId,isCollected)
+                changeCollectUi()
+            } else {
+                isCollected = true
+                mPresenter!!.collectStateChange(activity,type,mProgramBean.objectId,isCollected)
+                changeCollectUi()
+            }
+        }
+        textView_program_collect.setOnClickListener {
+            var type = ""
+            when (mProgramBean.programType) {
+                ProgramBean.PROGRAM_TYPE_MOVIE -> type = "电影"
+                ProgramBean.PROGRAM_TYPE_VIRTY -> type = "综艺"
+            }
+            if (isCollected) {
+                isCollected = false
+                mPresenter!!.collectStateChange(activity,type,mProgramBean.objectId,isCollected)
+                changeCollectUi()
+            } else {
+                isCollected = true
+                mPresenter!!.collectStateChange(activity,type,mProgramBean.objectId,isCollected)
+                changeCollectUi()
+            }
+        }
+
+    }
+
+    private fun changeCollectUi() {
+        if (isCollected) {
+            textView_program_collect.text = "已收藏"
+            imageView_program_collect.setImageResource(R.mipmap.ic_collection_black_selected)
+        } else {
+            textView_program_collect.text = "收藏"
+            imageView_program_collect.setImageResource(R.mipmap.ic_collection_black_unselected)
+        }
     }
 
     override fun onStop() {
         super.onStop()
-        Log.i("测试","停止了")
         videoPlayer.release()
     }
 
@@ -71,13 +131,11 @@ class ProgramDetailFragment(programBean: ProgramBean) : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        Log.i("测试","暂停了")
         JzvdStd.goOnPlayOnPause()
     }
 
     override fun onResume() {
         super.onResume()
-        Log.i("测试","继续了")
         JzvdStd.goOnPlayOnResume()
     }
 
