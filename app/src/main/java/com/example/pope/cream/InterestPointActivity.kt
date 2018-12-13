@@ -120,7 +120,15 @@ class InterestPointActivity : AppCompatActivity() {
                             Log.i("error70004", p1.toString())
                             progressDialog.dismiss()
                         } else {
+                            //对兴趣数据及收藏数据进行初始化
+                            val itemNum:ArrayList<Int> = arrayListOf()
+                            val pointId:ArrayList<String> = arrayListOf()
                             p0!!.userInterestPoint = interestList
+                            for (index in interestList.indices){
+                                itemNum.add(0)
+                            }
+                            p0!!.pointItemNum = itemNum
+                            p0!!.pointId = pointId
                             p0!!.update(object : UpdateListener() {
                                 override fun done(p0: BmobException?) {
                                     if (p0 != null) {

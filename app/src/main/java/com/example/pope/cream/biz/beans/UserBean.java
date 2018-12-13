@@ -26,6 +26,24 @@ public class UserBean extends BmobObject {
     private Integer userCollection;
     private String userAvatar;
     private List<String> userInterestPoint;
+    private List<Integer> pointItemNum;
+    private List<String> pointId;
+
+    public List<Integer> getPointItemNum() {
+        return pointItemNum;
+    }
+
+    public void setPointItemNum(List<Integer> pointItemNum) {
+        this.pointItemNum = pointItemNum;
+    }
+
+    public List<String> getPointId() {
+        return pointId;
+    }
+
+    public void setPointId(List<String> pointId) {
+        this.pointId = pointId;
+    }
 
     public String getUserName() {
         return userName;

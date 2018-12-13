@@ -23,6 +23,12 @@ class CreamPresenter(private val creamView:HomeContract.CreamView):BasePresenter
 
             }
 
+            override fun onGetFailed(errorMsg: String, errorCode: String) {
+                super.onGetFailed(errorMsg, errorCode)
+                creamView.toast("error$errorCode")
+                Log.i("error$errorCode",errorMsg)
+            }
+
         })
 
     }

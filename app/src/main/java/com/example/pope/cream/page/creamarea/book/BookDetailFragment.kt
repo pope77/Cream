@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 
 import com.example.pope.cream.R
 import com.example.pope.cream.biz.beans.BookBean
+import com.example.pope.cream.page.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_book_detail.*
 
 /**
@@ -18,14 +19,43 @@ import kotlinx.android.synthetic.main.fragment_book_detail.*
  *
  */
 @SuppressLint("ValidFragment")
-class BookDetailFragment(val bookBean: BookBean): Fragment() {
+class BookDetailFragment(val bookBean: BookBean): BaseFragment<BookContract.BookDetailPresenter>(),BookContract.BookDetailView {
+
+    /**
+     * 取消收藏成功
+     */
+    override fun uncollectSuccess() {
+        uncollectThisBook()
+    }
+
+    /**
+     * 检查是否收藏结果
+     */
+    override fun checkResult(isCollected: Boolean) {
+        if (isCollected) collectThisBook()
+        else uncollectThisBook()
+    }
+
+    /**
+     * 收藏成功
+     */
+    override fun collectSuccess() {
+        collectThisBook()
+    }
+
+    override fun toast(msg: String, length: Int) {
+        tst(msg,length)
+    }
 
     val bean = bookBean
+    var isCollected = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_book_detail, container, false)
+        val view = inflater.inflate(R.layout.fragment_book_detail, container, false)
+        BookDetailPresenter(this)
+        return view
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -48,6 +78,45 @@ class BookDetailFragment(val bookBean: BookBean): Fragment() {
         textView_longComment2.text = bean.longCommend[1]
         textView_longComment3.text = bean.longCommend[2]
 
+        mPresenter!!.checkIsCollected(bean.objectId,activity)
+
+        imageView_bookDetail_collection.setOnClickListener {
+            if (isCollected){
+                mPresenter!!.uncollectThisBook(bean.objectId,activity)
+                uncollectThisBook()
+            }else{
+                mPresenter!!.collectBook(bean.objectId,activity)
+                collectThisBook()
+            }
+        }
+        textView_bookDetail_collection.setOnClickListener {
+            if (isCollected){
+                mPresenter!!.uncollectThisBook(bean.objectId,activity)
+                uncollectThisBook()
+            }else{
+                mPresenter!!.collectBook(bean.objectId,activity)
+                collectThisBook()
+            }
+        }
+
+    }
+
+    /**
+     * 已收藏此书
+     */
+    private fun collectThisBook() {
+        imageView_bookDetail_collection.setImageResource(R.mipmap.ic_collection_black_selected)
+        textView_bookDetail_collection.text = "已收藏"
+        isCollected = true
+    }
+
+    /**
+     * 为收藏此书
+     */
+    private fun uncollectThisBook(){
+        imageView_bookDetail_collection.setImageResource(R.mipmap.ic_collection_black_unselected)
+        textView_bookDetail_collection.text = "收藏"
+        isCollected = false
     }
 
 }
