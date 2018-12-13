@@ -58,8 +58,11 @@ class MusicFragment : BaseFragment<MusicContract.Presenter>(), MusicContract.Vie
             activity!!.window.statusBarColor = Color.TRANSPARENT
         }
 
+        //初始化toolbar
         initToolbar()
+        //初始化播放器
         initPlayer()
+        //初始化TabLayout
         initTabLayout()
     }
 
@@ -116,10 +119,12 @@ class MusicFragment : BaseFragment<MusicContract.Presenter>(), MusicContract.Vie
             Log.i("error", e.toString())
         }
 
+        //播放按键监听
         imageView_player_play.setOnClickListener {
             changePlayIcon()
         }
 
+        //底部播放栏初始为不可见
         group_playerCard.visibility = View.GONE
 
     }

@@ -25,11 +25,14 @@ interface CateContract {
 
         fun collectStateCheck(context: Context, id:String)
 
+        fun userViewsPP(context: Context)
+
     }
 
     interface CateDetailView:BaseView<CateDetailPresenter>{
 
         fun collectStateModifier(isCollected:Boolean)
+
 
     }
 

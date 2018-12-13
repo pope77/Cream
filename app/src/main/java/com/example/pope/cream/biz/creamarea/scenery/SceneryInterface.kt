@@ -30,4 +30,6 @@ interface SceneryInterface{
 
     fun getCollectElmentData(id: String,onCollectElmentDataCallback: OnCollectElmentDataCallback)
 
+    fun userViewsPP(context: Context,baseDataCallback: BaseDataCallback)
+
 }

@@ -3,10 +3,25 @@ package com.example.pope.cream.page.creamarea.program
 import android.content.Context
 import android.util.Log
 import com.example.pope.cream.biz.ModelFactory
+import com.example.pope.cream.biz.base.BaseDataCallback
 import com.example.pope.cream.biz.creamarea.program.ProgramInterface
 import com.example.pope.cream.page.base.BasePresenterImpl
 
 class ProgramDetailPresenter(val programDetailView: ProgramContract.ProgramDetailView) : BasePresenterImpl(), ProgramContract.ProgramDetailPresenter {
+
+    /**
+     * 用户浏览量+1
+     */
+    override fun userViewsPP(context: Context) {
+
+        programInterface.userViewsPP(context,object : BaseDataCallback {
+            override fun onGetFailed(errorMsg: String, errorCode: String) {
+                super.onGetFailed(errorMsg, errorCode)
+                programDetailView.toast("error$errorCode")
+                Log.i("error$errorCode",errorMsg)
+            }
+        })
+    }
 
     /**
      * 收藏状态检查

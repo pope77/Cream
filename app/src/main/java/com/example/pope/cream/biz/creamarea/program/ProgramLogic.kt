@@ -14,6 +14,26 @@ import com.example.pope.cream.biz.beans.UserBean
 class ProgramLogic:BaseLogic(), ProgramInterface {
 
     /**
+     * 用户浏览量+1
+     */
+    override fun userViewsPP(context: Context,baseDataCallback: BaseDataCallback) {
+        val query = BmobQuery<UserBean>()
+        query.getObject(getLocalUserObjId(context),object:QueryListener<UserBean>(){
+            override fun done(p0: UserBean?, p1: BmobException?) {
+                if (p1!=null) baseDataCallback.onGetFailed(p1.toString(),"70051")
+                else{
+                    p0!!.userViews++
+                    p0.update(object :UpdateListener(){
+                        override fun done(p0: BmobException?) {
+                            if (p0!=null) baseDataCallback.onGetFailed(p0.toString(),"70052")
+                        }
+                    })
+                }
+            }
+        })
+    }
+
+    /**
      * 收藏状态检查
      */
     override fun checkCollectState(context: Context, id: String, collectStateChangeCallback: ProgramInterface.CollectStateCheckCallback) {

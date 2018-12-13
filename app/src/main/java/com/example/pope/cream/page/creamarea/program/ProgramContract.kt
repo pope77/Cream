@@ -27,6 +27,8 @@ interface ProgramContract{
 
         fun collectStateCheck(context: Context,id:String)
 
+        fun userViewsPP(context: Context)
+
     }
 
     interface ProgramDetailView:BaseView<ProgramDetailPresenter>{

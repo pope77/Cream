@@ -68,8 +68,13 @@ class SceneryFragment : BaseFragment<SceneryContract.Presenter>(), SceneryContra
             }
         })
 
+        //收藏按键的点击监听
         (recyclerView_seneryList.adapter as SceneryListAdapter).setOnCollectionListener { bean, collectThisScenery ->
             mPresenter!!.collectStateChange(activity, "风景", bean.objectId, collectThisScenery)
+        }
+        //详情页按键的点击监听
+        (recyclerView_seneryList.adapter as SceneryListAdapter).setOnOpenDetailListener{
+            mPresenter!!.userViewsPP(activity)
         }
 
     }

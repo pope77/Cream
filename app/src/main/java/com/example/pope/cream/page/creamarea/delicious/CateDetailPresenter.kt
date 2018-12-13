@@ -3,10 +3,25 @@ package com.example.pope.cream.page.creamarea.delicious
 import android.content.Context
 import android.util.Log
 import com.example.pope.cream.biz.ModelFactory
+import com.example.pope.cream.biz.base.BaseDataCallback
 import com.example.pope.cream.biz.creamarea.delicious.CateInterface
 import com.example.pope.cream.page.base.BasePresenterImpl
 
 class CateDetailPresenter(val cateDetailView: CateContract.CateDetailView) : BasePresenterImpl(), CateContract.CateDetailPresenter {
+
+    /**
+     * 用户浏览量+1
+     */
+    override fun userViewsPP(context: Context) {
+
+        cateInterface.userViewsPP(context,object : BaseDataCallback {
+            override fun onGetFailed(errorMsg: String, errorCode: String) {
+                super.onGetFailed(errorMsg, errorCode)
+                cateDetailView.toast("error$errorCode")
+                Log.i("error$errorCode",errorMsg)
+            }
+        })
+    }
 
     /**
      * 收藏状态检查

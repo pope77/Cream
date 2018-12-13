@@ -35,4 +35,6 @@ interface ProgramInterface {
 
     fun checkCollectState(context: Context,id: String,collectStateChangeCallback: CollectStateCheckCallback)
 
+    fun userViewsPP(context: Context,baseDataCallback: BaseDataCallback)
+
 }

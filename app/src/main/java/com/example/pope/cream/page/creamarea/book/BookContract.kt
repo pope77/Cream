@@ -27,6 +27,8 @@ interface BookContract{
 
         fun uncollectThisBook(id: String, context: Context)
 
+        fun userViewsPP(context: Context)
+
     }
 
     interface BookDetailView:BaseView<BookDetailPresenter>{

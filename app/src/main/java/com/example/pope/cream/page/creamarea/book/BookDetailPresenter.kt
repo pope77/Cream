@@ -3,11 +3,27 @@ package com.example.pope.cream.page.creamarea.book
 import android.content.Context
 import android.util.Log
 import com.example.pope.cream.biz.ModelFactory
+import com.example.pope.cream.biz.base.BaseDataCallback
 import com.example.pope.cream.biz.creamarea.book.BookInterface
 import com.example.pope.cream.page.base.BasePresenterImpl
 
 class BookDetailPresenter(val bookDetailView:BookContract.BookDetailView):
         BasePresenterImpl(),BookContract.BookDetailPresenter{
+
+    /**
+     * 用户浏览量+1
+     */
+    override fun userViewsPP(context: Context) {
+
+        bookInterface.userViewsPP(context,object :BaseDataCallback{
+            override fun onGetFailed(errorMsg: String, errorCode: String) {
+                super.onGetFailed(errorMsg, errorCode)
+                bookDetailView.toast("error$errorCode")
+                Log.i("error$errorCode",errorMsg)
+            }
+        })
+
+    }
 
     /**
      * 检查是否收藏

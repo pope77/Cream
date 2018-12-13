@@ -27,6 +27,7 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
     private Context context;
     private List<Boolean> isCollectedList;
     private OnCollectionListener onCollectionListener;
+    private OnOpenDetailListener onOpenDetailListener;
 
     public SceneryListAdapter(List<SceneryBean> sceneryBeans, Context context, List<Boolean> isCollectedList) {
         this.sceneryBeans = sceneryBeans;
@@ -159,6 +160,9 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
                 holder.guide.setText(bean.getSceneryGuide());
                 holder.scrollView.setVisibility(View.VISIBLE);
                 holder.changeCard(-1);
+                if (onOpenDetailListener != null) {
+                    onOpenDetailListener.open();
+                }
             }
         });
 
@@ -169,6 +173,9 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
                 holder.guide.setText(bean.getSceneryGuide());
                 holder.scrollView.setVisibility(View.VISIBLE);
                 holder.changeCard(-1);
+                if (onOpenDetailListener != null) {
+                    onOpenDetailListener.open();
+                }
             }
         });
 
@@ -182,10 +189,10 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
                     holder.changeCollecionUI(-1, bean.getSceneryUICode(), position);
                 }
                 if (onCollectionListener != null) {
-                    if (isCollected){
-                        onCollectionListener.collection(bean,false);
-                    }else{
-                        onCollectionListener.collection(bean,true);
+                    if (isCollected) {
+                        onCollectionListener.collection(bean, false);
+                    } else {
+                        onCollectionListener.collection(bean, true);
                     }
                 }
             }
@@ -201,10 +208,10 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
                     holder.changeCollecionUI(-1, bean.getSceneryUICode(), position);
                 }
                 if (onCollectionListener != null) {
-                    if (isCollected){
-                        onCollectionListener.collection(bean,false);
-                    }else{
-                        onCollectionListener.collection(bean,true);
+                    if (isCollected) {
+                        onCollectionListener.collection(bean, false);
+                    } else {
+                        onCollectionListener.collection(bean, true);
                     }
                 }
             }
@@ -378,11 +385,19 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
     }
 
     interface OnCollectionListener {
-        void collection(SceneryBean bean,boolean collectThisScenery);
+        void collection(SceneryBean bean, boolean collectThisScenery);
     }
 
     public void setOnCollectionListener(OnCollectionListener onCollectionListener) {
         this.onCollectionListener = onCollectionListener;
+    }
+
+    interface OnOpenDetailListener {
+        void open();
+    }
+
+    public void setOnOpenDetailListener(OnOpenDetailListener onOpenDetailListener) {
+        this.onOpenDetailListener = onOpenDetailListener;
     }
 
 }

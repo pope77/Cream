@@ -15,6 +15,8 @@ interface SceneryContract {
 
         fun getCollectElemntData(id: String)
 
+        fun userViewsPP(context: Context)
+
     }
 
     interface View:BaseView<Presenter>{

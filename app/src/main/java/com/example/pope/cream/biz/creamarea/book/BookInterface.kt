@@ -38,4 +38,6 @@ interface BookInterface {
 
     fun collectStateCheck(id: String,context: Context,collectStateCheckCallback: CollectStateCheckCallback)
 
+    fun userViewsPP(context: Context,baseDataCallback: BaseDataCallback)
+
 }

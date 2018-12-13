@@ -71,6 +71,8 @@ class ProgramDetailFragment(programBean: ProgramBean) : BaseFragment<ProgramCont
 
         //检查该节目是否被收藏
         mPresenter!!.collectStateCheck(activity,mProgramBean.objectId)
+        //当用户点击进入查看节目详情时 用户浏览量+1
+        mPresenter!!.userViewsPP(activity)
 
         //收藏按钮点击监听
         imageView_program_collect.setOnClickListener {
@@ -108,6 +110,9 @@ class ProgramDetailFragment(programBean: ProgramBean) : BaseFragment<ProgramCont
 
     }
 
+    /**
+     * 更改收藏按键显示样式
+     */
     private fun changeCollectUi() {
         if (isCollected) {
             textView_program_collect.text = "已收藏"
@@ -118,22 +123,35 @@ class ProgramDetailFragment(programBean: ProgramBean) : BaseFragment<ProgramCont
         }
     }
 
+    /**
+     * 碎片停止时将播放器释放
+     */
     override fun onStop() {
         super.onStop()
         videoPlayer.release()
     }
 
+    /**
+     * 该碎片在fragmentManager中处于show还是hide状态的监听
+     */
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
+        //如果隐藏则暂停 如果显示则继续
         if (hidden) JzvdStd.goOnPlayOnPause()
         else JzvdStd.goOnPlayOnResume()
     }
 
+    /**
+     * 碎片处于暂停的生命周期时 视频播放器也暂停
+     */
     override fun onPause() {
         super.onPause()
         JzvdStd.goOnPlayOnPause()
     }
 
+    /**
+     * 碎片处于继续的生命周期时 视频播放器也继续播放
+     */
     override fun onResume() {
         super.onResume()
         JzvdStd.goOnPlayOnResume()

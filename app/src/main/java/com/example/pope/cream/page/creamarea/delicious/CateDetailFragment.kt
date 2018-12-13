@@ -71,9 +71,14 @@ class CateDetailFragment(cateBean: CateBean) : BaseFragment<CateContract.CateDet
             (activity as CateActivity).onBackPressed()
         }
 
+        //加载信息数据
         loadMsg()
+
         //检查收藏状态
         mPresenter!!.collectStateCheck(activity,cateBean.objectId)
+        //查看饮食类详情页时 用户浏览量+1
+        mPresenter!!.userViewsPP(activity)
+
         //收藏按键点击监听
         textView_cateDetail_collect.setOnClickListener {
             var type = ""

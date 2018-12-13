@@ -61,11 +61,13 @@ class BookDetailFragment(val bookBean: BookBean): BaseFragment<BookContract.Book
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //初始化toolbar
         toolbar_bookDetail.setNavigationIcon(R.mipmap.ic_arrow_back_black)
         toolbar_bookDetail.setNavigationOnClickListener {
             (activity as BookActivity).onBackPressed()
         }
 
+        //数据加载
         Glide.with(activity).load(bean.bookCoverUrl).into(imageView_bookCover)
         textView_bookDetail_bookName.text = bean.bookName
         textView_bookDetail_score.text = "${bean.bookScore}分"
@@ -78,8 +80,12 @@ class BookDetailFragment(val bookBean: BookBean): BaseFragment<BookContract.Book
         textView_longComment2.text = bean.longCommend[1]
         textView_longComment3.text = bean.longCommend[2]
 
+        //检查该书是否被收藏
         mPresenter!!.checkIsCollected(bean.objectId,activity)
+        //打开详情页 用户浏览量+1
+        mPresenter!!.userViewsPP(activity)
 
+        //收藏按键监听
         imageView_bookDetail_collection.setOnClickListener {
             if (isCollected){
                 mPresenter!!.uncollectThisBook(bean.objectId,activity)
