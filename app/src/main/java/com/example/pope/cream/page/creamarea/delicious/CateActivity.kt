@@ -1,8 +1,11 @@
 package com.example.pope.cream.page.creamarea.delicious
 
+import android.graphics.Color
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import cn.bmob.v3.BmobQuery
 import cn.bmob.v3.exception.BmobException
@@ -27,6 +30,15 @@ class CateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cate)
 
+        //更改状态栏为透明并将状态栏图标颜色改为暗色图标
+        if (Build.VERSION.SDK_INT >= 21) {
+            val decorView = this.window.decorView
+            val option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            decorView.systemUiVisibility = option
+            this.window.statusBarColor = Color.TRANSPARENT
+        }
+
+        //从上一个活动获取信息判断是否为特殊跳转
         val intent = getIntent()
         isSpecial = intent.getBooleanExtra("特殊", false)
         if (isSpecial) {
@@ -43,6 +55,7 @@ class CateActivity : AppCompatActivity() {
                 }
             })
         } else {
+            //非特殊跳转则正常加载
             val fragmentName = intent.getStringExtra("fragmentName")
             when (fragmentName) {
                 "美食" -> {

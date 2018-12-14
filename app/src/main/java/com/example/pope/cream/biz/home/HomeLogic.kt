@@ -3,11 +3,37 @@ package com.example.pope.cream.biz.home
 import android.content.Context
 import cn.bmob.v3.BmobQuery
 import cn.bmob.v3.exception.BmobException
+import cn.bmob.v3.listener.FindListener
 import cn.bmob.v3.listener.QueryListener
 import com.example.pope.cream.biz.base.BaseLogic
 import com.example.pope.cream.biz.beans.*
 
 class HomeLogic : BaseLogic(), HomeInterface {
+
+    /**
+     * 获取Banner数据
+     */
+    override fun getBannerData(onBannerDataCallback: HomeInterface.OnBannerDataCallback) {
+        val query = BmobQuery<RecommendMsgBean>()
+        query.addWhereEqualTo(RecommendMsgBean.RECOMMEND_POS, RecommendMsgBean.RECOMMEND_POS_HOME)
+        query.findObjects(object : FindListener<RecommendMsgBean>() {
+            override fun done(p0: MutableList<RecommendMsgBean>?, p1: BmobException?) {
+                if (p1 != null) onBannerDataCallback.onGetFailed(p1.toString(), "70055")
+                else {
+                    //至多展示4个推荐
+                    if (p0!!.size > 4) {
+                        val beans = arrayListOf<RecommendMsgBean>()
+                        for (i in 0..3) {
+                            beans.add(p0[i])
+                        }
+                        onBannerDataCallback.onGetSuccess(beans)
+                    } else {
+                        onBannerDataCallback.onGetSuccess(p0)
+                    }
+                }
+            }
+        })
+    }
 
     /**
      * 获取收藏列表的bean

@@ -2,6 +2,7 @@ package com.example.pope.cream.page.creamarea.delicious
 
 import android.content.Context
 import com.example.pope.cream.biz.beans.CateBean
+import com.example.pope.cream.biz.beans.RecommendMsgBean
 import com.example.pope.cream.page.base.BasePresenter
 import com.example.pope.cream.page.base.BaseView
 
@@ -11,11 +12,15 @@ interface CateContract {
 
         fun getCateRecommendMsg(cateType:Int)
 
+        fun getBannerData(cateType:Int)
+
     }
 
     interface View:BaseView<Presenter>{
 
         fun loadRecyclerView(cateBeans:MutableList<CateBean>)
+
+        fun initBanner(bannerBeans:MutableList<RecommendMsgBean>,dataBeans:MutableList<CateBean>)
 
     }
 
@@ -32,7 +37,6 @@ interface CateContract {
     interface CateDetailView:BaseView<CateDetailPresenter>{
 
         fun collectStateModifier(isCollected:Boolean)
-
 
     }
 

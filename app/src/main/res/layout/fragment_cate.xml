@@ -35,7 +35,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraintLayout3"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,14 +46,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
                     app:AutoPlayTime="3000"
-                    app:isAutoPlay="false"
+                    app:isAutoPlay="true"
                     app:isClipChildrenMode="true"
                     app:isHandLoop="true"
-                    app:isShowIndicatorOnlyOne="true"
+                    app:isShowIndicatorOnlyOne="false"
                     app:isShowNumberIndicator="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:pageChangeDuration="800"
                     app:pointsContainerBackground="@android:color/transparent"
-                    app:pointsPosition="CENTER" />
+                    app:pointsPosition="RIGHT"
+                    app:tipTextSize="12dp" />
 
             </android.support.constraint.ConstraintLayout>
 

@@ -3,6 +3,7 @@ package com.example.pope.cream.biz.creamarea.delicious
 import android.content.Context
 import com.example.pope.cream.biz.base.BaseDataCallback
 import com.example.pope.cream.biz.beans.CateBean
+import com.example.pope.cream.biz.beans.RecommendMsgBean
 
 interface CateInterface {
 
@@ -32,4 +33,12 @@ interface CateInterface {
 
     fun userViewsPP(context: Context,baseDataCallback: BaseDataCallback)
 
+
+    interface OnBannerDataCallback:BaseDataCallback{
+
+        fun onGetSuccess(bannerBeans:MutableList<RecommendMsgBean>,dataBeans:MutableList<CateBean>)
+
+    }
+
+    fun getBannerData(cateType:Int,onBannerDataCallback: OnBannerDataCallback)
 }

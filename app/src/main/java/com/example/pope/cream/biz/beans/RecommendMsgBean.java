@@ -7,9 +7,25 @@ import cn.bmob.v3.BmobObject;
  */
 public class RecommendMsgBean extends BmobObject {
 
-    private Integer recommendPos;
+    public static final String RECOMMEND_POS = "recommendPos";
+
+    public static final Integer RECOMMEND_POS_HOME = 1001;
+    public static final Integer RECOMMEND_POS_FOOD = 1002;
+    public static final Integer RECOMMEND_POS_DRINK = 1003;
+
+    private String recommendType;
     private String recommendPicUrl;
     private String recommendObjectId;
+    private Integer recommendPos;
+    private String recommendTitle;
+
+    public String getRecommendTitle() {
+        return recommendTitle;
+    }
+
+    public void setRecommendTitle(String recommendTitle) {
+        this.recommendTitle = recommendTitle;
+    }
 
     public Integer getRecommendPos() {
         return recommendPos;
@@ -17,6 +33,14 @@ public class RecommendMsgBean extends BmobObject {
 
     public void setRecommendPos(Integer recommendPos) {
         this.recommendPos = recommendPos;
+    }
+
+    public String getRecommendType() {
+        return recommendType;
+    }
+
+    public void setRecommendType(String recommendType) {
+        this.recommendType = recommendType;
     }
 
     public String getRecommendPicUrl() {

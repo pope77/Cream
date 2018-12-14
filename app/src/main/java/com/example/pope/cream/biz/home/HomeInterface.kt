@@ -38,4 +38,12 @@ interface HomeInterface {
 
     fun getCollectionListBeans(context: Context,type:String,onListBeansCallback: OnListBeansCallback)
 
+    interface OnBannerDataCallback:BaseDataCallback{
+
+        fun onGetSuccess(bannerBeans:MutableList<RecommendMsgBean>)
+
+    }
+
+    fun getBannerData(onBannerDataCallback: OnBannerDataCallback)
+
 }

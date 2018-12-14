@@ -12,8 +12,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.bumptech.glide.Glide
 
 import com.example.pope.cream.R
+import com.example.pope.cream.biz.beans.*
 import com.example.pope.cream.page.base.BaseFragment
 import com.example.pope.cream.page.creamarea.book.BookActivity
 import com.example.pope.cream.page.creamarea.delicious.CateActivity
@@ -34,6 +36,66 @@ import kotlinx.android.synthetic.main.fragment_cream.*
  * @author popeg
  */
 class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.CreamView {
+
+    /**
+     * 初始化Banner
+     */
+    override fun initBanner(bannerBeans: MutableList<RecommendMsgBean>) {
+
+        val layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,
+                ScreenUtil.getScreenWidth(activity) / 2)
+        xBanner_cream_recommend.layoutParams = layoutParams
+        //初始化banner加载的图片URL数据
+        val picUrlList = arrayListOf<String>()
+        val titleList = arrayListOf<String>()
+        val idList = arrayListOf<String>()
+        val typeList = arrayListOf<String>()
+        for (element in bannerBeans) {
+            picUrlList.add(element.recommendPicUrl)
+            titleList.add("            ${element.recommendTitle}")
+            idList.add(element.recommendObjectId)
+            typeList.add(element.recommendType)
+        }
+        xBanner_cream_recommend.setData(picUrlList, titleList)
+
+        xBanner_cream_recommend.setOnItemClickListener { banner, model, view, position ->
+            //被点击响应
+            when (typeList[position]) {
+                "美食", "饮品" -> {
+                    val intent = Intent(activity, CateActivity::class.java)
+                    intent.putExtra("特殊", true)
+                    intent.putExtra("id", idList[position])
+                    startActivity(intent)
+                }
+                "电影", "综艺" -> {
+                    val intent = Intent(activity, ProgramActivity::class.java)
+                    intent.putExtra("特殊", true)
+                    intent.putExtra("id", idList[position])
+                    startActivity(intent)
+                }
+                "书籍" -> {
+                    val intent = Intent(activity, BookActivity::class.java)
+                    intent.putExtra("特殊", true)
+                    intent.putExtra("id", idList[position])
+                    startActivity(intent)
+                }
+                "风景" -> {
+                    val intent = Intent(activity, SceneryActivity::class.java)
+                    intent.putExtra("特殊", true)
+                    intent.putExtra("id", idList[position])
+                    startActivity(intent)
+                }
+            }
+        }
+
+        xBanner_cream_recommend.loadImage { banner, model, view, position ->
+            //加载图片资源 可网络请求  可本地
+            Glide.with(activity).load(model as String).into(view as ImageView)
+        }
+
+        xBanner_cream_recommend.setAutoPlayAble(true)
+
+    }
 
     /**
      * 加载兴趣标签数据
@@ -97,16 +159,16 @@ class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.
                 "音乐" -> {
                     startActivity(Intent(activity, MusicActivity::class.java))
                 }
-                    "书籍" ->{
-                        startActivity(Intent(activity,BookActivity::class.java))
-                    }
+                "书籍" -> {
+                    startActivity(Intent(activity, BookActivity::class.java))
+                }
 //                    "网文" ->
 //                    "软件" ->
 //                    "硬件" ->
 //                    "生活" ->
-                    "风景" ->{
-                        startActivity(Intent(activity,SceneryActivity::class.java))
-                    }
+                "风景" -> {
+                    startActivity(Intent(activity, SceneryActivity::class.java))
+                }
             }
         }
 
@@ -115,22 +177,25 @@ class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_cream, container, false)
-
+        //初始化Presenter
         CreamPresenter(this)
-
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //设置滑动监听
         setScrollListener()
-        initBanner()
+        //获取并初始化Banner
+        mPresenter!!.getBannerData()
+        //获取兴趣数据
         mPresenter!!.getInterestData(activity!!)
     }
 
     @TargetApi(Build.VERSION_CODES.M)
     private fun setScrollListener() {
 
+        //滑动监听
         scrollView_cream.setOnScrollChangeListener { view, i, i1, i2, i3 ->
             val x = i1 - i3
             val mainActivity = activity as MainActivity
@@ -144,45 +209,6 @@ class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.
             }
         }
 
-    }
-
-    private fun changeCreamAreaMinHeight(minHeight: Int) {
-        recyclerView_creamArea!!.minimumHeight = minHeight
-    }
-
-    /**
-     * 初始化Banner
-     */
-    private fun initBanner() {
-
-        val layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,
-                ScreenUtil.getScreenWidth(activity) / 2)
-        xBanner_cream_recommend.layoutParams = layoutParams
-
-        xBanner_cream_recommend.setOnItemClickListener { banner, model, view, position ->
-            //TODO 被点击响应
-        }
-
-        xBanner_cream_recommend.loadImage { banner, model, view, position ->
-            //TODO 加载图片资源 可网络请求  可本地
-            //加载本地图片展示
-            (view as ImageView).setImageResource(model as Int)
-        }
-
-        initLocalImage()
-
-    }
-
-    /**
-     * 加载本地图片
-     */
-    private fun initLocalImage() {
-        val data = ArrayList<Int>()
-        data.add(R.mipmap.banner_kayak)
-        data.add(R.mipmap.banner_movie)
-        data.add(R.mipmap.banner_watch)
-        xBanner_cream_recommend.setData(data, null)
-        xBanner_cream_recommend.setAutoPlayAble(true)
     }
 
     override fun onResume() {

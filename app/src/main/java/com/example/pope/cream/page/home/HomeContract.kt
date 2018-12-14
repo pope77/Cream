@@ -11,11 +11,15 @@ interface HomeContract{
 
         fun getInterestData(context: Context)
 
+        fun getBannerData()
+
     }
 
     interface  CreamView:BaseView<CreamPresenter>{
 
         fun loadInterestData(interestList: MutableList<String>)
+
+        fun initBanner(bannerBeans:MutableList<RecommendMsgBean>)
 
     }
 
