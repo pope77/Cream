@@ -16,7 +16,7 @@ class MusicActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.frameLayout_musicActivity_container, musicFragment).commit()
     }
 
-    public fun playMusic(musicBean: MusicBean) {
+    fun playMusic(musicBean: MusicBean) {
         musicFragment.playMusic(musicBean)
     }
 

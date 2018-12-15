@@ -20,7 +20,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
     private Context context;
     private OnItemClickListener onItemClickListener;
 
-    interface OnItemClickListener {
+    public interface OnItemClickListener {
         void onClick(BookBean bookBean);
     }
 

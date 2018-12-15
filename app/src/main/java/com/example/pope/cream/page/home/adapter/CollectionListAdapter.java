@@ -2,7 +2,6 @@ package com.example.pope.cream.page.home.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +30,7 @@ public class CollectionListAdapter extends RecyclerView.Adapter<CollectionListAd
         this.context = context;
     }
 
-    interface OnItemClickListener {
+    public interface OnItemClickListener {
         void onClick(String id);
     }
 
@@ -50,12 +49,9 @@ public class CollectionListAdapter extends RecyclerView.Adapter<CollectionListAd
     public void onBindViewHolder(ViewHolder holder, int position) {
         Glide.with(context).load(coverUrls.get(position)).into(holder.itemPic);
         holder.itemTitle.setText(titles.get(position));
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onItemClickListener != null) {
-                    onItemClickListener.onClick(idList.get(position));
-                }
+        holder.itemView.setOnClickListener(view -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onClick(idList.get(position));
             }
         });
     }

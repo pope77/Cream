@@ -55,7 +55,7 @@ public class BookTypeAdapter extends RecyclerView.Adapter<BookTypeAdapter.ViewHo
         }
     }
 
-    interface OnItemClickListener {
+    public interface OnItemClickListener {
         void onClick(Integer picId);
     }
 

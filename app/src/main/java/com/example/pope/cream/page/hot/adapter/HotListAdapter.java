@@ -22,7 +22,7 @@ public class HotListAdapter extends RecyclerView.Adapter<HotListAdapter.ViewHold
         this.titles = titles;
     }
 
-    interface OnItemClickListener{
+    public interface OnItemClickListener{
 
         void click(String id,String type);
 

@@ -22,7 +22,6 @@ import com.example.pope.cream.page.creamarea.program.ProgramActivity
 import com.example.pope.cream.page.creamarea.scenery.SceneryActivity
 import com.example.pope.cream.page.home.adapter.CollectionListAdapter
 import kotlinx.android.synthetic.main.fragment_collection_list.*
-import kotlinx.android.synthetic.main.item_collectionlist.*
 
 /**
  * A simple [Fragment] subclass.

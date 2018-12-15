@@ -3,7 +3,9 @@ package com.example.pope.cream.biz.hot
 import cn.bmob.v3.BmobQuery
 import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.FindListener
+import cn.bmob.v3.listener.QueryListener
 import com.example.pope.cream.biz.base.BaseLogic
+import com.example.pope.cream.biz.beans.CateBean
 import com.example.pope.cream.biz.beans.HotBean
 
 class HotLogic : BaseLogic(), HotInterface {
@@ -21,7 +23,7 @@ class HotLogic : BaseLogic(), HotInterface {
             override fun done(p0: MutableList<HotBean>?, p1: BmobException?) {
                 if (p1 != null) onListBeansCallback.onGetFailed(p1.toString(), "70061")
                 else {
-                    hitsBeans = sortHotList("点击",p0!!)
+                    hitsBeans = sortHotList("点击", p0!!)
                     flag++
                     if (flag == 2) {
 
@@ -35,7 +37,7 @@ class HotLogic : BaseLogic(), HotInterface {
             override fun done(p0: MutableList<HotBean>?, p1: BmobException?) {
                 if (p1 != null) onListBeansCallback.onGetFailed(p1.toString(), "70062")
                 else {
-                    collectionBeans = sortHotList("收藏",p0!!)
+                    collectionBeans = sortHotList("收藏", p0!!)
                     flag++
                     if (flag == 2) {
 
@@ -45,11 +47,37 @@ class HotLogic : BaseLogic(), HotInterface {
         })
     }
 
-    private fun getListBeanTitles(hitsBeans:ArrayList<HotBean>,collectionBeans:ArrayList<HotBean>,onListBeansCallback: HotInterface.OnListBeansCallback){
+    private fun getListBeanTitles(hitsBeans: ArrayList<HotBean>, collectionBeans: ArrayList<HotBean>, onListBeansCallback: HotInterface.OnListBeansCallback) {
 
         val hitsListTitles = arrayListOf<String>()
         val collectionListTitles = arrayListOf<String>()
+        if (!hitsBeans.isEmpty()) {
+            for (hitBean in hitsBeans) {
+                hitsListTitles.add("")
+                when(hitBean.hotType){
+                    "美食","饮品"->{
+                        val query = BmobQuery<CateBean>()
+                        query.getObject(hitBean.hotObjId,object :QueryListener<CateBean>(){
+                            override fun done(p0: CateBean?, p1: BmobException?) {
+                                
+                            }
+                        })
+                    }
+                    "电影","综艺"->{
 
+                    }
+                    "风景"->{
+
+                    }
+
+                }
+            }
+        }
+        if (!collectionBeans.isEmpty()) {
+            for (i in 1..collectionBeans.size) {
+                collectionListTitles.add("")
+            }
+        }
 
     }
 
@@ -59,8 +87,8 @@ class HotLogic : BaseLogic(), HotInterface {
     private fun sortHotList(type: String, beans: MutableList<HotBean>): ArrayList<HotBean> {
 
         val sortBeans = arrayListOf<HotBean>()
-        when(type){
-            "点击"->{
+        when (type) {
+            "点击" -> {
                 for (x in beans) {
                     if (sortBeans.isEmpty()) {
                         sortBeans.add(x)
@@ -79,7 +107,7 @@ class HotLogic : BaseLogic(), HotInterface {
                     }
                 }
             }
-            "收藏"->{
+            "收藏" -> {
                 for (x in beans) {
                     if (sortBeans.isEmpty()) {
                         sortBeans.add(x)
@@ -101,10 +129,10 @@ class HotLogic : BaseLogic(), HotInterface {
         }
         var copySortBeans = arrayListOf<HotBean>()
         if (sortBeans.size > 50) {
-            for (i in 0..49){
+            for (i in 0..49) {
                 copySortBeans.add(sortBeans[i])
             }
-        }else{
+        } else {
             copySortBeans = sortBeans
         }
         return copySortBeans

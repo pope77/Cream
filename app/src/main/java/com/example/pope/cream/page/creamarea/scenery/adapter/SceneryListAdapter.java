@@ -384,7 +384,7 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
 
     }
 
-    interface OnCollectionListener {
+    public interface OnCollectionListener {
         void collection(SceneryBean bean, boolean collectThisScenery);
     }
 
@@ -392,7 +392,7 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
         this.onCollectionListener = onCollectionListener;
     }
 
-    interface OnOpenDetailListener {
+    public interface OnOpenDetailListener {
         void open(int pos);
     }
 
