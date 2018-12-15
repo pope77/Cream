@@ -39,18 +39,12 @@ class PublicLogic {
                                 }
                             })
                         } else {
-                            val query = BmobQuery<HotBean>()
-                            query.getObject(p0[0].objectId,object :QueryListener<HotBean>(){
-                                override fun done(p0: HotBean?, p1: BmobException?) {
-                                    if (p1!=null) logicFailed(context,p1.toString(),"10003")
-                                    else{
-                                        p0!!.hotHits++
-                                        p0.update(object :UpdateListener(){
-                                            override fun done(p0: BmobException?) {
-                                                if (p0!=null) logicFailed(context,p0.toString(),"10007")
-                                            }
-                                        })
-                                    }
+                            //这里发生报错
+                            //errorCode:400,errorMsg:{"data":{},"result":{"code":103,"message":"c is null."}}
+                            p0[0].hotHits++
+                            p0[0].update(object :UpdateListener(){
+                                override fun done(p0: BmobException?) {
+                                    if (p0!=null) logicFailed(context,p0.toString(),"10003")
                                 }
                             })
 
