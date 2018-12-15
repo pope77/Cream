@@ -24,6 +24,7 @@ import com.example.pope.cream.page.home.adapter.CreamAreaAdapter
 import com.example.pope.cream.page.creamarea.program.ProgramActivity
 import com.example.pope.cream.page.creamarea.scenery.SceneryActivity
 import com.example.pope.cream.page.creamarea.takeout.TakeOutActivity
+import com.example.pope.cream.page.hot.HotActivity
 import com.example.pope.cream.utils.ScreenUtil
 
 import java.util.ArrayList
@@ -190,6 +191,10 @@ class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.
         mPresenter!!.getBannerData()
         //获取兴趣数据
         mPresenter!!.getInterestData(activity!!)
+        //对“热门排行”设置点击监听
+        cardView_cream_hot.setOnClickListener {
+            startActivity(Intent(activity,HotActivity::class.java))
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.M)

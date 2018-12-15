@@ -14,7 +14,8 @@ interface HotContract {
 
     interface HotView:BaseView<HotPresenter>{
 
-        fun initListFragment(hitsBeans:MutableList<HotBean>,collectionBeans:MutableList<HotBean>,titles:ArrayList<String>)
+        fun initListFragment(hitsBeans:MutableList<HotBean>,collectionBeans:MutableList<HotBean>,
+                             hitsTitle:ArrayList<String>,collectionTitle:ArrayList<String>)
 
     }
 

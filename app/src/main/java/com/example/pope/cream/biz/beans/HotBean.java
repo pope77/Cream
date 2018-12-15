@@ -45,10 +45,4 @@ public class HotBean extends BmobObject {
         this.hotObjId = hotObjId;
     }
 
-    public HotBean(String hotType, String hotObjId, Integer hotCollection, Integer hotHits) {
-        this.hotHits = hotHits;
-        this.hotType = hotType;
-        this.hotCollection = hotCollection;
-        this.hotObjId = hotObjId;
-    }
 }

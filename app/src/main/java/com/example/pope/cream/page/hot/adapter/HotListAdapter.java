@@ -44,6 +44,7 @@ public class HotListAdapter extends RecyclerView.Adapter<HotListAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.type.setText(hotBeans.get(position).getHotType());
         holder.name.setText(titles.get(position));
+        holder.no.setText(String.valueOf(position+1));
         holder.itemView.setOnClickListener(view -> {
             if (onItemClickListener!=null){
                 onItemClickListener.click(hotBeans.get(position).getHotObjId(),hotBeans.get(position).getHotType());
@@ -59,10 +60,12 @@ public class HotListAdapter extends RecyclerView.Adapter<HotListAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView type;
         TextView name;
+        TextView no;
         public ViewHolder(View itemView) {
             super(itemView);
             type = itemView.findViewById(R.id.textView_hotList_type);
             name = itemView.findViewById(R.id.textView_hotList_name);
+            no = itemView.findViewById(R.id.textView_hotList_no);
         }
     }
 }

@@ -30,7 +30,11 @@ object PublicLogic {
                 if (p1 != null) logicFailed(context, p1.toString(), "10001")
                 else {
                     if (p0!!.isEmpty()) {
-                        val bean = HotBean(type, id, 0, 1)
+                        val bean = HotBean()
+                        bean.hotType = type
+                        bean.hotHits = 1
+                        bean.hotCollection = 0
+                        bean.hotObjId = id
                         bean.save(object : SaveListener<String>() {
                             override fun done(p0: String?, p1: BmobException?) {
                                 if (p1 != null) logicFailed(context, p1.toString(), "10002")
@@ -63,7 +67,11 @@ object PublicLogic {
                 if (p1 != null) logicFailed(context, p1.toString(), "10004")
                 else {
                     if (p0!!.isEmpty()) {
-                        val hotBean = HotBean(type, id, 1, 0)
+                        val hotBean = HotBean()
+                        hotBean.hotType = type
+                        hotBean.hotHits = 0
+                        hotBean.hotCollection = 1
+                        hotBean.hotObjId = id
                         hotBean.save(object : SaveListener<String>() {
                             override fun done(p0: String?, p1: BmobException?) {
                                 if (p1 != null) logicFailed(context, p1.toString(), "10005")

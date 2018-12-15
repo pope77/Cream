@@ -13,7 +13,7 @@ class HotPresenter(val hotView: HotContract.HotView):BasePresenterImpl(),HotCont
     override fun getListBeans() {
         hotInterface.getHotListBeans(object :HotInterface.OnListBeansCallback{
             override fun onGetSuccess(hitsBeans: MutableList<HotBean>, collectionBeans: MutableList<HotBean>, hitsListTitles: ArrayList<String>, collectionListTitles: ArrayList<String>) {
-
+                hotView.initListFragment(hitsBeans,collectionBeans,hitsListTitles,collectionListTitles)
             }
 
             override fun onGetFailed(errorMsg: String, errorCode: String) {
