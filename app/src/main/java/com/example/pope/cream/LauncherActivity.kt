@@ -35,14 +35,14 @@ class LauncherActivity : AppCompatActivity() {
         //新用户与注册但未选择兴趣的用户该字段为空
         //只有选择了兴趣点的老用户该字段不为空且不为“null”
         val sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE)
-        var userName = sharedPreferences.getString(UserBean.USER_NAME,"")
+        var userName = sharedPreferences.getString(UserBean.USER_NAME, "")
 
         //当计时结束时，跳转至主界面
         handler.postDelayed({
-            when(userName){
-                ""->startActivity(Intent(this, LoginActivity::class.java))
-                "null" ->startActivity(Intent(this,InterestPointActivity::class.java))
-                else ->startActivity(Intent(this, MainActivity::class.java))
+            when (userName) {
+                "" -> startActivity(Intent(this, LoginActivity::class.java))
+                "null" -> startActivity(Intent(this, InterestPointActivity::class.java))
+                else -> startActivity(Intent(this, MainActivity::class.java))
             }
             this.finish()
         }, time.toLong())

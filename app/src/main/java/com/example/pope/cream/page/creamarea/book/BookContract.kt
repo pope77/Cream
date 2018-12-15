@@ -5,37 +5,37 @@ import com.example.pope.cream.biz.beans.BookBean
 import com.example.pope.cream.page.base.BasePresenter
 import com.example.pope.cream.page.base.BaseView
 
-interface BookContract{
+interface BookContract {
 
-    interface BookListPresenter:BasePresenter{
+    interface BookListPresenter : BasePresenter {
 
         fun getBookListData(typeCode: Int)
 
     }
 
-    interface BookListView:BaseView<BookListPresenter>{
+    interface BookListView : BaseView<BookListPresenter> {
 
         fun loadData(bookBeans: MutableList<BookBean>)
 
     }
 
-    interface BookDetailPresenter:BasePresenter{
+    interface BookDetailPresenter : BasePresenter {
 
-        fun collectBook(id:String,context: Context)
+        fun collectBook(id: String, context: Context)
 
         fun checkIsCollected(id: String, context: Context)
 
         fun uncollectThisBook(id: String, context: Context)
 
-        fun userViewsPP(context: Context)
+        fun userViewsPP(type: String, id: String, context: Context)
 
     }
 
-    interface BookDetailView:BaseView<BookDetailPresenter>{
+    interface BookDetailView : BaseView<BookDetailPresenter> {
 
         fun collectSuccess()
 
-        fun checkResult(isCollected:Boolean)
+        fun checkResult(isCollected: Boolean)
 
         fun uncollectSuccess()
 

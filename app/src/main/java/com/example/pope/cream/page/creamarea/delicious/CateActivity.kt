@@ -44,13 +44,13 @@ class CateActivity : AppCompatActivity() {
         if (isSpecial) {
             val id = intent.getStringExtra("id")
             val query = BmobQuery<CateBean>()
-            query.getObject(id,object :QueryListener<CateBean>(){
+            query.getObject(id, object : QueryListener<CateBean>() {
                 override fun done(p0: CateBean?, p1: BmobException?) {
-                    if (p1!=null) {
+                    if (p1 != null) {
                         Toast.makeText(this@CateActivity, "error70037", Toast.LENGTH_SHORT).show()
-                        Log.i("error70037",p1.toString())
-                    }else{
-                        supportFragmentManager.beginTransaction().replace(R.id.frameLayout_cateActivity_container,CateDetailFragment(p0!!)).commit()
+                        Log.i("error70037", p1.toString())
+                    } else {
+                        supportFragmentManager.beginTransaction().replace(R.id.frameLayout_cateActivity_container, CateDetailFragment(p0!!)).commit()
                     }
                 }
             })

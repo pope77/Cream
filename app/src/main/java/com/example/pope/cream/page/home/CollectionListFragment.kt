@@ -41,10 +41,10 @@ class CollectionListFragment(collectionType: String, pointIdList: ArrayList<Stri
         }
         recyclerView_collectionList.layoutManager = LinearLayoutManager(activity)
         recyclerView_collectionList.adapter = CollectionListAdapter(type, idList, picUrls, titles, activity)
-        (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener {  id ->
-            val intent = Intent(activity,CateActivity::class.java)
-            intent.putExtra("特殊",true)
-            intent.putExtra("id",id)
+        (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener { id ->
+            val intent = Intent(activity, CateActivity::class.java)
+            intent.putExtra("特殊", true)
+            intent.putExtra("id", id)
             startActivity(intent)
         }
     }
@@ -59,9 +59,9 @@ class CollectionListFragment(collectionType: String, pointIdList: ArrayList<Stri
         recyclerView_collectionList.layoutManager = LinearLayoutManager(activity)
         recyclerView_collectionList.adapter = CollectionListAdapter(type, idList, picUrls, titles, activity)
         (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener {
-            val intent = Intent(activity,ProgramActivity::class.java)
-            intent.putExtra("特殊",true)
-            intent.putExtra("id",it)
+            val intent = Intent(activity, ProgramActivity::class.java)
+            intent.putExtra("特殊", true)
+            intent.putExtra("id", it)
             startActivity(intent)
         }
 
@@ -76,10 +76,10 @@ class CollectionListFragment(collectionType: String, pointIdList: ArrayList<Stri
         }
         recyclerView_collectionList.layoutManager = LinearLayoutManager(activity)
         recyclerView_collectionList.adapter = CollectionListAdapter(type, idList, picUrls, titles, activity)
-        (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener {  id ->
-            val intent = Intent(activity,BookActivity::class.java)
-            intent.putExtra("特殊",true)
-            intent.putExtra("id",id)
+        (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener { id ->
+            val intent = Intent(activity, BookActivity::class.java)
+            intent.putExtra("特殊", true)
+            intent.putExtra("id", id)
             startActivity(intent)
         }
     }
@@ -93,10 +93,10 @@ class CollectionListFragment(collectionType: String, pointIdList: ArrayList<Stri
         }
         recyclerView_collectionList.layoutManager = LinearLayoutManager(activity)
         recyclerView_collectionList.adapter = CollectionListAdapter(type, idList, picUrls, titles, activity)
-        (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener{id ->
-            val intent = Intent(activity,SceneryActivity::class.java)
-            intent.putExtra("特殊",true)
-            intent.putExtra("id",id)
+        (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener { id ->
+            val intent = Intent(activity, SceneryActivity::class.java)
+            intent.putExtra("特殊", true)
+            intent.putExtra("id", id)
             startActivity(intent)
         }
 
@@ -124,8 +124,8 @@ class CollectionListFragment(collectionType: String, pointIdList: ArrayList<Stri
         if (isFirstLunch) {
             mPresenter!!.getBeans(type, idList)
             isFirstLunch = false
-        }else{
-            mPresenter!!.getBeans(activity,type)
+        } else {
+            mPresenter!!.getBeans(activity, type)
         }
     }
 

@@ -137,13 +137,13 @@ class MusicFragment : BaseFragment<MusicContract.Presenter>(), MusicContract.Vie
 
     fun playMusic(musicBean: MusicBean) {
 
-        if (!isPlay){
+        if (!isPlay) {
             changePlayIcon()
         }
 
-        if (!isClick){
+        if (!isClick) {
             group_playerCard.visibility = View.VISIBLE
-            isClick =true
+            isClick = true
         }
 
         Glide.with(activity).load(musicBean.musicCover).into(imageView_player_cover)
@@ -162,16 +162,16 @@ class MusicFragment : BaseFragment<MusicContract.Presenter>(), MusicContract.Vie
 
     }
 
-    private fun changePlayIcon(){
+    private fun changePlayIcon() {
 
-        if (isPlay){
-            imageView_player_play.startAnimation(AnimationUtils.loadAnimation(activity,R.anim.rotate_and_alpha_showbtn))
-            imageView_player_pause.startAnimation(AnimationUtils.loadAnimation(activity,R.anim.rotate_and_alpha_hidebtn))
+        if (isPlay) {
+            imageView_player_play.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.rotate_and_alpha_showbtn))
+            imageView_player_pause.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.rotate_and_alpha_hidebtn))
             isPlay = false
-            if (mediaPlayer.isPlaying){
+            if (mediaPlayer.isPlaying) {
                 mediaPlayer.pause()
             }
-        }else{
+        } else {
             imageView_player_play.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.rotate_and_alpha_hidebtn))
             imageView_player_pause.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.rotate_and_alpha_showbtn))
             isPlay = true

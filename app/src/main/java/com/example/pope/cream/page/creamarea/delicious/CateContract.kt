@@ -8,35 +8,35 @@ import com.example.pope.cream.page.base.BaseView
 
 interface CateContract {
 
-    interface Presenter:BasePresenter{
+    interface Presenter : BasePresenter {
 
-        fun getCateRecommendMsg(cateType:Int)
+        fun getCateRecommendMsg(cateType: Int)
 
-        fun getBannerData(cateType:Int)
-
-    }
-
-    interface View:BaseView<Presenter>{
-
-        fun loadRecyclerView(cateBeans:MutableList<CateBean>)
-
-        fun initBanner(bannerBeans:MutableList<RecommendMsgBean>,dataBeans:MutableList<CateBean>)
+        fun getBannerData(cateType: Int)
 
     }
 
-    interface CateDetailPresenter:BasePresenter{
+    interface View : BaseView<Presenter> {
 
-        fun collectStateChange(context: Context, type:String, id:String, collectThisScenery:Boolean)
+        fun loadRecyclerView(cateBeans: MutableList<CateBean>)
 
-        fun collectStateCheck(context: Context, id:String)
-
-        fun userViewsPP(context: Context)
+        fun initBanner(bannerBeans: MutableList<RecommendMsgBean>, dataBeans: MutableList<CateBean>)
 
     }
 
-    interface CateDetailView:BaseView<CateDetailPresenter>{
+    interface CateDetailPresenter : BasePresenter {
 
-        fun collectStateModifier(isCollected:Boolean)
+        fun collectStateChange(context: Context, type: String, id: String, collectThisScenery: Boolean)
+
+        fun collectStateCheck(context: Context, id: String)
+
+        fun userViewsPP(context: Context, type: String, id: String)
+
+    }
+
+    interface CateDetailView : BaseView<CateDetailPresenter> {
+
+        fun collectStateModifier(isCollected: Boolean)
 
     }
 

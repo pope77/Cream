@@ -4,32 +4,26 @@ import android.content.Context
 import com.example.pope.cream.biz.base.BaseDataCallback
 import com.example.pope.cream.biz.beans.SceneryBean
 
-interface SceneryInterface{
+interface SceneryInterface {
 
-    interface OnGetSceneryDataCallback:BaseDataCallback{
+    interface OnGetSceneryDataCallback : BaseDataCallback {
 
         fun onGetSuccess(sceneryBeans: MutableList<SceneryBean>, isCollectedList: ArrayList<Boolean>)
 
     }
 
-    fun getSceneryData(context: Context,onGetSceneryDataCallback: OnGetSceneryDataCallback)
+    fun getSceneryData(context: Context, onGetSceneryDataCallback: OnGetSceneryDataCallback)
 
-    interface OnCollectStateChangeCallback:BaseDataCallback{
+    fun changeCollectState(context: Context, type: String, id: String, collectThisScenery: Boolean, baseDataCallback: BaseDataCallback)
 
-        fun onGetSuccess()
+    interface OnCollectElementDataCallback : BaseDataCallback {
 
-    }
-
-    fun changeCollectState(context: Context,type:String,id:String,collectThisScenery:Boolean,onCollectStateChangeCallback: OnCollectStateChangeCallback)
-
-    interface OnCollectElmentDataCallback:BaseDataCallback{
-
-        fun onGetSuccess(sceneryBeans: MutableList<SceneryBean>,isCollectedList: ArrayList<Boolean>)
+        fun onGetSuccess(sceneryBeans: MutableList<SceneryBean>, isCollectedList: ArrayList<Boolean>)
 
     }
 
-    fun getCollectElmentData(id: String,onCollectElmentDataCallback: OnCollectElmentDataCallback)
+    fun getCollectElementData(id: String, onCollectElementDataCallback: OnCollectElementDataCallback)
 
-    fun userViewsPP(context: Context,baseDataCallback: BaseDataCallback)
+    fun userViewsPP(context: Context, baseDataCallback: BaseDataCallback)
 
 }

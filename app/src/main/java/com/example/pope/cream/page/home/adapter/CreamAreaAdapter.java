@@ -17,6 +17,7 @@ import java.util.List;
 
 /**
  * 首页Cream地带RecyclerView适配器
+ *
  * @author popeg
  */
 public class CreamAreaAdapter extends RecyclerView.Adapter<CreamAreaAdapter.ViewHolder> {
@@ -35,7 +36,7 @@ public class CreamAreaAdapter extends RecyclerView.Adapter<CreamAreaAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_cream_area,parent,false);
+                .inflate(R.layout.item_cream_area, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -49,7 +50,7 @@ public class CreamAreaAdapter extends RecyclerView.Adapter<CreamAreaAdapter.View
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onItemClickListener!=null){
+                if (onItemClickListener != null) {
                     onItemClickListener.onClick(holder.title.getText().toString());
                 }
             }
@@ -73,11 +74,11 @@ public class CreamAreaAdapter extends RecyclerView.Adapter<CreamAreaAdapter.View
         }
     }
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void onClick(String title);
     }
 
-    public void setItemOnClickListener(OnItemClickListener onClickListener){
+    public void setItemOnClickListener(OnItemClickListener onClickListener) {
         this.onItemClickListener = onClickListener;
     }
 

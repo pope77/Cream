@@ -73,9 +73,9 @@ class MainActivity : AppCompatActivity() {
         changeSelectedBottomBar(1)
 
         //BottomBar的点击监听
-        imageView_bottombar_cream.setOnClickListener{changeSelectedBottomBar(1)}
-        imageView_bottombar_collection.setOnClickListener{changeSelectedBottomBar(2)}
-        imageView_bottombar_center.setOnClickListener{changeSelectedBottomBar(3)}
+        imageView_bottombar_cream.setOnClickListener { changeSelectedBottomBar(1) }
+        imageView_bottombar_collection.setOnClickListener { changeSelectedBottomBar(2) }
+        imageView_bottombar_center.setOnClickListener { changeSelectedBottomBar(3) }
 
     }
 
@@ -110,6 +110,8 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * BottomBar的动画
+     *  1-> 隐藏
+     * -1-> 显示
      */
     fun moveBottomBar(direction: Int) {
 
@@ -124,6 +126,12 @@ class MainActivity : AppCompatActivity() {
         if (direction == -1 && !isShowing) {
             cardView_bottombar.startAnimation(moveUp)
             isShowing = true
+        }
+        if (direction == 3) {
+            cardView_bottombar.visibility = View.GONE
+        }
+        if (direction == 4) {
+            cardView_bottombar.visibility = View.VISIBLE
         }
 
     }

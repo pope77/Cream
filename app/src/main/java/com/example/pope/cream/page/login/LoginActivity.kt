@@ -14,7 +14,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         //直接加载Fragment
-        supportFragmentManager.beginTransaction().replace(R.id.container_login,LoginFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.container_login, LoginFragment()).commit()
 
 
     }

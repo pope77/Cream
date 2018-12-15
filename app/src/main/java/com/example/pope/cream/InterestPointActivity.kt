@@ -113,7 +113,7 @@ class InterestPointActivity : AppCompatActivity() {
             } else {
                 val sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE)
                 val query = BmobQuery<UserBean>()
-                query.getObject(sharedPreferences.getString(UserBean.USER_OBJID,""), object : QueryListener<UserBean>() {
+                query.getObject(sharedPreferences.getString(UserBean.USER_OBJID, ""), object : QueryListener<UserBean>() {
                     override fun done(p0: UserBean?, p1: BmobException?) {
                         if (p1 != null) {
                             Toast.makeText(this@InterestPointActivity, "error70004", Toast.LENGTH_SHORT).show()
@@ -121,10 +121,10 @@ class InterestPointActivity : AppCompatActivity() {
                             progressDialog.dismiss()
                         } else {
                             //对兴趣数据及收藏数据进行初始化
-                            val itemNum:ArrayList<Int> = arrayListOf()
-                            val pointId:ArrayList<String> = arrayListOf()
+                            val itemNum: ArrayList<Int> = arrayListOf()
+                            val pointId: ArrayList<String> = arrayListOf()
                             p0!!.userInterestPoint = interestList
-                            for (index in interestList.indices){
+                            for (index in interestList.indices) {
                                 itemNum.add(0)
                             }
                             p0!!.pointItemNum = itemNum
@@ -158,7 +158,7 @@ class InterestPointActivity : AppCompatActivity() {
 
         //将本地用户名保存为“UserName”用来与注册了未选择兴趣点的用户做区分
         val editer = getSharedPreferences("user", Context.MODE_PRIVATE).edit()
-        editer.putString(UserBean.USER_NAME,"UserName")
+        editer.putString(UserBean.USER_NAME, "UserName")
         editer.apply()
 
         startActivity(Intent(this, MainActivity::class.java))

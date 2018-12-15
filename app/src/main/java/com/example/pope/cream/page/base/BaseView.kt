@@ -9,6 +9,6 @@ interface BaseView<T> {
 
     fun bindPresenter(presenter: T)
 
-    fun toast(msg: String,length:Int = Toast.LENGTH_SHORT)
+    fun toast(msg: String, length: Int = Toast.LENGTH_SHORT)
 
 }

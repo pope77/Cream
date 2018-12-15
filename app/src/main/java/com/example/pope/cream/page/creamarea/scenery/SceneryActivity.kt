@@ -15,11 +15,11 @@ class SceneryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_scenery)
 
         val intent = intent
-        isSpecial = intent.getBooleanExtra("特殊",false)
-        if (isSpecial){
+        isSpecial = intent.getBooleanExtra("特殊", false)
+        if (isSpecial) {
             elementId = intent.getStringExtra("id")
         }
-        supportFragmentManager.beginTransaction().replace(R.id.frameLayout_sceneryActivity_container,SceneryFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.frameLayout_sceneryActivity_container, SceneryFragment()).commit()
 
     }
 }

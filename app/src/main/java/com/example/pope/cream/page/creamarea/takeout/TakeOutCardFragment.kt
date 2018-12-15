@@ -51,7 +51,7 @@ class TakeOutCardFragment : Fragment() {
 
         toolbar_takeoutFragment.setNavigationIcon(R.mipmap.ic_arrow_back_black)
         toolbar_takeoutFragment.title = "外卖随机选择器"
-        toolbar_takeoutFragment.setNavigationOnClickListener{
+        toolbar_takeoutFragment.setNavigationOnClickListener {
             activity.finish()
         }
 
@@ -95,16 +95,16 @@ class TakeOutCardFragment : Fragment() {
                 "http://bmob-cdn-22675.b0.upaiyun.com/2018/12/05/59e7073240270e7f8008cb432e2426f9.png"
         )
         var names = arrayListOf(
-                "杨国福麻辣烫", "奈何过桥米线", "张亮麻辣烫", "食其家牛丼咖喱","芝心乐披萨", "拼一碗！蛋包饭",
+                "杨国福麻辣烫", "奈何过桥米线", "张亮麻辣烫", "食其家牛丼咖喱", "芝心乐披萨", "拼一碗！蛋包饭",
                 "肯德基", "十分粥道", "董小姐韩式炸鸡", "北京烤鸭", "沙县小吃", "胖哥俩肉蟹煲",
-                "重庆小面", "萤火烧烤", "东北饺子馆", "川味坊麻辣香锅", "张姐烤肉拌饭","台湾花甲王",
-                "阿三烧烤","杭粥西湖","川锦汇麻辣拌","必胜客","野鳗鲜森","蔬卡轻食","三米粥铺",
-                "1号大食堂中式快餐","林葱烤鱼饭","舌尖上的川菜","麦当劳","淮南牛头汤特色锅贴"
+                "重庆小面", "萤火烧烤", "东北饺子馆", "川味坊麻辣香锅", "张姐烤肉拌饭", "台湾花甲王",
+                "阿三烧烤", "杭粥西湖", "川锦汇麻辣拌", "必胜客", "野鳗鲜森", "蔬卡轻食", "三米粥铺",
+                "1号大食堂中式快餐", "林葱烤鱼饭", "舌尖上的川菜", "麦当劳", "淮南牛头汤特色锅贴"
         )
 
         val takeoutBeans = ArrayList<TakeOutBean>()
-        for (i in 0..29){
-            takeoutBeans.add(TakeOutBean(names[i],pics[i]))
+        for (i in 0..29) {
+            takeoutBeans.add(TakeOutBean(names[i], pics[i]))
         }
 
         recyclerView_spinCard.layoutManager = CircleScaleLayoutManager.Builder(activity)
@@ -114,7 +114,7 @@ class TakeOutCardFragment : Fragment() {
                 .setAngleInterval(10)
                 .setMaxVisibleItemCount(10)
                 .build()
-        recyclerView_spinCard.adapter = TakeoutAdapter(takeoutBeans,activity)
+        recyclerView_spinCard.adapter = TakeoutAdapter(takeoutBeans, activity)
     }
 
     private fun initPlayBtn() {
@@ -125,8 +125,8 @@ class TakeOutCardFragment : Fragment() {
                 isPlayIcon = false
                 recyclerView_spinCard.start()
             } else {
-                imageView_takeout_play.startAnimation(AnimationUtils.loadAnimation(activity,R.anim.rotate_and_alpha_showbtn))
-                imageView_takeout_pause.startAnimation(AnimationUtils.loadAnimation(activity,R.anim.rotate_and_alpha_hidebtn))
+                imageView_takeout_play.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.rotate_and_alpha_showbtn))
+                imageView_takeout_pause.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.rotate_and_alpha_hidebtn))
                 isPlayIcon = true
                 recyclerView_spinCard.pause()
             }

@@ -4,7 +4,9 @@ import android.util.Log
 
 interface BaseDataCallback {
 
-    fun onGetFailed(errorMsg: String,errorCode:String){
-        Log.i("error$errorCode",errorMsg)
+    fun onGetFailed(errorMsg: String, errorCode: String) {
+        Log.i("error$errorCode", errorMsg)
     }
+
+    fun onGetSuccess() {}
 }

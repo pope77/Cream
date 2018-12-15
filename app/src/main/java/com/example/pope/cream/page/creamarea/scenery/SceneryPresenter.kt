@@ -1,25 +1,30 @@
 package com.example.pope.cream.page.creamarea.scenery
 
 import android.content.Context
-import android.util.Log
 import com.example.pope.cream.biz.ModelFactory
+import com.example.pope.cream.biz.PublicLogic
 import com.example.pope.cream.biz.base.BaseDataCallback
 import com.example.pope.cream.biz.beans.SceneryBean
 import com.example.pope.cream.biz.creamarea.scenery.SceneryInterface
 import com.example.pope.cream.page.base.BasePresenterImpl
 
-class SceneryPresenter(val view:SceneryContract.View):BasePresenterImpl(),SceneryContract.Presenter{
+class SceneryPresenter(val view: SceneryContract.View) : BasePresenterImpl(), SceneryContract.Presenter {
 
     /**
      * 用户浏览量+1
      */
-    override fun userViewsPP(context: Context) {
+    override fun userViewsPP(context: Context, id: String) {
 
-        sceneryInterface.userViewsPP(context,object : BaseDataCallback {
+        sceneryInterface.userViewsPP(context, object : BaseDataCallback {
             override fun onGetFailed(errorMsg: String, errorCode: String) {
                 super.onGetFailed(errorMsg, errorCode)
                 view.toast("error$errorCode")
-                Log.i("error$errorCode",errorMsg)
+            }
+
+            override fun onGetSuccess() {
+                super.onGetSuccess()
+                //点击量+1
+                PublicLogic.addHits(context, "风景", id)
             }
         })
     }
@@ -29,15 +34,14 @@ class SceneryPresenter(val view:SceneryContract.View):BasePresenterImpl(),Scener
      */
     override fun getCollectElemntData(id: String) {
 
-        sceneryInterface.getCollectElmentData(id,object :SceneryInterface.OnCollectElmentDataCallback{
+        sceneryInterface.getCollectElementData(id, object : SceneryInterface.OnCollectElementDataCallback {
             override fun onGetSuccess(sceneryBeans: MutableList<SceneryBean>, isCollectedList: ArrayList<Boolean>) {
-                view.loadSceneryData(sceneryBeans,isCollectedList)
+                view.loadSceneryData(sceneryBeans, isCollectedList)
             }
 
             override fun onGetFailed(errorMsg: String, errorCode: String) {
                 super.onGetFailed(errorMsg, errorCode)
                 view.toast("error$errorCode")
-                Log.i("error$errorCode",errorMsg)
             }
         })
 
@@ -46,21 +50,24 @@ class SceneryPresenter(val view:SceneryContract.View):BasePresenterImpl(),Scener
     /**
      * 收藏状态改变
      */
-    override fun collectStateChange(context: Context,type:String,id:String,collectThisScenery:Boolean) {
+    override fun collectStateChange(context: Context, type: String, id: String, collectThisScenery: Boolean) {
 
-        sceneryInterface.changeCollectState(context,type,id,collectThisScenery,object:SceneryInterface.OnCollectStateChangeCallback{
+        sceneryInterface.changeCollectState(context, type, id, collectThisScenery, object : BaseDataCallback {
             override fun onGetSuccess() {
-                if (collectThisScenery){
+                if (collectThisScenery) {
                     view.toast("收藏成功")
-                }else{
+                    //收藏量+1
+                    PublicLogic.addOrSubtractCollection("+", context, type, id)
+                } else {
                     view.toast("取消收藏成功")
+                    //收藏量-1
+                    PublicLogic.addOrSubtractCollection("-", context, type, id)
                 }
             }
 
             override fun onGetFailed(errorMsg: String, errorCode: String) {
                 super.onGetFailed(errorMsg, errorCode)
                 view.toast("error$errorCode")
-                Log.i("error$errorCode",errorMsg)
             }
         })
 
@@ -71,15 +78,14 @@ class SceneryPresenter(val view:SceneryContract.View):BasePresenterImpl(),Scener
      */
     override fun getSceneryData(context: Context) {
 
-        sceneryInterface.getSceneryData(context,object:SceneryInterface.OnGetSceneryDataCallback{
+        sceneryInterface.getSceneryData(context, object : SceneryInterface.OnGetSceneryDataCallback {
             override fun onGetSuccess(sceneryBeans: MutableList<SceneryBean>, isCollectedList: ArrayList<Boolean>) {
-                view.loadSceneryData(sceneryBeans,isCollectedList)
+                view.loadSceneryData(sceneryBeans, isCollectedList)
             }
 
             override fun onGetFailed(errorMsg: String, errorCode: String) {
                 super.onGetFailed(errorMsg, errorCode)
                 view.toast("error$errorCode")
-                Log.i("error$errorCode",errorMsg)
             }
         })
 

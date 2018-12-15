@@ -32,16 +32,14 @@ class ProgramFragment : BaseFragment<ProgramContract.ProgramPresenter>(), Progra
         recyclerView_programList.adapter = adapter
         adapter.setCardOnClickListener { programBean ->
             (activity as ProgramActivity).changeFragment(ProgramDetailFragment(programBean))
-            mPresenter!!.addHit(programBean)
-         }
+        }
         adapter.setOnPlayListener { programBean ->
             (activity as ProgramActivity).changeFragment(ProgramDetailFragment(programBean))
-            mPresenter!!.addHit(programBean)
         }
     }
 
     override fun toast(msg: String, length: Int) {
-        tst(msg,length)
+        tst(msg, length)
     }
 
     var isCollected: Boolean = false
@@ -59,7 +57,7 @@ class ProgramFragment : BaseFragment<ProgramContract.ProgramPresenter>(), Progra
         super.onViewCreated(view, savedInstanceState)
         //初始化ToolBar
         toolbar_movieList.setNavigationIcon(R.mipmap.ic_arrow_back_white)
-        toolbar_movieList.setNavigationOnClickListener{
+        toolbar_movieList.setNavigationOnClickListener {
             activity!!.finish()
         }
         //查询节目数据
@@ -69,7 +67,7 @@ class ProgramFragment : BaseFragment<ProgramContract.ProgramPresenter>(), Progra
 
 
     companion object {
-        fun newInstance():ProgramFragment{
+        fun newInstance(): ProgramFragment {
             return ProgramFragment()
         }
     }

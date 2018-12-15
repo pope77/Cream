@@ -1,6 +1,7 @@
 package com.example.pope.cream.biz.base
 
 import android.content.Context
+import com.example.pope.cream.biz.PublicLogic
 import com.example.pope.cream.utils.UserDataUtil
 
 import java.lang.ref.WeakReference

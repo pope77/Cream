@@ -29,7 +29,9 @@ class LoginFragment : BaseFragment<LoginContract.Presenter>(), LoginContract.Vie
      * 显示或消失ProgressDialog
      */
     override fun showOrHideProgressDialog() {
-        if (progressDialog == null) {progressDialog = ProgressDialog(activity!!)}
+        if (progressDialog == null) {
+            progressDialog = ProgressDialog(activity!!)
+        }
         if (progressDialog!!.isShowing) hideProgressDialog() else showProgressDialog()
     }
 

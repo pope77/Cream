@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_book_detail.*
  *
  */
 @SuppressLint("ValidFragment")
-class BookDetailFragment(val bookBean: BookBean): BaseFragment<BookContract.BookDetailPresenter>(),BookContract.BookDetailView {
+class BookDetailFragment(val bookBean: BookBean) : BaseFragment<BookContract.BookDetailPresenter>(), BookContract.BookDetailView {
 
     /**
      * 取消收藏成功
@@ -44,7 +44,7 @@ class BookDetailFragment(val bookBean: BookBean): BaseFragment<BookContract.Book
     }
 
     override fun toast(msg: String, length: Int) {
-        tst(msg,length)
+        tst(msg, length)
     }
 
     val bean = bookBean
@@ -81,26 +81,26 @@ class BookDetailFragment(val bookBean: BookBean): BaseFragment<BookContract.Book
         textView_longComment3.text = bean.longCommend[2]
 
         //检查该书是否被收藏
-        mPresenter!!.checkIsCollected(bean.objectId,activity)
+        mPresenter!!.checkIsCollected(bean.objectId, activity)
         //打开详情页 用户浏览量+1
-        mPresenter!!.userViewsPP(activity)
+        mPresenter!!.userViewsPP("书籍", bean.objectId, activity)
 
         //收藏按键监听
         imageView_bookDetail_collection.setOnClickListener {
-            if (isCollected){
-                mPresenter!!.uncollectThisBook(bean.objectId,activity)
+            if (isCollected) {
+                mPresenter!!.uncollectThisBook(bean.objectId, activity)
                 uncollectThisBook()
-            }else{
-                mPresenter!!.collectBook(bean.objectId,activity)
+            } else {
+                mPresenter!!.collectBook(bean.objectId, activity)
                 collectThisBook()
             }
         }
         textView_bookDetail_collection.setOnClickListener {
-            if (isCollected){
-                mPresenter!!.uncollectThisBook(bean.objectId,activity)
+            if (isCollected) {
+                mPresenter!!.uncollectThisBook(bean.objectId, activity)
                 uncollectThisBook()
-            }else{
-                mPresenter!!.collectBook(bean.objectId,activity)
+            } else {
+                mPresenter!!.collectBook(bean.objectId, activity)
                 collectThisBook()
             }
         }
@@ -119,7 +119,7 @@ class BookDetailFragment(val bookBean: BookBean): BaseFragment<BookContract.Book
     /**
      * 为收藏此书
      */
-    private fun uncollectThisBook(){
+    private fun uncollectThisBook() {
         imageView_bookDetail_collection.setImageResource(R.mipmap.ic_collection_black_unselected)
         textView_bookDetail_collection.text = "收藏"
         isCollected = false

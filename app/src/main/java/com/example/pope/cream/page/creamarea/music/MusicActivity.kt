@@ -13,10 +13,10 @@ class MusicActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_music)
 
-        supportFragmentManager.beginTransaction().replace(R.id.frameLayout_musicActivity_container,musicFragment).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.frameLayout_musicActivity_container, musicFragment).commit()
     }
 
-    public fun playMusic(musicBean: MusicBean){
+    public fun playMusic(musicBean: MusicBean) {
         musicFragment.playMusic(musicBean)
     }
 

@@ -7,21 +7,21 @@ import com.example.pope.cream.page.base.BaseView
 
 interface SceneryContract {
 
-    interface Presenter:BasePresenter{
+    interface Presenter : BasePresenter {
 
         fun getSceneryData(context: Context)
 
-        fun collectStateChange(context: Context,type:String,id:String,collectThisScenery:Boolean)
+        fun collectStateChange(context: Context, type: String, id: String, collectThisScenery: Boolean)
 
         fun getCollectElemntData(id: String)
 
-        fun userViewsPP(context: Context)
+        fun userViewsPP(context: Context, id: String)
 
     }
 
-    interface View:BaseView<Presenter>{
+    interface View : BaseView<Presenter> {
 
-        fun loadSceneryData(sceneryBeans:MutableList<SceneryBean>,isCollectedList:ArrayList<Boolean>)
+        fun loadSceneryData(sceneryBeans: MutableList<SceneryBean>, isCollectedList: ArrayList<Boolean>)
 
     }
 

@@ -17,24 +17,17 @@ interface ProgramInterface {
 
     fun getProgramRecommend(programType: Int, onProgramDataCallback: OnProgramDataCallback)
 
-    fun addHit(programBean: ProgramBean, baseDataCallback: BaseDataCallback)
 
-    interface OnCollectStateChangeCallback : BaseDataCallback {
+    fun changeCollectState(context: Context, id: String, type: String, collectThisProgram: Boolean, baseDataCallback: BaseDataCallback)
 
-        fun onGetSuccess()
+    interface CollectStateCheckCallback : BaseDataCallback {
 
-    }
-
-    fun changeCollectState(context: Context, id: String, type: String, collectThisProgram: Boolean, onCollectStateChangeCallback: OnCollectStateChangeCallback)
-
-    interface CollectStateCheckCallback:BaseDataCallback{
-
-        fun onGetSuccess(isCollected:Boolean)
+        fun onGetSuccess(isCollected: Boolean)
 
     }
 
-    fun checkCollectState(context: Context,id: String,collectStateChangeCallback: CollectStateCheckCallback)
+    fun checkCollectState(context: Context, id: String, collectStateChangeCallback: CollectStateCheckCallback)
 
-    fun userViewsPP(context: Context,baseDataCallback: BaseDataCallback)
+    fun userViewsPP(context: Context, baseDataCallback: BaseDataCallback)
 
 }

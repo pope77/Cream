@@ -11,21 +11,22 @@ import com.example.pope.cream.biz.base.BaseLogic
 import com.example.pope.cream.biz.beans.ProgramBean
 import com.example.pope.cream.biz.beans.UserBean
 
-class ProgramLogic:BaseLogic(), ProgramInterface {
+class ProgramLogic : BaseLogic(), ProgramInterface {
 
     /**
      * 用户浏览量+1
      */
-    override fun userViewsPP(context: Context,baseDataCallback: BaseDataCallback) {
+    override fun userViewsPP(context: Context, baseDataCallback: BaseDataCallback) {
         val query = BmobQuery<UserBean>()
-        query.getObject(getLocalUserObjId(context),object:QueryListener<UserBean>(){
+        query.getObject(getLocalUserObjId(context), object : QueryListener<UserBean>() {
             override fun done(p0: UserBean?, p1: BmobException?) {
-                if (p1!=null) baseDataCallback.onGetFailed(p1.toString(),"70051")
-                else{
+                if (p1 != null) baseDataCallback.onGetFailed(p1.toString(), "70051")
+                else {
                     p0!!.userViews++
-                    p0.update(object :UpdateListener(){
+                    p0.update(object : UpdateListener() {
                         override fun done(p0: BmobException?) {
-                            if (p0!=null) baseDataCallback.onGetFailed(p0.toString(),"70052")
+                            if (p0 != null) baseDataCallback.onGetFailed(p0.toString(), "70052")
+                            else baseDataCallback.onGetSuccess()
                         }
                     })
                 }
@@ -38,12 +39,12 @@ class ProgramLogic:BaseLogic(), ProgramInterface {
      */
     override fun checkCollectState(context: Context, id: String, collectStateChangeCallback: ProgramInterface.CollectStateCheckCallback) {
         val query = BmobQuery<UserBean>()
-        query.getObject(getLocalUserObjId(context),object :QueryListener<UserBean>(){
+        query.getObject(getLocalUserObjId(context), object : QueryListener<UserBean>() {
             override fun done(p0: UserBean?, p1: BmobException?) {
-                if (p1!=null) collectStateChangeCallback.onGetFailed(p1.toString(),"70031")
-                else{
-                    for (element in p0!!.pointId){
-                        if (element == id){
+                if (p1 != null) collectStateChangeCallback.onGetFailed(p1.toString(), "70031")
+                else {
+                    for (element in p0!!.pointId) {
+                        if (element == id) {
                             collectStateChangeCallback.onGetSuccess(true)
                             return
                         }
@@ -58,11 +59,11 @@ class ProgramLogic:BaseLogic(), ProgramInterface {
     /**
      * 改变收藏状态
      */
-    override fun changeCollectState(context: Context, id: String, type: String, collectThisProgram: Boolean, onCollectStateChangeCallback: ProgramInterface.OnCollectStateChangeCallback) {
+    override fun changeCollectState(context: Context, id: String, type: String, collectThisProgram: Boolean, baseDataCallback: BaseDataCallback) {
         val query = BmobQuery<UserBean>()
         query.getObject(getLocalUserObjId(context), object : QueryListener<UserBean>() {
             override fun done(p0: UserBean?, p1: BmobException?) {
-                if (p1 != null) onCollectStateChangeCallback.onGetFailed(p1.toString(), "70034")
+                if (p1 != null) baseDataCallback.onGetFailed(p1.toString(), "70034")
                 else {
                     val interestList = p0!!.userInterestPoint
                     val itemNumList = p0!!.pointItemNum
@@ -74,26 +75,26 @@ class ProgramLogic:BaseLogic(), ProgramInterface {
                             for ((index, element) in interestList.withIndex()) {
                                 if (type == element) {
                                     itemNumList[index]++
-                                    idList.add(count,id)
+                                    idList.add(count, id)
                                     break
-                                }else{
+                                } else {
                                     count += itemNumList[index]
                                 }
                             }
                             p0.pointItemNum = itemNumList
                             p0.pointId = idList
                             p0.userCollection++
-                            p0.update(object:UpdateListener(){
+                            p0.update(object : UpdateListener() {
                                 override fun done(p0: BmobException?) {
-                                    if (p0!=null) onCollectStateChangeCallback.onGetFailed(p0.toString(),"70035")
-                                    else onCollectStateChangeCallback.onGetSuccess()
+                                    if (p0 != null) baseDataCallback.onGetFailed(p0.toString(), "70035")
+                                    else baseDataCallback.onGetSuccess()
                                 }
                             })
                         }
                         //取消收藏
                         false -> {
-                            for ((index,element) in interestList.withIndex()){
-                                if (element == type){
+                            for ((index, element) in interestList.withIndex()) {
+                                if (element == type) {
                                     itemNumList[index]--
                                     break
                                 }
@@ -102,10 +103,10 @@ class ProgramLogic:BaseLogic(), ProgramInterface {
                             p0.pointItemNum = itemNumList
                             p0.pointId = idList
                             p0.userCollection--
-                            p0.update(object:UpdateListener(){
+                            p0.update(object : UpdateListener() {
                                 override fun done(p0: BmobException?) {
-                                    if (p0!=null) onCollectStateChangeCallback.onGetFailed(p0.toString(),"70032")
-                                    else onCollectStateChangeCallback.onGetSuccess()
+                                    if (p0 != null) baseDataCallback.onGetFailed(p0.toString(), "70032")
+                                    else baseDataCallback.onGetSuccess()
                                 }
                             })
                         }
@@ -116,29 +117,14 @@ class ProgramLogic:BaseLogic(), ProgramInterface {
     }
 
     /**
-     * 点击量+1
-     */
-    override fun addHit(programBean: ProgramBean, baseDataCallback: BaseDataCallback) {
-        programBean.programHits = programBean.programHits++
-        programBean.update(object: UpdateListener(){
-            override fun done(p0: BmobException?) {
-                if (p0!=null) {
-                    baseDataCallback.onGetFailed(p0.toString(),"70008")
-                }
-            }
-
-        })
-    }
-
-    /**
      * 获取推荐节目数据
      */
     override fun getProgramRecommend(programType: Int, onProgramDataCallback: ProgramInterface.OnProgramDataCallback) {
         var query = BmobQuery<ProgramBean>()
-        query.addWhereEqualTo(ProgramBean.PROGRAM_TYPE,programType)
-        query.findObjects(object :FindListener<ProgramBean>(){
+        query.addWhereEqualTo(ProgramBean.PROGRAM_TYPE, programType)
+        query.findObjects(object : FindListener<ProgramBean>() {
             override fun done(p0: MutableList<ProgramBean>?, p1: BmobException?) {
-                if (p1!=null) onProgramDataCallback.onGetFailed(p1.toString(),"70007")
+                if (p1 != null) onProgramDataCallback.onGetFailed(p1.toString(), "70007")
                 else {
                     onProgramDataCallback.onGetSuccess(p0!!)
                 }

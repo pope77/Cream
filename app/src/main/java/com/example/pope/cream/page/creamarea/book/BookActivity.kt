@@ -37,7 +37,7 @@ class BookActivity : AppCompatActivity() {
                         Toast.makeText(this@BookActivity, "error70036", Toast.LENGTH_SHORT).show()
                         Log.i("error70036", p1.toString())
                     } else {
-                        supportFragmentManager.beginTransaction().replace(R.id.frameLayout_bookActivity_container,BookDetailFragment(p0!!)).commit()
+                        supportFragmentManager.beginTransaction().replace(R.id.frameLayout_bookActivity_container, BookDetailFragment(p0!!)).commit()
                         currentPos = 3
                     }
                 }

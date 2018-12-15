@@ -17,14 +17,14 @@ public class ActorListAdapter extends RecyclerView.Adapter<ActorListAdapter.View
     private ProgramBean programBean;
     private Context context;
 
-    public ActorListAdapter(ProgramBean programBean,Context context) {
+    public ActorListAdapter(ProgramBean programBean, Context context) {
         this.programBean = programBean;
         this.context = context;
     }
 
     @Override
     public ActorListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_program_actorlist,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_program_actorlist, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -34,8 +34,8 @@ public class ActorListAdapter extends RecyclerView.Adapter<ActorListAdapter.View
         int isMovie = programBean.getProgramType();
         Glide.with(context).load(programBean.getProgramActorImage().get(position)).into(holder.actorAvatar);
         String name = programBean.getProgramActorList().get(position);
-        if (isMovie == 1){
-            name = name+"\n饰\n"+programBean.getProgramRoleList().get(position);
+        if (isMovie == 1) {
+            name = name + "\n饰\n" + programBean.getProgramRoleList().get(position);
         }
         holder.actorName.setText(name);
     }

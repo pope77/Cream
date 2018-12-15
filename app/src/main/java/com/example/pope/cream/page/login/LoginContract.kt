@@ -15,7 +15,7 @@ interface LoginContract {
         /**
          * 检查该用户是否添加兴趣点
          */
-        fun isSelectedInterest(phoneNum:String)
+        fun isSelectedInterest(phoneNum: String)
 
     }
 
@@ -29,12 +29,12 @@ interface LoginContract {
         /**
          * 跳转新界面 -1->MainActivity 1->InterestActivity
          */
-        fun jump2NewActivity(code:Int)
+        fun jump2NewActivity(code: Int)
 
         /**
          * 获取用户手机IMEI
          */
-        fun getUserImei():String
+        fun getUserImei(): String
 
         /**
          * 显示或消失ProgressDialog

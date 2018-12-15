@@ -5,6 +5,7 @@ import cn.bmob.v3.BmobQuery
 import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.FindListener
 import cn.bmob.v3.listener.SaveListener
+import com.example.pope.cream.biz.base.BaseDataCallback
 import com.example.pope.cream.biz.base.BaseLogic
 import com.example.pope.cream.biz.beans.UserBean
 
@@ -16,7 +17,7 @@ class LoginLogic : BaseLogic(), LoginInterface {
     /**
      * 创建新用户 将用户手机号及用户ObjectId保存到本地
      */
-    override fun createNewUser(phoneNum: String, userImei: String, onCreateNewUserCallback: LoginInterface.OnCreateNewUserCallback) {
+    override fun createNewUser(phoneNum: String, userImei: String, baseDataCallback: BaseDataCallback) {
 
         var userBean = UserBean()
         userBean.userIMEI = userImei
@@ -26,14 +27,14 @@ class LoginLogic : BaseLogic(), LoginInterface {
         userBean.userViews = 0
         userBean.save(object : SaveListener<String>() {
             override fun done(p0: String?, p1: BmobException?) {
-                if (p1 != null) onCreateNewUserCallback.onGetFailed(p1.toString(), "70003")
+                if (p1 != null) baseDataCallback.onGetFailed(p1.toString(), "70003")
                 else {
                     var editer = context.getSharedPreferences("user", MODE_PRIVATE).edit()
                     editer.putString(UserBean.USER_PHONE_NUM, phoneNum)
                     editer.putString(UserBean.USER_OBJID, p0!!)
-                    editer.putString(UserBean.USER_NAME,"null")
+                    editer.putString(UserBean.USER_NAME, "null")
                     editer.apply()
-                    onCreateNewUserCallback.onGetSuccess()
+                    baseDataCallback.onGetSuccess()
                 }
             }
 
@@ -62,12 +63,11 @@ class LoginLogic : BaseLogic(), LoginInterface {
                         else {
                             var editer = context.getSharedPreferences("user", MODE_PRIVATE).edit()
                             if (userInterest.size < 3) {
-                                editer.putString(UserBean.USER_OBJID,p0[0].objectId)
-                                editer.putString(UserBean.USER_PHONE_NUM,phoneNum)
+                                editer.putString(UserBean.USER_OBJID, p0[0].objectId)
+                                editer.putString(UserBean.USER_PHONE_NUM, phoneNum)
                                 editer.apply()
                                 onCheckInterestSelectedCallback.onGetSuccess(false)
-                            }
-                            else {
+                            } else {
                                 editer.putString(UserBean.USER_OBJID, p0[0].objectId)
                                 editer.putString(UserBean.USER_PHONE_NUM, phoneNum)
                                 editer.putString(UserBean.USER_AVATAR, p0[0].userAvatar)

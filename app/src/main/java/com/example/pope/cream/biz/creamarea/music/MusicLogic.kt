@@ -11,21 +11,21 @@ import com.example.pope.cream.biz.base.BaseLogic
 import com.example.pope.cream.biz.beans.MusicBean
 import com.example.pope.cream.biz.beans.UserBean
 
-class MusicLogic:BaseLogic(),MusicInterface{
+class MusicLogic : BaseLogic(), MusicInterface {
 
     /**
      * 用户浏览量+1
      */
     override fun userViewsPP(context: Context, baseDataCallback: BaseDataCallback) {
         val query = BmobQuery<UserBean>()
-        query.getObject(getLocalUserObjId(context),object: QueryListener<UserBean>(){
+        query.getObject(getLocalUserObjId(context), object : QueryListener<UserBean>() {
             override fun done(p0: UserBean?, p1: BmobException?) {
-                if (p1!=null) baseDataCallback.onGetFailed(p1.toString(),"70049")
-                else{
+                if (p1 != null) baseDataCallback.onGetFailed(p1.toString(), "70049")
+                else {
                     p0!!.userViews++
-                    p0.update(object : UpdateListener(){
+                    p0.update(object : UpdateListener() {
                         override fun done(p0: BmobException?) {
-                            if (p0!=null) baseDataCallback.onGetFailed(p0.toString(),"70050")
+                            if (p0 != null) baseDataCallback.onGetFailed(p0.toString(), "70050")
                         }
                     })
                 }
@@ -39,10 +39,10 @@ class MusicLogic:BaseLogic(),MusicInterface{
     override fun getMusicData(musicType: Int, onMusicDataCallback: MusicInterface.OnMusicDataCallback) {
 
         val query = BmobQuery<MusicBean>()
-        query.addWhereEqualTo(MusicBean.MUSIC_TYPE,musicType)
-        query.findObjects(object: FindListener<MusicBean>() {
+        query.addWhereEqualTo(MusicBean.MUSIC_TYPE, musicType)
+        query.findObjects(object : FindListener<MusicBean>() {
             override fun done(p0: MutableList<MusicBean>?, p1: BmobException?) {
-                if (p1!=null) onMusicDataCallback.onGetFailed(p1.toString(),"70011")
+                if (p1 != null) onMusicDataCallback.onGetFailed(p1.toString(), "70011")
                 else {
                     onMusicDataCallback.onGetSuccess(p0!!)
                 }
@@ -51,14 +51,14 @@ class MusicLogic:BaseLogic(),MusicInterface{
 
     }
 
-    private object Holder{
+    private object Holder {
         internal var INSTANCE = MusicLogic()
     }
 
     companion object {
-        private val INSTANCE : MusicLogic? = null
-        val instance:MusicLogic
-        get() = Holder.INSTANCE
+        private val INSTANCE: MusicLogic? = null
+        val instance: MusicLogic
+            get() = Holder.INSTANCE
     }
 
 }

@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_book_list.*
  *
  */
 @SuppressLint("ValidFragment")
-class BookListFragment(val bookType:Int) : BaseFragment<BookContract.BookListPresenter>(),BookContract.BookListView {
+class BookListFragment(val bookType: Int) : BaseFragment<BookContract.BookListPresenter>(), BookContract.BookListView {
 
     /**
      * 加载数据
@@ -31,7 +31,7 @@ class BookListFragment(val bookType:Int) : BaseFragment<BookContract.BookListPre
     override fun loadData(bookBeans: MutableList<BookBean>) {
 
         recyclerView_bookList.layoutManager = EchelonLayoutManager(activity)
-        recyclerView_bookList.adapter = BookListAdapter(bookBeans,activity)
+        recyclerView_bookList.adapter = BookListAdapter(bookBeans, activity)
         (recyclerView_bookList.adapter as BookListAdapter).setOnItemClickListener {
             (activity as BookActivity).changeFragment(BookDetailFragment(it))
         }
@@ -39,7 +39,7 @@ class BookListFragment(val bookType:Int) : BaseFragment<BookContract.BookListPre
     }
 
     override fun toast(msg: String, length: Int) {
-        tst(msg,length)
+        tst(msg, length)
     }
 
     val typeCode = bookType
@@ -60,6 +60,7 @@ class BookListFragment(val bookType:Int) : BaseFragment<BookContract.BookListPre
             (activity as BookActivity).onBackPressed()
         }
 
+        //根据书籍类型 获取书籍列表数据
         mPresenter!!.getBookListData(typeCode)
 
     }
@@ -256,9 +257,9 @@ class BookListFragment(val bookType:Int) : BaseFragment<BookContract.BookListPre
         )
         bookBean.shortCommend = shortComment
         bookBean.longCommend = longComment
-        bookBean.save(object:SaveListener<String>(){
+        bookBean.save(object : SaveListener<String>() {
             override fun done(p0: String?, p1: BmobException?) {
-                if (p1!=null) toast("error$p1",Toast.LENGTH_LONG)
+                if (p1 != null) toast("error$p1", Toast.LENGTH_LONG)
                 else toast("成功")
             }
         })
@@ -304,9 +305,9 @@ class BookListFragment(val bookType:Int) : BaseFragment<BookContract.BookListPre
         )
         bookBean.shortCommend = shortComment1
         bookBean.longCommend = longComment1
-        bookBean.save(object:SaveListener<String>(){
+        bookBean.save(object : SaveListener<String>() {
             override fun done(p0: String?, p1: BmobException?) {
-                if (p1!=null) toast("error1$p1",Toast.LENGTH_LONG)
+                if (p1 != null) toast("error1$p1", Toast.LENGTH_LONG)
                 else toast("成功1")
             }
         })
@@ -522,9 +523,9 @@ class BookListFragment(val bookType:Int) : BaseFragment<BookContract.BookListPre
         )
         bookBean.shortCommend = shortComment2
         bookBean.longCommend = longComment2
-        bookBean.save(object:SaveListener<String>(){
+        bookBean.save(object : SaveListener<String>() {
             override fun done(p0: String?, p1: BmobException?) {
-                if (p1!=null) toast("error2$p1",Toast.LENGTH_LONG)
+                if (p1 != null) toast("error2$p1", Toast.LENGTH_LONG)
                 else toast("成功2")
             }
         })

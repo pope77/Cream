@@ -1,7 +1,6 @@
 package com.example.pope.cream.biz.creamarea.book
 
 import android.content.Context
-import cn.bmob.v3.BmobObject
 import cn.bmob.v3.BmobQuery
 import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.FindListener
@@ -17,16 +16,17 @@ class BookLogic : BaseLogic(), BookInterface {
     /**
      * 用户浏览量+1
      */
-    override fun userViewsPP(context: Context,baseDataCallback: BaseDataCallback) {
+    override fun userViewsPP(context: Context, baseDataCallback: BaseDataCallback) {
         val query = BmobQuery<UserBean>()
-        query.getObject(getLocalUserObjId(context),object:QueryListener<UserBean>(){
+        query.getObject(getLocalUserObjId(context), object : QueryListener<UserBean>() {
             override fun done(p0: UserBean?, p1: BmobException?) {
-                if (p1!=null) baseDataCallback.onGetFailed(p1.toString(),"70045")
-                else{
+                if (p1 != null) baseDataCallback.onGetFailed(p1.toString(), "70045")
+                else {
                     p0!!.userViews++
-                    p0.update(object :UpdateListener(){
+                    p0.update(object : UpdateListener() {
                         override fun done(p0: BmobException?) {
-                            if (p0!=null) baseDataCallback.onGetFailed(p0.toString(),"70046")
+                            if (p0 != null) baseDataCallback.onGetFailed(p0.toString(), "70046")
+                            else baseDataCallback.onGetSuccess()
                         }
                     })
                 }
@@ -37,12 +37,12 @@ class BookLogic : BaseLogic(), BookInterface {
     /**
      * 不收藏此书
      */
-    override fun uncollectThisBook(id: String, context: Context, onUncollectCallback: BookInterface.OnUncollectCallback) {
+    override fun uncollectThisBook(id: String, context: Context, baseDataCallback: BaseDataCallback) {
 
         val query = BmobQuery<UserBean>()
         query.getObject(getLocalUserObjId(context), object : QueryListener<UserBean>() {
             override fun done(p0: UserBean?, p1: BmobException?) {
-                if (p1 != null) onUncollectCallback.onGetFailed(p1.toString(), "70021")
+                if (p1 != null) baseDataCallback.onGetFailed(p1.toString(), "70021")
                 else {
                     val userBean = p0
                     var interestList = userBean!!.userInterestPoint
@@ -64,8 +64,8 @@ class BookLogic : BaseLogic(), BookInterface {
                     userBean.userCollection--
                     userBean.update(object : UpdateListener() {
                         override fun done(p0: BmobException?) {
-                            if (p0 != null) onUncollectCallback.onGetFailed(p0.toString(), "70022")
-                            else onUncollectCallback.onGetSuccess()
+                            if (p0 != null) baseDataCallback.onGetFailed(p0.toString(), "70022")
+                            else baseDataCallback.onGetSuccess()
                         }
                     })
                 }
@@ -98,11 +98,14 @@ class BookLogic : BaseLogic(), BookInterface {
 
     }
 
-    override fun collectThisBook(id: String, context: Context, onCollectCallback: BookInterface.OnCollectCallback) {
+    /**
+     * 收藏此书
+     */
+    override fun collectThisBook(id: String, context: Context, baseDataCallback: BaseDataCallback) {
         val query = BmobQuery<UserBean>()
         query.getObject(getLocalUserObjId(context), object : QueryListener<UserBean>() {
             override fun done(p0: UserBean?, p1: BmobException?) {
-                if (p1 != null) onCollectCallback.onGetFailed(p1.toString(), "70019")
+                if (p1 != null) baseDataCallback.onGetFailed(p1.toString(), "70019")
                 else {
                     val userBean = p0
                     var count = 0
@@ -119,8 +122,8 @@ class BookLogic : BaseLogic(), BookInterface {
                     userBean.userCollection++
                     userBean.update(object : UpdateListener() {
                         override fun done(p0: BmobException?) {
-                            if (p0 != null) onCollectCallback.onGetFailed(p0.toString(), "70020")
-                            else onCollectCallback.onGetSuccess()
+                            if (p0 != null) baseDataCallback.onGetFailed(p0.toString(), "70020")
+                            else baseDataCallback.onGetSuccess()
                         }
                     })
                 }

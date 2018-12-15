@@ -28,8 +28,8 @@ public class CateBean extends BmobObject {
 
     /**
      * 美食与饮品分类标记
-     *   1->美食
-     *  -1->饮品
+     * 1->美食
+     * -1->饮品
      */
     private Integer cateType;
     private String cateCardPic;

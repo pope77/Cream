@@ -161,7 +161,7 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
                 holder.scrollView.setVisibility(View.VISIBLE);
                 holder.changeCard(-1);
                 if (onOpenDetailListener != null) {
-                    onOpenDetailListener.open();
+                    onOpenDetailListener.open(position);
                 }
             }
         });
@@ -174,7 +174,7 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
                 holder.scrollView.setVisibility(View.VISIBLE);
                 holder.changeCard(-1);
                 if (onOpenDetailListener != null) {
-                    onOpenDetailListener.open();
+                    onOpenDetailListener.open(position);
                 }
             }
         });
@@ -393,7 +393,7 @@ public class SceneryListAdapter extends RecyclerView.Adapter<SceneryListAdapter.
     }
 
     interface OnOpenDetailListener {
-        void open();
+        void open(int pos);
     }
 
     public void setOnOpenDetailListener(OnOpenDetailListener onOpenDetailListener) {

@@ -16,16 +16,17 @@ class SceneryLogic : BaseLogic(), SceneryInterface {
     /**
      * 用户浏览量+1
      */
-    override fun userViewsPP(context: Context,baseDataCallback: BaseDataCallback) {
+    override fun userViewsPP(context: Context, baseDataCallback: BaseDataCallback) {
         val query = BmobQuery<UserBean>()
-        query.getObject(getLocalUserObjId(context),object:QueryListener<UserBean>(){
+        query.getObject(getLocalUserObjId(context), object : QueryListener<UserBean>() {
             override fun done(p0: UserBean?, p1: BmobException?) {
-                if (p1!=null) baseDataCallback.onGetFailed(p1.toString(),"70053")
-                else{
+                if (p1 != null) baseDataCallback.onGetFailed(p1.toString(), "70053")
+                else {
                     p0!!.userViews++
-                    p0.update(object :UpdateListener(){
+                    p0.update(object : UpdateListener() {
                         override fun done(p0: BmobException?) {
-                            if (p0!=null) baseDataCallback.onGetFailed(p0.toString(),"70054")
+                            if (p0 != null) baseDataCallback.onGetFailed(p0.toString(), "70054")
+                            else baseDataCallback.onGetSuccess()
                         }
                     })
                 }
@@ -36,14 +37,14 @@ class SceneryLogic : BaseLogic(), SceneryInterface {
     /**
      * 从收藏列表跳转过来 获取被查看的收藏项的数据
      */
-    override fun getCollectElmentData(id: String, onCollectElmentDataCallback: SceneryInterface.OnCollectElmentDataCallback) {
+    override fun getCollectElementData(id: String, onCollectElementDataCallback: SceneryInterface.OnCollectElementDataCallback) {
 
         val query = BmobQuery<SceneryBean>()
         query.getObject(id, object : QueryListener<SceneryBean>() {
             override fun done(p0: SceneryBean?, p1: BmobException?) {
-                if (p1 != null) onCollectElmentDataCallback.onGetFailed(p1.toString(), "70039")
+                if (p1 != null) onCollectElementDataCallback.onGetFailed(p1.toString(), "70039")
                 else {
-                    onCollectElmentDataCallback.onGetSuccess(arrayListOf(p0!!), arrayListOf(true))
+                    onCollectElementDataCallback.onGetSuccess(arrayListOf(p0!!), arrayListOf(true))
                 }
             }
         })
@@ -53,11 +54,11 @@ class SceneryLogic : BaseLogic(), SceneryInterface {
     /**
      * 改变收藏状态
      */
-    override fun changeCollectState(context: Context, type: String, id: String, collectThisScenery: Boolean, onCollectStateChangeCallback: SceneryInterface.OnCollectStateChangeCallback) {
+    override fun changeCollectState(context: Context, type: String, id: String, collectThisScenery: Boolean, baseDataCallback: BaseDataCallback) {
         val query = BmobQuery<UserBean>()
         query.getObject(getLocalUserObjId(context), object : QueryListener<UserBean>() {
             override fun done(p0: UserBean?, p1: BmobException?) {
-                if (p1 != null) onCollectStateChangeCallback.onGetFailed(p1.toString(), "70025")
+                if (p1 != null) baseDataCallback.onGetFailed(p1.toString(), "70025")
                 else {
                     val interestList = p0!!.userInterestPoint
                     val itemNumList = p0!!.pointItemNum
@@ -80,8 +81,8 @@ class SceneryLogic : BaseLogic(), SceneryInterface {
                             p0.userCollection++
                             p0.update(object : UpdateListener() {
                                 override fun done(p0: BmobException?) {
-                                    if (p0 != null) onCollectStateChangeCallback.onGetFailed(p0.toString(), "70026")
-                                    else onCollectStateChangeCallback.onGetSuccess()
+                                    if (p0 != null) baseDataCallback.onGetFailed(p0.toString(), "70026")
+                                    else baseDataCallback.onGetSuccess()
                                 }
                             })
                         }
@@ -99,8 +100,8 @@ class SceneryLogic : BaseLogic(), SceneryInterface {
                             p0.userCollection--
                             p0.update(object : UpdateListener() {
                                 override fun done(p0: BmobException?) {
-                                    if (p0 != null) onCollectStateChangeCallback.onGetFailed(p0.toString(), "70027")
-                                    else onCollectStateChangeCallback.onGetSuccess()
+                                    if (p0 != null) baseDataCallback.onGetFailed(p0.toString(), "70027")
+                                    else baseDataCallback.onGetSuccess()
                                 }
                             })
                         }

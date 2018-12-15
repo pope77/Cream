@@ -61,9 +61,15 @@ class CateDetailFragment(cateBean: CateBean) : BaseFragment<CateContract.CateDet
     }
 
     var isCollected = false
+    var type = ""
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        when (cateBean.cateType) {
+            CateBean.CATE_TYPE_DRINK -> type = "饮品"
+            CateBean.CATE_TYPE_FOOD -> type = "美食"
+        }
 
         //初始化toolbar
         toolbar_cateDetailFragment.setNavigationIcon(R.mipmap.ic_arrow_back_white)
@@ -75,40 +81,35 @@ class CateDetailFragment(cateBean: CateBean) : BaseFragment<CateContract.CateDet
         loadMsg()
 
         //检查收藏状态
-        mPresenter!!.collectStateCheck(activity,cateBean.objectId)
+        mPresenter!!.collectStateCheck(activity, cateBean.objectId)
         //查看饮食类详情页时 用户浏览量+1
-        mPresenter!!.userViewsPP(activity)
+        mPresenter!!.userViewsPP(activity, type, cateBean.objectId)
 
         //收藏按键点击监听
         textView_cateDetail_collect.setOnClickListener {
-            var type = ""
-            when(cateBean.cateType){
-                CateBean.CATE_TYPE_DRINK-> type = "饮品"
-                CateBean.CATE_TYPE_FOOD -> type = "美食"
-            }
-            if (isCollected){
+            if (isCollected) {
                 isCollected = false
-                mPresenter!!.collectStateChange(activity,type,cateBean.objectId,isCollected)
+                mPresenter!!.collectStateChange(activity, type, cateBean.objectId, isCollected)
                 changeCollectUi()
-            }else{
+            } else {
                 isCollected = true
-                mPresenter!!.collectStateChange(activity,type,cateBean.objectId,isCollected)
+                mPresenter!!.collectStateChange(activity, type, cateBean.objectId, isCollected)
                 changeCollectUi()
             }
         }
         imageView_cateDetail_collect.setOnClickListener {
             var type = ""
-            when(cateBean.cateType){
-                CateBean.CATE_TYPE_DRINK-> type = "饮品"
+            when (cateBean.cateType) {
+                CateBean.CATE_TYPE_DRINK -> type = "饮品"
                 CateBean.CATE_TYPE_FOOD -> type = "美食"
             }
-            if (isCollected){
+            if (isCollected) {
                 isCollected = false
-                mPresenter!!.collectStateChange(activity,type,cateBean.objectId,isCollected)
+                mPresenter!!.collectStateChange(activity, type, cateBean.objectId, isCollected)
                 changeCollectUi()
-            }else{
+            } else {
                 isCollected = true
-                mPresenter!!.collectStateChange(activity,type,cateBean.objectId,isCollected)
+                mPresenter!!.collectStateChange(activity, type, cateBean.objectId, isCollected)
                 changeCollectUi()
             }
         }

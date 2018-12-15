@@ -51,6 +51,12 @@ class CollectionFragment : BaseFragment<HomeContract.CollectionPresenter>(), Hom
             }
         }
 
+        if (fragmentList.isEmpty()) {
+            textView_collection_noData.visibility = View.VISIBLE
+        } else {
+            textView_collection_noData.visibility = View.GONE
+        }
+
         val adapter = object : FragmentPagerAdapter(fragmentManager) {
             override fun getItem(position: Int): Fragment {
                 return fragmentList[position]

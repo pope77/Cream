@@ -22,6 +22,27 @@
 
     </android.support.design.widget.TabLayout>
 
+    <TextView
+        android:id="@+id/textView_collection_noData"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/bg_music"
+        android:gravity="center"
+        android:text="暂时还没有收藏记录哟！"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tabLayout_collectionFragment"
+        tools:visibility="visible" />
+
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager_collectionFragment"
         android:layout_width="0dp"
@@ -29,5 +50,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout_collectionFragment" />
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout_collectionFragment" >
+
+    </android.support.v4.view.ViewPager>
 </android.support.constraint.ConstraintLayout>

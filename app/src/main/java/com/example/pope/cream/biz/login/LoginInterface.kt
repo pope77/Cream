@@ -15,6 +15,7 @@ interface LoginInterface {
         fun onGetSuccess(msg: String)
 
     }
+
     /**
      * 检查是否为老用户
      */
@@ -23,9 +24,9 @@ interface LoginInterface {
     /**
      * 检查是否选择兴趣点的回调
      */
-    interface OnCheckInterestSelectedCallback:BaseDataCallback{
+    interface OnCheckInterestSelectedCallback : BaseDataCallback {
 
-        fun onGetSuccess(isSelected:Boolean)
+        fun onGetSuccess(isSelected: Boolean)
 
         fun isNewUser()
 
@@ -35,20 +36,11 @@ interface LoginInterface {
      * 检查是否选择兴趣点
      */
 
-    fun isSelectedInterest(phoneNum:String, onCheckInterestSelectedCallback: OnCheckInterestSelectedCallback)
-
-    /**
-     * 创建新用户回调
-     */
-    interface OnCreateNewUserCallback:BaseDataCallback{
-
-        fun onGetSuccess()
-
-    }
+    fun isSelectedInterest(phoneNum: String, onCheckInterestSelectedCallback: OnCheckInterestSelectedCallback)
 
     /**
      * 创建新用户
      */
-    fun createNewUser(phoneNum: String, userImei:String, onCreateNewUserCallback: OnCreateNewUserCallback)
+    fun createNewUser(phoneNum: String, userImei: String, baseDataCallback: BaseDataCallback)
 
 }

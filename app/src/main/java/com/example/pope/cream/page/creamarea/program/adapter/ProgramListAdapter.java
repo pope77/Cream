@@ -61,7 +61,7 @@ public class ProgramListAdapter extends RecyclerView.Adapter<ProgramListAdapter.
         holder.groupPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onPlayListener != null){
+                if (onPlayListener != null) {
                     onPlayListener.onClick(bean);
                 }
             }
@@ -103,11 +103,11 @@ public class ProgramListAdapter extends RecyclerView.Adapter<ProgramListAdapter.
         this.onCardClickListener = onCardClickListener;
     }
 
-    public interface OnPlayListener{
+    public interface OnPlayListener {
         void onClick(ProgramBean programBean);
     }
 
-    public void setOnPlayListener(OnPlayListener onPlayListener){
+    public void setOnPlayListener(OnPlayListener onPlayListener) {
         this.onPlayListener = onPlayListener;
     }
 

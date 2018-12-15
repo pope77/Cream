@@ -11,14 +11,14 @@ import com.example.pope.cream.biz.home.HomeInterface
 import com.example.pope.cream.page.base.BasePresenterImpl
 
 class CollectionListPresenter(val collectionListView: HomeContract.CollectionListView)
-    :BasePresenterImpl(),HomeContract.CollectionListPresenter {
+    : BasePresenterImpl(), HomeContract.CollectionListPresenter {
 
     /**
      * 获取数据bean
      */
-    override fun getBeans(context: Context,type: String) {
+    override fun getBeans(context: Context, type: String) {
 
-        homeInterface.getCollectionListBeans(context,type,object:HomeInterface.OnListBeansCallback{
+        homeInterface.getCollectionListBeans(context, type, object : HomeInterface.OnListBeansCallback {
             override fun onGetSuccess(beans: ArrayList<CateBean>) {
                 collectionListView.loadBeans(beans)
             }
@@ -38,17 +38,17 @@ class CollectionListPresenter(val collectionListView: HomeContract.CollectionLis
             override fun onGetFailed(errorMsg: String, errorCode: String) {
                 super.onGetFailed(errorMsg, errorCode)
                 collectionListView.toast("error$errorCode")
-                Log.i("error$errorCode",errorMsg)
-            }        })
+            }
+        })
 
     }
 
     /**
      * 获取数据Bean
      */
-    override fun getBeans(type:String,idList: MutableList<String>) {
+    override fun getBeans(type: String, idList: MutableList<String>) {
 
-        homeInterface.getCollectionListBeans(type,idList,object:HomeInterface.OnListBeansCallback{
+        homeInterface.getCollectionListBeans(type, idList, object : HomeInterface.OnListBeansCallback {
             override fun onGetSuccess(beans: ArrayList<CateBean>) {
                 collectionListView.loadBeans(beans)
             }
@@ -68,7 +68,6 @@ class CollectionListPresenter(val collectionListView: HomeContract.CollectionLis
             override fun onGetFailed(errorMsg: String, errorCode: String) {
                 super.onGetFailed(errorMsg, errorCode)
                 collectionListView.toast("error$errorCode")
-                Log.i("error$errorCode",errorMsg)
             }
         })
 

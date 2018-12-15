@@ -20,9 +20,9 @@ interface HomeInterface {
 
     }
 
-    fun getInterestDetail(context: Context,onInterestDetailCallback: OnInterestDetailCallback)
+    fun getInterestDetail(context: Context, onInterestDetailCallback: OnInterestDetailCallback)
 
-    interface OnListBeansCallback:BaseDataCallback{
+    interface OnListBeansCallback : BaseDataCallback {
 
         fun onGetSuccess(beans: ArrayList<CateBean>)
 
@@ -30,20 +30,30 @@ interface HomeInterface {
 
         fun onGetSuccess2(beans: ArrayList<BookBean>)
 
-        fun onGetSuccess3(beans:ArrayList<SceneryBean>)
+        fun onGetSuccess3(beans: ArrayList<SceneryBean>)
 
     }
 
-    fun getCollectionListBeans(type:String,idList: MutableList<String>, onListBeansCallback: OnListBeansCallback)
+    fun getCollectionListBeans(type: String, idList: MutableList<String>, onListBeansCallback: OnListBeansCallback)
 
-    fun getCollectionListBeans(context: Context,type:String,onListBeansCallback: OnListBeansCallback)
+    fun getCollectionListBeans(context: Context, type: String, onListBeansCallback: OnListBeansCallback)
 
-    interface OnBannerDataCallback:BaseDataCallback{
+    interface OnBannerDataCallback : BaseDataCallback {
 
-        fun onGetSuccess(bannerBeans:MutableList<RecommendMsgBean>)
+        fun onGetSuccess(bannerBeans: MutableList<RecommendMsgBean>)
 
     }
 
     fun getBannerData(onBannerDataCallback: OnBannerDataCallback)
+
+    interface OnUserBeanCallback : BaseDataCallback {
+
+        fun onGetSuccess(bean: UserBean)
+
+    }
+
+    fun getUserBean(context: Context, onUserBeanCallback: OnUserBeanCallback)
+
+    fun changeUserName(newName: String, context: Context, baseDataCallback: BaseDataCallback)
 
 }

@@ -3,6 +3,7 @@ package com.example.pope.cream.page.creamarea.delicious
 import android.content.Context
 import android.util.Log
 import com.example.pope.cream.biz.ModelFactory
+import com.example.pope.cream.biz.PublicLogic
 import com.example.pope.cream.biz.base.BaseDataCallback
 import com.example.pope.cream.biz.creamarea.delicious.CateInterface
 import com.example.pope.cream.page.base.BasePresenterImpl
@@ -12,13 +13,18 @@ class CateDetailPresenter(val cateDetailView: CateContract.CateDetailView) : Bas
     /**
      * 用户浏览量+1
      */
-    override fun userViewsPP(context: Context) {
+    override fun userViewsPP(context: Context, type: String, id: String) {
 
-        cateInterface.userViewsPP(context,object : BaseDataCallback {
+        cateInterface.userViewsPP(context, object : BaseDataCallback {
             override fun onGetFailed(errorMsg: String, errorCode: String) {
                 super.onGetFailed(errorMsg, errorCode)
                 cateDetailView.toast("error$errorCode")
-                Log.i("error$errorCode",errorMsg)
+            }
+
+            override fun onGetSuccess() {
+                super.onGetSuccess()
+                //点击量+1
+                PublicLogic.addHits(context, type, id)
             }
         })
     }
@@ -36,7 +42,6 @@ class CateDetailPresenter(val cateDetailView: CateContract.CateDetailView) : Bas
             override fun onGetFailed(errorMsg: String, errorCode: String) {
                 super.onGetFailed(errorMsg, errorCode)
                 cateDetailView.toast("error$errorCode")
-                Log.i("error$errorCode", errorMsg)
             }
         })
 
@@ -47,19 +52,22 @@ class CateDetailPresenter(val cateDetailView: CateContract.CateDetailView) : Bas
      */
     override fun collectStateChange(context: Context, type: String, id: String, collectThisScenery: Boolean) {
 
-        cateInterface.changeCollectState(context, id, type, collectThisScenery, object : CateInterface.OnCollectStateChangeCallback {
+        cateInterface.changeCollectState(context, id, type, collectThisScenery, object : BaseDataCallback {
             override fun onGetSuccess() {
                 if (collectThisScenery) {
                     cateDetailView.toast("收藏成功")
+                    //收藏量+1
+                    PublicLogic.addOrSubtractCollection("+", context, type, id)
                 } else {
                     cateDetailView.toast("取消收藏成功")
+                    //收藏量-1
+                    PublicLogic.addOrSubtractCollection("-", context, type, id)
                 }
             }
 
             override fun onGetFailed(errorMsg: String, errorCode: String) {
                 super.onGetFailed(errorMsg, errorCode)
                 cateDetailView.toast("error$errorCode")
-                Log.i("error$errorCode", errorMsg)
             }
         })
 

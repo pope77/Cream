@@ -30,10 +30,10 @@ class MusicListFragment(musicType: Int) : BaseFragment<MusicContract.ListPresent
         recyclerView_music_list.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         recyclerView_music_list.adapter = MusicListAdapter(musicBeans, activity)
         //列表点击监听
-        (recyclerView_music_list.adapter as MusicListAdapter).setOnItemClickListener {position ->
-            (activity as MusicActivity).playMusic(musicBeans.get(position))
+        (recyclerView_music_list.adapter as MusicListAdapter).setOnItemClickListener { position ->
+            (activity as MusicActivity).playMusic(musicBeans[position])
             //当用户点击一首音乐时 浏览量+1
-            mPresenter!!.userViewsPP(activity)
+            mPresenter!!.userViewsPP(activity, musicBeans[position].objectId)
         }
 
     }

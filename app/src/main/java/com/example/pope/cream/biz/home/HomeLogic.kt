@@ -1,14 +1,51 @@
 package com.example.pope.cream.biz.home
 
 import android.content.Context
+import cn.bmob.v3.Bmob
 import cn.bmob.v3.BmobQuery
 import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.FindListener
 import cn.bmob.v3.listener.QueryListener
+import cn.bmob.v3.listener.UpdateListener
+import com.example.pope.cream.biz.base.BaseDataCallback
 import com.example.pope.cream.biz.base.BaseLogic
 import com.example.pope.cream.biz.beans.*
 
 class HomeLogic : BaseLogic(), HomeInterface {
+
+    /**
+     * 修改昵称
+     */
+    override fun changeUserName(newName: String, context: Context, baseDataCallback: BaseDataCallback) {
+        val query = BmobQuery<UserBean>()
+        query.getObject(getLocalUserObjId(context), object : QueryListener<UserBean>() {
+            override fun done(p0: UserBean?, p1: BmobException?) {
+                if (p1 != null) baseDataCallback.onGetFailed(p1.toString(), "70059")
+                else {
+                    p0!!.userName = newName
+                    p0.update(object : UpdateListener() {
+                        override fun done(p0: BmobException?) {
+                            if (p0 != null) baseDataCallback.onGetFailed(p0.toString(), "70060")
+                            else baseDataCallback.onGetSuccess()
+                        }
+                    })
+                }
+            }
+        })
+    }
+
+    /**
+     * 获取用户bean
+     */
+    override fun getUserBean(context: Context, onUserBeanCallback: HomeInterface.OnUserBeanCallback) {
+        val query = BmobQuery<UserBean>()
+        query.getObject(getLocalUserObjId(context), object : QueryListener<UserBean>() {
+            override fun done(p0: UserBean?, p1: BmobException?) {
+                if (p1 != null) onUserBeanCallback.onGetFailed(p1.toString(), "70058")
+                else onUserBeanCallback.onGetSuccess(p0!!)
+            }
+        })
+    }
 
     /**
      * 获取Banner数据

@@ -7,25 +7,21 @@ import com.example.pope.cream.page.base.BaseView
 
 interface MusicContract {
 
-    interface Presenter : BasePresenter {
+    interface Presenter : BasePresenter
 
-    }
-
-    interface View : BaseView<Presenter> {
-
-    }
+    interface View : BaseView<Presenter>
 
     interface ListPresenter : BasePresenter {
 
-        fun getMusicData(musicType:Int)
+        fun getMusicData(musicType: Int)
 
-        fun userViewsPP(context: Context)
+        fun userViewsPP(context: Context, id: String)
 
     }
 
-    interface ListView:BaseView<ListPresenter>{
+    interface ListView : BaseView<ListPresenter> {
 
-        fun loadMusicMsgToList(musicBeans:MutableList<MusicBean>)
+        fun loadMusicMsgToList(musicBeans: MutableList<MusicBean>)
 
     }
 

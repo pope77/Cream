@@ -24,7 +24,7 @@ public class SystemUtil {
         TelephonyManager tm = (TelephonyManager) activity.getSystemService(Activity.TELEPHONY_SERVICE);
         if (tm != null) {
             if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(activity,new String[]{Manifest.permission.READ_PHONE_STATE},1);
+                ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
                 return tm.getDeviceId();
             }
             return tm.getDeviceId();

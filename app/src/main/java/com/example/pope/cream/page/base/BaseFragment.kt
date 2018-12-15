@@ -33,7 +33,7 @@ open class BaseFragment<T : BasePresenter> : Fragment() {
     /**
      * 隐藏ProgressDialog
      */
-    fun hideProgressDialog(){
+    fun hideProgressDialog() {
         progressDialog?.dismiss()
     }
 

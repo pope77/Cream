@@ -27,7 +27,7 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_music_card,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_music_card, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -40,7 +40,7 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onItemClickListener!=null){
+                if (onItemClickListener != null) {
                     onItemClickListener.onClick(position);
                 }
             }
@@ -66,11 +66,11 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
         }
     }
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void onClick(Integer position);
     }
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 

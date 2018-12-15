@@ -5,9 +5,9 @@ import com.example.pope.cream.biz.beans.*
 import com.example.pope.cream.page.base.BasePresenter
 import com.example.pope.cream.page.base.BaseView
 
-interface HomeContract{
+interface HomeContract {
 
-    interface CreamPresenter:BasePresenter{
+    interface CreamPresenter : BasePresenter {
 
         fun getInterestData(context: Context)
 
@@ -15,48 +15,60 @@ interface HomeContract{
 
     }
 
-    interface  CreamView:BaseView<CreamPresenter>{
+    interface CreamView : BaseView<CreamPresenter> {
 
         fun loadInterestData(interestList: MutableList<String>)
 
-        fun initBanner(bannerBeans:MutableList<RecommendMsgBean>)
+        fun initBanner(bannerBeans: MutableList<RecommendMsgBean>)
 
     }
 
-    interface CollectionPresenter:BasePresenter{
+    interface CollectionPresenter : BasePresenter {
 
         fun getInterestDetailData(context: Context)
 
     }
 
-    interface CollectionView:BaseView<CollectionPresenter>{
+    interface CollectionView : BaseView<CollectionPresenter> {
 
         fun loadInterestData(userBean: UserBean)
 
     }
 
-    interface CollectionListPresenter:BasePresenter{
+    interface CollectionListPresenter : BasePresenter {
 
-        fun getBeans(type:String,idList: MutableList<String>)
+        fun getBeans(type: String, idList: MutableList<String>)
 
-        fun getBeans(context: Context,type: String)
-
-    }
-
-    interface CollectionListView:BaseView<CollectionListPresenter>{
-
-        fun loadBeans(beans:ArrayList<CateBean>)
-
-        fun loadBeans1(beans:ArrayList<ProgramBean>)
-
-        fun loadBeans2(beans:ArrayList<BookBean>)
-
-        fun loadBeans3(beans:ArrayList<SceneryBean>)
+        fun getBeans(context: Context, type: String)
 
     }
 
-    interface CenterPresenter:BasePresenter
+    interface CollectionListView : BaseView<CollectionListPresenter> {
 
-    interface CenterView:BaseView<CenterPresenter>
+        fun loadBeans(beans: ArrayList<CateBean>)
+
+        fun loadBeans1(beans: ArrayList<ProgramBean>)
+
+        fun loadBeans2(beans: ArrayList<BookBean>)
+
+        fun loadBeans3(beans: ArrayList<SceneryBean>)
+
+    }
+
+    interface CenterPresenter : BasePresenter {
+
+        fun getUserBean(context: Context)
+
+        fun changeUserName(newName: String, context: Context)
+
+    }
+
+    interface CenterView : BaseView<CenterPresenter> {
+
+        fun loadUserBean(bean: UserBean)
+
+        fun nameChangeSuccess()
+
+    }
 
 }

@@ -39,15 +39,15 @@ class CateLogic : BaseLogic(), CateInterface {
                         beans = (p0 as ArrayList<RecommendMsgBean>?)!!
                     }
                     val dataBeans = arrayListOf<CateBean>()
-                    for (element in beans){
+                    for (element in beans) {
                         val query = BmobQuery<CateBean>()
-                        query.getObject(element.recommendObjectId,object:QueryListener<CateBean>(){
+                        query.getObject(element.recommendObjectId, object : QueryListener<CateBean>() {
                             override fun done(p0: CateBean?, p1: BmobException?) {
-                                if (p1!=null) onBannerDataCallback.onGetFailed(p1.toString(),"70057")
-                                else{
+                                if (p1 != null) onBannerDataCallback.onGetFailed(p1.toString(), "70057")
+                                else {
                                     dataBeans.add(p0!!)
-                                    if (dataBeans.size == beans.size){
-                                        onBannerDataCallback.onGetSuccess(beans,dataBeans)
+                                    if (dataBeans.size == beans.size) {
+                                        onBannerDataCallback.onGetSuccess(beans, dataBeans)
                                     }
                                 }
                             }
@@ -71,6 +71,7 @@ class CateLogic : BaseLogic(), CateInterface {
                     p0.update(object : UpdateListener() {
                         override fun done(p0: BmobException?) {
                             if (p0 != null) baseDataCallback.onGetFailed(p0.toString(), "70048")
+                            else baseDataCallback.onGetSuccess()
                         }
                     })
                 }
@@ -103,11 +104,11 @@ class CateLogic : BaseLogic(), CateInterface {
     /**
      * 改变收藏状态
      */
-    override fun changeCollectState(context: Context, id: String, type: String, collectThisProgram: Boolean, onCollectStateChangeCallback: CateInterface.OnCollectStateChangeCallback) {
+    override fun changeCollectState(context: Context, id: String, type: String, collectThisProgram: Boolean, baseDataCallback: BaseDataCallback) {
         val query = BmobQuery<UserBean>()
         query.getObject(getLocalUserObjId(context), object : QueryListener<UserBean>() {
             override fun done(p0: UserBean?, p1: BmobException?) {
-                if (p1 != null) onCollectStateChangeCallback.onGetFailed(p1.toString(), "70028")
+                if (p1 != null) baseDataCallback.onGetFailed(p1.toString(), "70028")
                 else {
                     val interestList = p0!!.userInterestPoint
                     val itemNumList = p0!!.pointItemNum
@@ -130,8 +131,8 @@ class CateLogic : BaseLogic(), CateInterface {
                             p0.userCollection++
                             p0.update(object : UpdateListener() {
                                 override fun done(p0: BmobException?) {
-                                    if (p0 != null) onCollectStateChangeCallback.onGetFailed(p0.toString(), "70029")
-                                    else onCollectStateChangeCallback.onGetSuccess()
+                                    if (p0 != null) baseDataCallback.onGetFailed(p0.toString(), "70029")
+                                    else baseDataCallback.onGetSuccess()
                                 }
                             })
                         }
@@ -149,8 +150,8 @@ class CateLogic : BaseLogic(), CateInterface {
                             p0.userCollection--
                             p0.update(object : UpdateListener() {
                                 override fun done(p0: BmobException?) {
-                                    if (p0 != null) onCollectStateChangeCallback.onGetFailed(p0.toString(), "70033")
-                                    else onCollectStateChangeCallback.onGetSuccess()
+                                    if (p0 != null) baseDataCallback.onGetFailed(p0.toString(), "70033")
+                                    else baseDataCallback.onGetSuccess()
                                 }
                             })
                         }

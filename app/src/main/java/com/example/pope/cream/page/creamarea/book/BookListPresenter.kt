@@ -6,14 +6,14 @@ import com.example.pope.cream.biz.beans.BookBean
 import com.example.pope.cream.biz.creamarea.book.BookInterface
 import com.example.pope.cream.page.base.BasePresenterImpl
 
-class BookListPresenter(val bookListView: BookContract.BookListView):BasePresenterImpl(),BookContract.BookListPresenter {
+class BookListPresenter(val bookListView: BookContract.BookListView) : BasePresenterImpl(), BookContract.BookListPresenter {
 
     /**
      * 获取书籍类别列表
      */
     override fun getBookListData(typeCode: Int) {
 
-        bookInterface.getBookListData(typeCode,object :BookInterface.OnBookListDataCallback{
+        bookInterface.getBookListData(typeCode, object : BookInterface.OnBookListDataCallback {
             override fun onGetSuccess(bookBeans: MutableList<BookBean>) {
                 bookListView.loadData(bookBeans)
             }
@@ -21,7 +21,7 @@ class BookListPresenter(val bookListView: BookContract.BookListView):BasePresent
             override fun onGetFailed(errorMsg: String, errorCode: String) {
                 super.onGetFailed(errorMsg, errorCode)
                 bookListView.toast("error$errorCode")
-                Log.i("error$errorCode",errorMsg)
+                Log.i("error$errorCode", errorMsg)
             }
         })
 

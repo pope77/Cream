@@ -23,7 +23,6 @@ class CollectionPresenter(private val collectionView: HomeContract.CollectionVie
             override fun onGetFailed(errorMsg: String, errorCode: String) {
                 super.onGetFailed(errorMsg, errorCode)
                 collectionView.toast("error$errorCode")
-                Log.i("error$errorCode",errorMsg)
             }
         })
 

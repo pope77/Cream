@@ -40,6 +40,7 @@ class ProgramDetailFragment(programBean: ProgramBean) : BaseFragment<ProgramCont
 
     val mProgramBean = programBean
     var isCollected = false
+    var type = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -51,6 +52,12 @@ class ProgramDetailFragment(programBean: ProgramBean) : BaseFragment<ProgramCont
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //判断类别
+        when (mProgramBean.programType) {
+            ProgramBean.PROGRAM_TYPE_MOVIE -> type = "电影"
+            ProgramBean.PROGRAM_TYPE_VIRTY -> type = "综艺"
+        }
 
         //加载视频并自动播放
         videoPlayer.setUp(mProgramBean.programSourceUrl, mProgramBean.programVideoTitle, JzvdStd.SCREEN_WINDOW_NORMAL)
@@ -70,40 +77,34 @@ class ProgramDetailFragment(programBean: ProgramBean) : BaseFragment<ProgramCont
         recyclerView_program_actor.adapter = ActorListAdapter(mProgramBean, activity)
 
         //检查该节目是否被收藏
-        mPresenter!!.collectStateCheck(activity,mProgramBean.objectId)
+        mPresenter!!.collectStateCheck(activity, mProgramBean.objectId)
         //当用户点击进入查看节目详情时 用户浏览量+1
-        mPresenter!!.userViewsPP(activity)
+        mPresenter!!.userViewsPP(activity, type, mProgramBean.objectId)
 
         //收藏按钮点击监听
         imageView_program_collect.setOnClickListener {
-            var type = ""
             when (mProgramBean.programType) {
                 ProgramBean.PROGRAM_TYPE_MOVIE -> type = "电影"
                 ProgramBean.PROGRAM_TYPE_VIRTY -> type = "综艺"
             }
             if (isCollected) {
                 isCollected = false
-                mPresenter!!.collectStateChange(activity,type,mProgramBean.objectId,isCollected)
+                mPresenter!!.collectStateChange(activity, type, mProgramBean.objectId, isCollected)
                 changeCollectUi()
             } else {
                 isCollected = true
-                mPresenter!!.collectStateChange(activity,type,mProgramBean.objectId,isCollected)
+                mPresenter!!.collectStateChange(activity, type, mProgramBean.objectId, isCollected)
                 changeCollectUi()
             }
         }
         textView_program_collect.setOnClickListener {
-            var type = ""
-            when (mProgramBean.programType) {
-                ProgramBean.PROGRAM_TYPE_MOVIE -> type = "电影"
-                ProgramBean.PROGRAM_TYPE_VIRTY -> type = "综艺"
-            }
             if (isCollected) {
                 isCollected = false
-                mPresenter!!.collectStateChange(activity,type,mProgramBean.objectId,isCollected)
+                mPresenter!!.collectStateChange(activity, type, mProgramBean.objectId, isCollected)
                 changeCollectUi()
             } else {
                 isCollected = true
-                mPresenter!!.collectStateChange(activity,type,mProgramBean.objectId,isCollected)
+                mPresenter!!.collectStateChange(activity, type, mProgramBean.objectId, isCollected)
                 changeCollectUi()
             }
         }

@@ -25,7 +25,7 @@ import java.util.ArrayList
  * A simple [Fragment] subclass.
  *
  */
-class CateFragment : BaseFragment<CateContract.Presenter>(),CateContract.View {
+class CateFragment : BaseFragment<CateContract.Presenter>(), CateContract.View {
 
     /**
      * 初始化Banner
@@ -37,12 +37,12 @@ class CateFragment : BaseFragment<CateContract.Presenter>(),CateContract.View {
 
         val picUrls = arrayListOf<String>()
         val titles = arrayListOf<String>()
-        for (element in bannerBeans){
+        for (element in bannerBeans) {
             picUrls.add(element.recommendPicUrl)
             titles.add("")
         }
 
-        xBanner_cateFragment.setData(picUrls,titles)
+        xBanner_cateFragment.setData(picUrls, titles)
 
         xBanner_cateFragment.setOnItemClickListener { banner, model, view, position ->
             //点击响应
@@ -60,13 +60,13 @@ class CateFragment : BaseFragment<CateContract.Presenter>(),CateContract.View {
     override fun loadRecyclerView(cateBeans: MutableList<CateBean>) {
         recyclerView_cateFragment_cateList.layoutManager = LinearLayoutManager(activity)
         recyclerView_cateFragment_cateList.adapter = CateRecommendAdapter(cateBeans, activity)
-        (recyclerView_cateFragment_cateList.adapter as CateRecommendAdapter).setOnItemClickListener {pos->
+        (recyclerView_cateFragment_cateList.adapter as CateRecommendAdapter).setOnItemClickListener { pos ->
             (activity as CateActivity).changeFragment(CateDetailFragment(cateBeans[pos]))
         }
     }
 
     override fun toast(msg: String, length: Int) {
-        tst(msg,length)
+        tst(msg, length)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -89,7 +89,7 @@ class CateFragment : BaseFragment<CateContract.Presenter>(),CateContract.View {
 
     private fun initToolbar() {
         toolbar_cateFragment.setNavigationIcon(R.mipmap.ic_arrow_back_black)
-        toolbar_cateFragment.setNavigationOnClickListener{
+        toolbar_cateFragment.setNavigationOnClickListener {
             activity.finish()
         }
     }

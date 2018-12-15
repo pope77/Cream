@@ -1,6 +1,7 @@
 package com.example.pope.cream.page.login
 
 import com.example.pope.cream.biz.ModelFactory
+import com.example.pope.cream.biz.base.BaseDataCallback
 import com.example.pope.cream.biz.login.LoginInterface
 import com.example.pope.cream.page.base.BasePresenterImpl
 
@@ -37,7 +38,7 @@ class LoginPresenter
                 loginInterface.isSelectedInterest(phoneNum, object : LoginInterface.OnCheckInterestSelectedCallback {
                     override fun isNewUser() {
 
-                        loginInterface.createNewUser(phoneNum, view.getUserImei(), object : LoginInterface.OnCreateNewUserCallback {
+                        loginInterface.createNewUser(phoneNum, view.getUserImei(), object : BaseDataCallback {
                             override fun onGetSuccess() {
                                 view.jump2NewActivity(1)
                                 view.showOrHideProgressDialog()
