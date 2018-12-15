@@ -6,6 +6,7 @@ public class HotBean extends BmobObject {
 
     public static final String HOT_HITS = "hotHits";
     public static final String HOT_OBJID = "hotObjId";
+    public static final String HOT_COLLECTION = "hotCollection";
 
     private Integer hotHits;
     private String hotType;

@@ -17,6 +17,8 @@ import com.example.pope.cream.biz.creamarea.program.ProgramInterface
 import com.example.pope.cream.biz.creamarea.program.ProgramLogic
 import com.example.pope.cream.biz.creamarea.scenery.SceneryInterface
 import com.example.pope.cream.biz.creamarea.scenery.SceneryLogic
+import com.example.pope.cream.biz.hot.HotInterface
+import com.example.pope.cream.biz.hot.HotLogic
 
 /**
  * 获取M层接口唯一对象的集合类
@@ -45,6 +47,9 @@ object ModelFactory {
 
     val bookInterface: BookInterface
         get() = BookLogic.instance
+
+    val hotInterface: HotInterface
+        get() = HotLogic.instance
 
     fun init(context: Context) {
         BaseLogic.initialize(context)

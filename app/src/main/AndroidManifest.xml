@@ -42,7 +42,8 @@
         <activity android:name=".page.creamarea.music.MusicActivity" />
         <activity android:name=".page.creamarea.scenery.SceneryActivity" />
         <activity android:name=".page.creamarea.ware.WareActivity" />
-        <activity android:name=".page.creamarea.book.BookActivity"></activity>
+        <activity android:name=".page.creamarea.book.BookActivity" />
+        <activity android:name=".page.hot.HotActivity"></activity>
     </application>
 
 </manifest>
