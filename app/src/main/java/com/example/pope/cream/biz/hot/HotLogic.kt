@@ -120,7 +120,7 @@ class HotLogic : BaseLogic(), HotInterface {
                             override fun done(p0: BookBean?, p1: BmobException?) {
                                 if (p1!=null) onListBeansCallback.onGetFailed(p1.toString(),"70066")
                                 else{
-                                    collectionListTitles.set(pos,p0!!.bookName)
+                                    hitsListTitles.set(pos,p0!!.bookName)
                                     titleNum1++
                                     if (titleNum1==hitsBeans.size){
                                         flag++

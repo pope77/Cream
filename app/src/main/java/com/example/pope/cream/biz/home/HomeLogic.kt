@@ -10,8 +10,95 @@ import cn.bmob.v3.listener.UpdateListener
 import com.example.pope.cream.biz.base.BaseDataCallback
 import com.example.pope.cream.biz.base.BaseLogic
 import com.example.pope.cream.biz.beans.*
+import java.util.*
 
 class HomeLogic : BaseLogic(), HomeInterface {
+
+    /**
+     * 获得随机数据bean的id
+     */
+    override fun getRandomId(type: String, onRandomJumpCallback: HomeInterface.OnRandomJumpCallback) {
+        when (type) {
+
+            "美食", "饮品" -> {
+                val query = BmobQuery<CateBean>()
+                if (type == "美食") {
+                    query.addWhereEqualTo(CateBean.CATE_TYPE, CateBean.CATE_TYPE_FOOD)
+                } else {
+                    query.addWhereEqualTo(CateBean.CATE_TYPE, CateBean.CATE_TYPE_DRINK)
+                }
+                query.findObjects(object : FindListener<CateBean>() {
+                    override fun done(p0: MutableList<CateBean>?, p1: BmobException?) {
+                        if (p1 != null) onRandomJumpCallback.onGetFailed(p1.toString(), "70071")
+                        else {
+                            if (p0!!.isEmpty()) {
+                                onRandomJumpCallback.onGetFailed("获取type=$type 类的数据集时，数据为空，请尽快添加数据", "20001")
+                            } else {
+                                val bean = p0[Random().nextInt(p0.size)]
+                                onRandomJumpCallback.onGetSuccess(type, bean.objectId)
+                            }
+                        }
+                    }
+                })
+            }
+            "电影", "综艺" -> {
+                val query = BmobQuery<ProgramBean>()
+                if (type == "电影") {
+                    query.addWhereEqualTo(ProgramBean.PROGRAM_TYPE, ProgramBean.PROGRAM_TYPE_MOVIE)
+                } else {
+                    query.addWhereEqualTo(ProgramBean.PROGRAM_TYPE, ProgramBean.PROGRAM_TYPE_VIRTY)
+                }
+                query.findObjects(object : FindListener<ProgramBean>() {
+                    override fun done(p0: MutableList<ProgramBean>?, p1: BmobException?) {
+                        if (p1 != null) onRandomJumpCallback.onGetFailed(p1.toString(), "70072")
+                        else {
+                            if (p0!!.isEmpty()) {
+                                onRandomJumpCallback.onGetFailed("获取type=$type 类的数据集时，数据为空，请尽快添加数据", "20002")
+                            } else {
+                                val bean = p0[Random().nextInt(p0.size)]
+                                onRandomJumpCallback.onGetSuccess(type, bean.objectId)
+                            }
+                        }
+                    }
+                })
+            }
+            "风景" -> {
+                val query = BmobQuery<SceneryBean>()
+                query.addWhereNotEqualTo(SceneryBean.SCENERY_UICODE, 666)
+                query.findObjects(object : FindListener<SceneryBean>() {
+                    override fun done(p0: MutableList<SceneryBean>?, p1: BmobException?) {
+                        if (p1 != null) onRandomJumpCallback.onGetFailed(p1.toString(), "70073")
+                        else {
+                            if (p0!!.isEmpty()) {
+                                onRandomJumpCallback.onGetFailed("获取type=$type 类的数据集时，数据为空，请尽快添加数据", "20003")
+                            } else {
+                                val bean = p0[Random().nextInt(p0.size)]
+                                onRandomJumpCallback.onGetSuccess(type,bean.objectId)
+                            }
+                        }
+                    }
+                })
+            }
+            "书籍"->{
+                val query = BmobQuery<BookBean>()
+                query.addWhereNotEqualTo(BookBean.BOOK_TYPE,1666)
+                query.findObjects(object : FindListener<BookBean>() {
+                    override fun done(p0: MutableList<BookBean>?, p1: BmobException?) {
+                        if (p1 != null) onRandomJumpCallback.onGetFailed(p1.toString(), "70074")
+                        else {
+                            if (p0!!.isEmpty()) {
+                                onRandomJumpCallback.onGetFailed("获取type=$type 类的数据集时，数据为空，请尽快添加数据", "20004")
+                            } else {
+                                val bean = p0[Random().nextInt(p0.size)]
+                                onRandomJumpCallback.onGetSuccess(type,bean.objectId)
+                            }
+                        }
+                    }
+                })
+            }
+
+        }
+    }
 
     /**
      * 修改昵称

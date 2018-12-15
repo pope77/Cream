@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v4.app.Fragment
 import android.support.v7.widget.StaggeredGridLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide
 
 import com.example.pope.cream.R
 import com.example.pope.cream.biz.beans.*
+import com.example.pope.cream.page.PublicViewLogic
 import com.example.pope.cream.page.base.BaseFragment
 import com.example.pope.cream.page.creamarea.book.BookActivity
 import com.example.pope.cream.page.creamarea.delicious.CateActivity
@@ -27,9 +29,8 @@ import com.example.pope.cream.page.creamarea.takeout.TakeOutActivity
 import com.example.pope.cream.page.hot.HotActivity
 import com.example.pope.cream.utils.ScreenUtil
 
-import java.util.ArrayList
-
 import kotlinx.android.synthetic.main.fragment_cream.*
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -60,33 +61,8 @@ class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.
         xBanner_cream_recommend.setData(picUrlList, titleList)
 
         xBanner_cream_recommend.setOnItemClickListener { banner, model, view, position ->
-            //被点击响应
-            when (typeList[position]) {
-                "美食", "饮品" -> {
-                    val intent = Intent(activity, CateActivity::class.java)
-                    intent.putExtra("特殊", true)
-                    intent.putExtra("id", idList[position])
-                    startActivity(intent)
-                }
-                "电影", "综艺" -> {
-                    val intent = Intent(activity, ProgramActivity::class.java)
-                    intent.putExtra("特殊", true)
-                    intent.putExtra("id", idList[position])
-                    startActivity(intent)
-                }
-                "书籍" -> {
-                    val intent = Intent(activity, BookActivity::class.java)
-                    intent.putExtra("特殊", true)
-                    intent.putExtra("id", idList[position])
-                    startActivity(intent)
-                }
-                "风景" -> {
-                    val intent = Intent(activity, SceneryActivity::class.java)
-                    intent.putExtra("特殊", true)
-                    intent.putExtra("id", idList[position])
-                    startActivity(intent)
-                }
-            }
+            //被点击响应 进行特殊跳转
+            PublicViewLogic.specialJump(typeList[position], idList[position])
         }
 
         xBanner_cream_recommend.loadImage { banner, model, view, position ->
@@ -163,10 +139,6 @@ class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.
                 "书籍" -> {
                     startActivity(Intent(activity, BookActivity::class.java))
                 }
-//                    "网文" ->
-//                    "软件" ->
-//                    "硬件" ->
-//                    "生活" ->
                 "风景" -> {
                     startActivity(Intent(activity, SceneryActivity::class.java))
                 }
@@ -191,10 +163,34 @@ class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.
         mPresenter!!.getBannerData()
         //获取兴趣数据
         mPresenter!!.getInterestData(activity!!)
+
+        //初始化“热门排行”、“佛性浏览”两个卡片
+        initTwoCard()
+    }
+
+    private fun initTwoCard() {
         //对“热门排行”设置点击监听
         cardView_cream_hot.setOnClickListener {
-            startActivity(Intent(activity,HotActivity::class.java))
+            startActivity(Intent(activity, HotActivity::class.java))
         }
+        //对“佛性浏览”设置点击监听
+        cardView_cream_browse.setOnClickListener {
+            val types = arrayListOf(
+                    "美食", "饮品", "书籍", "风景", "电影", "综艺", "音乐", "外卖",
+                    "美食", "饮品", "书籍", "风景", "电影", "综艺", "音乐", "外卖",
+                    "美食", "饮品", "书籍", "风景", "电影", "综艺", "音乐", "外卖"
+            )
+            //随机生成浏览哪种类型
+            val type = types[Random().nextInt(24)]
+            //如果随机生成的是外卖则跳转外卖 若不是 则通过Presenter获取数据后随机生成再特殊跳转
+            if (type == "外卖") {
+                startActivity(Intent(activity, TakeOutActivity::class.java))
+            } else {
+                mPresenter!!.randomJump(type)
+            }
+
+        }
+
     }
 
     @TargetApi(Build.VERSION_CODES.M)

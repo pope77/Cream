@@ -56,4 +56,12 @@ interface HomeInterface {
 
     fun changeUserName(newName: String, context: Context, baseDataCallback: BaseDataCallback)
 
+    interface OnRandomJumpCallback:BaseDataCallback{
+
+        fun onGetSuccess(type: String,id:String)
+
+    }
+
+    fun getRandomId(type:String,onRandomJumpCallback: OnRandomJumpCallback)
+
 }

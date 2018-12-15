@@ -8,9 +8,29 @@ import cn.bmob.v3.listener.FindListener
 import com.example.pope.cream.biz.ModelFactory
 import com.example.pope.cream.biz.beans.*
 import com.example.pope.cream.biz.home.HomeInterface
+import com.example.pope.cream.page.PublicViewLogic
 import com.example.pope.cream.page.base.BasePresenterImpl
 
 class CreamPresenter(private val creamView: HomeContract.CreamView) : BasePresenterImpl(), HomeContract.CreamPresenter {
+
+    /**
+     * 佛性跳转
+     */
+    override fun randomJump(type: String) {
+
+        homeInterface.getRandomId(type,object :HomeInterface.OnRandomJumpCallback{
+            override fun onGetSuccess(type: String, id: String) {
+                Log.i("test7","type=$type id=$id")
+                PublicViewLogic.specialJump(type, id)
+            }
+
+            override fun onGetFailed(errorMsg: String, errorCode: String) {
+                super.onGetFailed(errorMsg, errorCode)
+                creamView.toast("error$errorCode")
+            }
+        })
+
+    }
 
     /**
      * 获取Banner数据

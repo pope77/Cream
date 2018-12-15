@@ -13,6 +13,8 @@ interface HomeContract {
 
         fun getBannerData()
 
+        fun randomJump(type: String)
+
     }
 
     interface CreamView : BaseView<CreamPresenter> {

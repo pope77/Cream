@@ -24,6 +24,9 @@ class MyApplication : Application() {
 
     companion object {
 
+        val application: Application
+            get() = MyApplication.INSTANCE
+
         lateinit var INSTANCE: Application
     }
 }
