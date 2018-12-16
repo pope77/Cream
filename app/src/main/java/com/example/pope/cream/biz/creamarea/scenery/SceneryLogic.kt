@@ -132,13 +132,17 @@ class SceneryLogic : BaseLogic(), SceneryInterface {
                         val isCollectedList = arrayListOf<Boolean>()
                         for (element in beans) {
                             val id = element.objectId
-                            for ((index, element1) in idList.withIndex()) {
-                                if (element1 == id) {
-                                    isCollectedList.add(true)
-                                    break
-                                }
-                                if (index == idList.size - 1) {
-                                    isCollectedList.add(false)
+                            if (idList.isEmpty()) {
+                                isCollectedList.add(false)
+                            } else {
+                                for ((index, element1) in idList.withIndex()) {
+                                    if (element1 == id) {
+                                        isCollectedList.add(true)
+                                        break
+                                    }
+                                    if (index == idList.size - 1) {
+                                        isCollectedList.add(false)
+                                    }
                                 }
                             }
                         }
@@ -159,13 +163,17 @@ class SceneryLogic : BaseLogic(), SceneryInterface {
                         val isCollectedList = arrayListOf<Boolean>()
                         for (element in beans) {
                             val id = element.objectId
-                            for ((index, element1) in idList.withIndex()) {
-                                if (element1 == id) {
-                                    isCollectedList.add(true)
-                                    break
-                                }
-                                if (index == idList.size - 1) {
-                                    isCollectedList.add(false)
+                            if (idList.isEmpty()) {
+                                isCollectedList.add(false)
+                            } else {
+                                for ((index, element1) in idList.withIndex()) {
+                                    if (element1 == id) {
+                                        isCollectedList.add(true)
+                                        break
+                                    }
+                                    if (index == idList.size - 1) {
+                                        isCollectedList.add(false)
+                                    }
                                 }
                             }
                         }

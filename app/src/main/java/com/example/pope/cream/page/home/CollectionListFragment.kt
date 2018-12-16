@@ -15,6 +15,7 @@ import com.example.pope.cream.biz.beans.BookBean
 import com.example.pope.cream.biz.beans.CateBean
 import com.example.pope.cream.biz.beans.ProgramBean
 import com.example.pope.cream.biz.beans.SceneryBean
+import com.example.pope.cream.page.PublicViewLogic
 import com.example.pope.cream.page.base.BaseFragment
 import com.example.pope.cream.page.creamarea.book.BookActivity
 import com.example.pope.cream.page.creamarea.delicious.CateActivity
@@ -41,10 +42,7 @@ class CollectionListFragment(collectionType: String, pointIdList: ArrayList<Stri
         recyclerView_collectionList.layoutManager = LinearLayoutManager(activity)
         recyclerView_collectionList.adapter = CollectionListAdapter(type, idList, picUrls, titles, activity)
         (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener { id ->
-            val intent = Intent(activity, CateActivity::class.java)
-            intent.putExtra("特殊", true)
-            intent.putExtra("id", id)
-            startActivity(intent)
+            PublicViewLogic.specialJump("美食", id)
         }
     }
 
@@ -57,11 +55,8 @@ class CollectionListFragment(collectionType: String, pointIdList: ArrayList<Stri
         }
         recyclerView_collectionList.layoutManager = LinearLayoutManager(activity)
         recyclerView_collectionList.adapter = CollectionListAdapter(type, idList, picUrls, titles, activity)
-        (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener {
-            val intent = Intent(activity, ProgramActivity::class.java)
-            intent.putExtra("特殊", true)
-            intent.putExtra("id", it)
-            startActivity(intent)
+        (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener { id ->
+            PublicViewLogic.specialJump("电影", id)
         }
 
     }
@@ -76,10 +71,7 @@ class CollectionListFragment(collectionType: String, pointIdList: ArrayList<Stri
         recyclerView_collectionList.layoutManager = LinearLayoutManager(activity)
         recyclerView_collectionList.adapter = CollectionListAdapter(type, idList, picUrls, titles, activity)
         (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener { id ->
-            val intent = Intent(activity, BookActivity::class.java)
-            intent.putExtra("特殊", true)
-            intent.putExtra("id", id)
-            startActivity(intent)
+            PublicViewLogic.specialJump("书籍",id)
         }
     }
 
@@ -93,10 +85,7 @@ class CollectionListFragment(collectionType: String, pointIdList: ArrayList<Stri
         recyclerView_collectionList.layoutManager = LinearLayoutManager(activity)
         recyclerView_collectionList.adapter = CollectionListAdapter(type, idList, picUrls, titles, activity)
         (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener { id ->
-            val intent = Intent(activity, SceneryActivity::class.java)
-            intent.putExtra("特殊", true)
-            intent.putExtra("id", id)
-            startActivity(intent)
+            PublicViewLogic.specialJump("风景",id)
         }
 
     }

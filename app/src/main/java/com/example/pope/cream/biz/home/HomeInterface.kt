@@ -20,7 +20,7 @@ interface HomeInterface {
 
     }
 
-    fun getInterestDetail(context: Context, onInterestDetailCallback: OnInterestDetailCallback)
+    fun getInterestDetail( onInterestDetailCallback: OnInterestDetailCallback)
 
     interface OnListBeansCallback : BaseDataCallback {
 

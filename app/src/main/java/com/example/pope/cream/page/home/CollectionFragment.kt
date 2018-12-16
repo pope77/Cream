@@ -34,6 +34,15 @@ class CollectionFragment : BaseFragment<HomeContract.CollectionPresenter>(), Hom
         interestList = innerBean.interestList
         itemNumList = innerBean.itemNumList
 
+        if (itemNumList.isEmpty()) {
+            textView_collection_noData.visibility = View.VISIBLE
+            tabLayout_collectionFragment.visibility = View.GONE
+            return
+        } else {
+            tabLayout_collectionFragment.visibility = View.VISIBLE
+            textView_collection_noData.visibility = View.GONE
+        }
+
         var fragmentList: ArrayList<CollectionListFragment> = arrayListOf()
 
         for ((index, element) in itemNumList.withIndex()) {
@@ -51,13 +60,7 @@ class CollectionFragment : BaseFragment<HomeContract.CollectionPresenter>(), Hom
             }
         }
 
-        if (fragmentList.isEmpty()) {
-            textView_collection_noData.visibility = View.VISIBLE
-        } else {
-            textView_collection_noData.visibility = View.GONE
-        }
-
-        val adapter = object : FragmentPagerAdapter(fragmentManager) {
+        val adapter = object : FragmentPagerAdapter(childFragmentManager) {
             override fun getItem(position: Int): Fragment {
                 return fragmentList[position]
             }
@@ -71,9 +74,10 @@ class CollectionFragment : BaseFragment<HomeContract.CollectionPresenter>(), Hom
             }
         }
 
-        viewPager_collectionFragment.adapter = adapter
+        if (viewPager_collectionFragment.adapter == null) {
+            viewPager_collectionFragment.adapter = adapter
+        }
         tabLayout_collectionFragment.setupWithViewPager(viewPager_collectionFragment)
-        tabLayout_collectionFragment.setTabsFromPagerAdapter(adapter)
         if (fragmentList.size <= 3) {
             tabLayout_collectionFragment.tabMode = TabLayout.MODE_FIXED
         }
@@ -98,32 +102,13 @@ class CollectionFragment : BaseFragment<HomeContract.CollectionPresenter>(), Hom
      */
     private fun cleanUncollectData(interestList: ArrayList<String>, itemNumList: ArrayList<Int>): InnerBean {
 
-        var interestList = interestList
-        var itemNumList = itemNumList
         var doItAgain = false
-        loop@ for ((index, element) in interestList.withIndex()) {
-            when (element) {
-                "外卖", "软件", "硬件", "生活", "网文", "音乐" -> {
-                    //removeAt报迭代器冲突异常
-                    //interestList.removeAt(index)
-                    //itemNumList.removeAt(index)
-                    if (interestList.remove(element)) {
-                        itemNumList.removeAt(index)
-                        doItAgain = true
-                        break@loop
-                    }
-
-                }
-            }
-        }
-        if (!doItAgain) {
-            for ((index1, element1) in itemNumList.withIndex()) {
-                if (element1 == 0) {
-                    interestList.remove(interestList[index1])
-                    itemNumList.removeAt(index1)
-                    doItAgain = true
-                    break
-                }
+        for ((index1, element1) in itemNumList.withIndex()) {
+            if (element1 == 0) {
+                interestList.remove(interestList[index1])
+                itemNumList.removeAt(index1)
+                doItAgain = true
+                break
             }
         }
         if (doItAgain) return cleanUncollectData(interestList, itemNumList)
@@ -137,9 +122,9 @@ class CollectionFragment : BaseFragment<HomeContract.CollectionPresenter>(), Hom
 
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        mPresenter!!.getInterestDetailData(activity)
+    override fun onResume() {
+        super.onResume()
+        mPresenter!!.getInterestDetailData()
     }
 
 }

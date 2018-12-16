@@ -13,9 +13,9 @@ class CollectionPresenter(private val collectionView: HomeContract.CollectionVie
     /**
      * 获取兴趣数据
      */
-    override fun getInterestDetailData(context: Context) {
+    override fun getInterestDetailData() {
 
-        homeInterface.getInterestDetail(context, object : HomeInterface.OnInterestDetailCallback {
+        homeInterface.getInterestDetail( object : HomeInterface.OnInterestDetailCallback {
             override fun onGetSuccess(userBean: UserBean) {
                 collectionView.loadInterestData(userBean)
             }

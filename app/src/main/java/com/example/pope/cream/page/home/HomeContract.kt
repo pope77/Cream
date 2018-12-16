@@ -27,7 +27,7 @@ interface HomeContract {
 
     interface CollectionPresenter : BasePresenter {
 
-        fun getInterestDetailData(context: Context)
+        fun getInterestDetailData()
 
     }
 

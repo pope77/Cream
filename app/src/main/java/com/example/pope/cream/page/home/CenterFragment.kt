@@ -36,6 +36,9 @@ class CenterFragment : BaseFragment<HomeContract.CenterPresenter>(), HomeContrac
         textView_center_phoneNum.text = bean.userPhoneNum
         textView_center_collections.text = bean.userCollection.toString()
         textView_center_views.text = bean.userViews.toString()
+        //设置不可获取焦点
+        editText_center_userName.isFocusable = false
+        editText_center_userName.isFocusableInTouchMode = false
     }
 
     override fun toast(msg: String, length: Int) {
@@ -53,9 +56,6 @@ class CenterFragment : BaseFragment<HomeContract.CenterPresenter>(), HomeContrac
         super.onViewCreated(view, savedInstanceState)
         //获取用户bean并加载
         mPresenter!!.getUserBean(activity)
-        //设置不可获取焦点
-        editText_center_userName.isFocusable = false
-        editText_center_userName.isFocusableInTouchMode = false
         //设置点击监听
         editText_center_userName.setOnFocusChangeListener { view, isFocus ->
             if (isFocus) {

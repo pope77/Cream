@@ -7,6 +7,7 @@ import cn.bmob.v3.exception.BmobException
 import cn.bmob.v3.listener.FindListener
 import cn.bmob.v3.listener.QueryListener
 import cn.bmob.v3.listener.UpdateListener
+import com.example.pope.cream.app.MyApplication
 import com.example.pope.cream.biz.base.BaseDataCallback
 import com.example.pope.cream.biz.base.BaseLogic
 import com.example.pope.cream.biz.beans.*
@@ -347,10 +348,10 @@ class HomeLogic : BaseLogic(), HomeInterface {
     /**
      * 获取兴趣数据细节
      */
-    override fun getInterestDetail(context: Context, onInterestDetailCallback: HomeInterface.OnInterestDetailCallback) {
+    override fun getInterestDetail(onInterestDetailCallback: HomeInterface.OnInterestDetailCallback) {
 
         var query = BmobQuery<UserBean>()
-        query.getObject(getLocalUserObjId(context), object : QueryListener<UserBean>() {
+        query.getObject(getLocalUserObjId(MyApplication.application), object : QueryListener<UserBean>() {
             override fun done(p0: UserBean?, p1: BmobException?) {
                 if (p1 != null) onInterestDetailCallback.onGetFailed(p1.toString(), "70014")
                 else {
