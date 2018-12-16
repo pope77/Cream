@@ -39,9 +39,7 @@ interface HomeContract {
 
     interface CollectionListPresenter : BasePresenter {
 
-        fun getBeans(type: String, idList: MutableList<String>)
-
-        fun getBeans(context: Context, type: String)
+        fun getBeans(type: String)
 
     }
 

@@ -6,9 +6,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cn.bmob.v3.BmobObject
 
 import com.example.pope.cream.R
 import com.example.pope.cream.biz.beans.BookBean
@@ -29,7 +31,7 @@ import kotlinx.android.synthetic.main.fragment_collection_list.*
  *
  */
 @SuppressLint("ValidFragment")
-class CollectionListFragment(collectionType: String, pointIdList: ArrayList<String>) :
+class CollectionListFragment(collectionType: String) :
         BaseFragment<HomeContract.CollectionListPresenter>(), HomeContract.CollectionListView {
 
     override fun loadBeans(beans: ArrayList<CateBean>) {
@@ -40,6 +42,10 @@ class CollectionListFragment(collectionType: String, pointIdList: ArrayList<Stri
             titles.add(element.cateName)
         }
         recyclerView_collectionList.layoutManager = LinearLayoutManager(activity)
+        val idList = arrayListOf<String>()
+        for (element in beans) {
+            idList.add(element.objectId)
+        }
         recyclerView_collectionList.adapter = CollectionListAdapter(type, idList, picUrls, titles, activity)
         (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener { id ->
             PublicViewLogic.specialJump("美食", id)
@@ -54,6 +60,10 @@ class CollectionListFragment(collectionType: String, pointIdList: ArrayList<Stri
             titles.add(element.programName)
         }
         recyclerView_collectionList.layoutManager = LinearLayoutManager(activity)
+        val idList = arrayListOf<String>()
+        for (element in beans) {
+            idList.add(element.objectId)
+        }
         recyclerView_collectionList.adapter = CollectionListAdapter(type, idList, picUrls, titles, activity)
         (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener { id ->
             PublicViewLogic.specialJump("电影", id)
@@ -69,9 +79,13 @@ class CollectionListFragment(collectionType: String, pointIdList: ArrayList<Stri
             titles.add(element.bookName)
         }
         recyclerView_collectionList.layoutManager = LinearLayoutManager(activity)
+        val idList = arrayListOf<String>()
+        for (element in beans) {
+            idList.add(element.objectId)
+        }
         recyclerView_collectionList.adapter = CollectionListAdapter(type, idList, picUrls, titles, activity)
         (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener { id ->
-            PublicViewLogic.specialJump("书籍",id)
+            PublicViewLogic.specialJump("书籍", id)
         }
     }
 
@@ -83,9 +97,13 @@ class CollectionListFragment(collectionType: String, pointIdList: ArrayList<Stri
             titles.add(element.sceneryName)
         }
         recyclerView_collectionList.layoutManager = LinearLayoutManager(activity)
+        val idList = arrayListOf<String>()
+        for (element in beans) {
+            idList.add(element.objectId)
+        }
         recyclerView_collectionList.adapter = CollectionListAdapter(type, idList, picUrls, titles, activity)
         (recyclerView_collectionList.adapter as CollectionListAdapter).setOnItemClickListener { id ->
-            PublicViewLogic.specialJump("风景",id)
+            PublicViewLogic.specialJump("风景", id)
         }
 
     }
@@ -95,26 +113,20 @@ class CollectionListFragment(collectionType: String, pointIdList: ArrayList<Stri
     }
 
     val type = collectionType
-    val idList = pointIdList
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_collection_list, container, false)
         CollectionListPresenter(this)
+        Log.i("test7", "   onCreateView")
         return view
     }
 
-    var isFirstLunch = true
-
     override fun onResume() {
         super.onResume()
-        if (isFirstLunch) {
-            mPresenter!!.getBeans(type, idList)
-            isFirstLunch = false
-        } else {
-            mPresenter!!.getBeans(activity, type)
-        }
+        //获取收藏数据
+        mPresenter!!.getBeans(type)
     }
 
 }

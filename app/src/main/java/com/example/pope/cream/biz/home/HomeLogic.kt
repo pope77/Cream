@@ -163,10 +163,10 @@ class HomeLogic : BaseLogic(), HomeInterface {
     /**
      * 获取收藏列表的bean
      */
-    override fun getCollectionListBeans(context: Context, type: String, onListBeansCallback: HomeInterface.OnListBeansCallback) {
+    override fun getCollectionListBeans(type: String, onListBeansCallback: HomeInterface.OnListBeansCallback) {
 
         val query = BmobQuery<UserBean>()
-        query.getObject(getLocalUserObjId(context), object : QueryListener<UserBean>() {
+        query.getObject(getLocalUserObjId(MyApplication.application), object : QueryListener<UserBean>() {
             override fun done(p0: UserBean?, p1: BmobException?) {
                 if (p1 != null) onListBeansCallback.onGetFailed(p1.toString(), "70040")
                 else {
@@ -264,85 +264,6 @@ class HomeLogic : BaseLogic(), HomeInterface {
                 }
             }
         })
-    }
-
-    /**
-     * 获取收藏列表的Bean
-     */
-    override fun getCollectionListBeans(type: String, idList: MutableList<String>, onListBeansCallback: HomeInterface.OnListBeansCallback) {
-
-
-        when (type) {
-            "美食", "饮品" -> {
-                val beanList = arrayListOf<CateBean>()
-                for (element in idList) {
-                    val query = BmobQuery<CateBean>()
-                    query.getObject(element, object : QueryListener<CateBean>() {
-                        override fun done(p0: CateBean?, p1: BmobException?) {
-                            if (p1 != null) onListBeansCallback.onGetFailed(p1.toString(), "70015")
-                            else {
-                                beanList.add(p0!!)
-                                if (beanList.size == idList.size) {
-                                    onListBeansCallback.onGetSuccess(beanList)
-                                }
-                            }
-                        }
-                    })
-                }
-            }
-            "电影", "综艺" -> {
-                val beanList = arrayListOf<ProgramBean>()
-                for (element in idList) {
-                    val query = BmobQuery<ProgramBean>()
-                    query.getObject(element, object : QueryListener<ProgramBean>() {
-                        override fun done(p0: ProgramBean?, p1: BmobException?) {
-                            if (p1 != null) onListBeansCallback.onGetFailed(p1.toString(), "70016")
-                            else {
-                                beanList.add(p0!!)
-                                if (beanList.size == idList.size) {
-                                    onListBeansCallback.onGetSuccess1(beanList)
-                                }
-                            }
-                        }
-                    })
-                }
-            }
-            "书籍" -> {
-                val beanList = arrayListOf<BookBean>()
-                for (element in idList) {
-                    val query = BmobQuery<BookBean>()
-                    query.getObject(element, object : QueryListener<BookBean>() {
-                        override fun done(p0: BookBean?, p1: BmobException?) {
-                            if (p1 != null) onListBeansCallback.onGetFailed(p1.toString(), "70017")
-                            else {
-                                beanList.add(p0!!)
-                                if (beanList.size == idList.size) {
-                                    onListBeansCallback.onGetSuccess2(beanList)
-                                }
-                            }
-                        }
-                    })
-                }
-            }
-            "风景" -> {
-                val beanList = arrayListOf<SceneryBean>()
-                for (element in idList) {
-                    val query = BmobQuery<SceneryBean>()
-                    query.getObject(element, object : QueryListener<SceneryBean>() {
-                        override fun done(p0: SceneryBean?, p1: BmobException?) {
-                            if (p1 != null) onListBeansCallback.onGetFailed(p1.toString(), "70018")
-                            else {
-                                beanList.add(p0!!)
-                                if (beanList.size == idList.size) {
-                                    onListBeansCallback.onGetSuccess3(beanList)
-                                }
-                            }
-                        }
-                    })
-                }
-            }
-        }
-
     }
 
     /**

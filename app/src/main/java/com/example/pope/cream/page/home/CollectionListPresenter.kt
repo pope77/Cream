@@ -16,39 +16,9 @@ class CollectionListPresenter(val collectionListView: HomeContract.CollectionLis
     /**
      * 获取数据bean
      */
-    override fun getBeans(context: Context, type: String) {
+    override fun getBeans(type: String) {
 
-        homeInterface.getCollectionListBeans(context, type, object : HomeInterface.OnListBeansCallback {
-            override fun onGetSuccess(beans: ArrayList<CateBean>) {
-                collectionListView.loadBeans(beans)
-            }
-
-            override fun onGetSuccess1(beans: ArrayList<ProgramBean>) {
-                collectionListView.loadBeans1(beans)
-            }
-
-            override fun onGetSuccess2(beans: ArrayList<BookBean>) {
-                collectionListView.loadBeans2(beans)
-            }
-
-            override fun onGetSuccess3(beans: ArrayList<SceneryBean>) {
-                collectionListView.loadBeans3(beans)
-            }
-
-            override fun onGetFailed(errorMsg: String, errorCode: String) {
-                super.onGetFailed(errorMsg, errorCode)
-                collectionListView.toast("error$errorCode")
-            }
-        })
-
-    }
-
-    /**
-     * 获取数据Bean
-     */
-    override fun getBeans(type: String, idList: MutableList<String>) {
-
-        homeInterface.getCollectionListBeans(type, idList, object : HomeInterface.OnListBeansCallback {
+        homeInterface.getCollectionListBeans(type, object : HomeInterface.OnListBeansCallback {
             override fun onGetSuccess(beans: ArrayList<CateBean>) {
                 collectionListView.loadBeans(beans)
             }

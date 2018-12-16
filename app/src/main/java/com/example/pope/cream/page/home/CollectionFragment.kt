@@ -28,13 +28,11 @@ class CollectionFragment : BaseFragment<HomeContract.CollectionPresenter>(), Hom
 
         var interestList = userBean.userInterestPoint
         var itemNumList = userBean.pointItemNum
-        val idList = userBean.pointId
 
         val innerBean = cleanUncollectData(interestList as ArrayList<String>, itemNumList as ArrayList<Int>)
         interestList = innerBean.interestList
-        itemNumList = innerBean.itemNumList
 
-        if (itemNumList.isEmpty()) {
+        if (interestList.isEmpty()) {
             textView_collection_noData.visibility = View.VISIBLE
             tabLayout_collectionFragment.visibility = View.GONE
             return
@@ -45,19 +43,8 @@ class CollectionFragment : BaseFragment<HomeContract.CollectionPresenter>(), Hom
 
         var fragmentList: ArrayList<CollectionListFragment> = arrayListOf()
 
-        for ((index, element) in itemNumList.withIndex()) {
-            val childIdList: ArrayList<String> = arrayListOf()
-            if (element == 1) {
-                childIdList.add(idList[0])
-                idList.removeAt(0)
-                fragmentList.add(CollectionListFragment(interestList[index], childIdList))
-            } else {
-                for (i in 1..element) {
-                    childIdList.add(idList[0])
-                    idList.removeAt(0)
-                }
-                fragmentList.add(CollectionListFragment(interestList[index], childIdList))
-            }
+        for (element in interestList) {
+            fragmentList.add(CollectionListFragment(element))
         }
 
         val adapter = object : FragmentPagerAdapter(childFragmentManager) {
@@ -74,9 +61,7 @@ class CollectionFragment : BaseFragment<HomeContract.CollectionPresenter>(), Hom
             }
         }
 
-        if (viewPager_collectionFragment.adapter == null) {
-            viewPager_collectionFragment.adapter = adapter
-        }
+        viewPager_collectionFragment.adapter = adapter
         tabLayout_collectionFragment.setupWithViewPager(viewPager_collectionFragment)
         if (fragmentList.size <= 3) {
             tabLayout_collectionFragment.tabMode = TabLayout.MODE_FIXED

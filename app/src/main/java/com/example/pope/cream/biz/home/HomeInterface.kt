@@ -34,9 +34,7 @@ interface HomeInterface {
 
     }
 
-    fun getCollectionListBeans(type: String, idList: MutableList<String>, onListBeansCallback: OnListBeansCallback)
-
-    fun getCollectionListBeans(context: Context, type: String, onListBeansCallback: OnListBeansCallback)
+    fun getCollectionListBeans(type: String, onListBeansCallback: OnListBeansCallback)
 
     interface OnBannerDataCallback : BaseDataCallback {
 
