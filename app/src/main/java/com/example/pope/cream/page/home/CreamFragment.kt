@@ -100,11 +100,16 @@ class CreamFragment : BaseFragment<HomeContract.CreamPresenter>(), HomeContract.
         recyclerView_creamArea.layoutManager = layoutManager
         val areaAdapter = CreamAreaAdapter(interestList, picList, activity)
         recyclerView_creamArea.adapter = areaAdapter
-        recyclerView_creamArea.isNestedScrollingEnabled = false
-        recyclerView_creamArea.isFocusable = false
 
+        //去掉RecyclerView的嵌套滑动能力
+        recyclerView_creamArea.isNestedScrollingEnabled = false
+        //设置RecyclerView当前不获取Focus
+        recyclerView_creamArea.isFocusable = false
+        //设置ScrollView获取Focus
         scrollView_cream.isFocusable = true
+        //设置ScrollView为可获得Focus
         scrollView_cream.isFocusableInTouchMode = true
+        //ScrollView请求Focus
         scrollView_cream.requestFocus()
 
         areaAdapter.setItemOnClickListener { title ->

@@ -42,15 +42,10 @@ class SceneryFragment : BaseFragment<SceneryContract.Presenter>(), SceneryContra
         recyclerView_seneryList.adapter = SceneryListAdapter(sceneryBeans, activity, isCollectedList)
 
         //处理ScrollView与RecyclerView滑动冲突
-        //重写Touch监听
+        //重写RecyclerView的Touch监听
         recyclerView_seneryList.addOnItemTouchListener(object : RecyclerView.OnItemTouchListener {
-            override fun onTouchEvent(rv: RecyclerView?, e: MotionEvent?) {
-
-            }
-
-            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
-
-            }
+            override fun onTouchEvent(rv: RecyclerView?, e: MotionEvent?) {}
+            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {}
 
             //将获取到的event坐标点给ViewHolder判断是否拦截
             override fun onInterceptTouchEvent(rv: RecyclerView?, e: MotionEvent?): Boolean {

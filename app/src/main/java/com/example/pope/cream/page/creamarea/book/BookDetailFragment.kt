@@ -73,12 +73,12 @@ class BookDetailFragment(val bookBean: BookBean) : BaseFragment<BookContract.Boo
         textView_bookDetail_score.text = "${bean.bookScore}分"
         textView_bookDetail_introduce.text = bean.bookIntroduce
         textView_bookDetail_authorIntroduce.text = bean.authorIntroduce
-        textView_shortComment1.text = bean.shortCommend[0]
-        textView_shortComment2.text = bean.shortCommend[1]
-        textView_shortComment3.text = bean.shortCommend[2]
-        textView_longComment1.text = bean.longCommend[0]
-        textView_longComment2.text = bean.longCommend[1]
-        textView_longComment3.text = bean.longCommend[2]
+        textView_shortComment1.text = bean.shortComment[0]
+        textView_shortComment2.text = bean.shortComment[1]
+        textView_shortComment3.text = bean.shortComment[2]
+        textView_longComment1.text = bean.longComment[0]
+        textView_longComment2.text = bean.longComment[1]
+        textView_longComment3.text = bean.longComment[2]
 
         //检查该书是否被收藏
         mPresenter!!.checkIsCollected(bean.objectId, activity)

@@ -43,7 +43,6 @@ public class CateBean extends BmobObject {
     private String cateIntroduce;
     private List<String> catePics;
     private List<String> cateNames;
-    private Integer cateHits;
 
     public String getCateDetailBigPic() {
         return cateDetailBigPic;
@@ -59,14 +58,6 @@ public class CateBean extends BmobObject {
 
     public void setCateCardPic(String cateCardPic) {
         this.cateCardPic = cateCardPic;
-    }
-
-    public Integer getCateHits() {
-        return cateHits;
-    }
-
-    public void setCateHits(Integer cateHits) {
-        this.cateHits = cateHits;
     }
 
     public Integer getCateType() {

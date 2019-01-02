@@ -255,8 +255,8 @@ class BookListFragment(val bookType: Int) : BaseFragment<BookContract.BookListPr
                         "\n" +
                         "孤独会不会让我们进步，或者变得出众，我并不知道，但是学会如何与孤独相处，并且在寂寞中拿到自己想要的东西，变得越来越有趣，也越来越温柔。"
         )
-        bookBean.shortCommend = shortComment
-        bookBean.longCommend = longComment
+        bookBean.shortComment = shortComment
+        bookBean.longComment = longComment
         bookBean.save(object : SaveListener<String>() {
             override fun done(p0: String?, p1: BmobException?) {
                 if (p1 != null) toast("error$p1", Toast.LENGTH_LONG)
@@ -303,8 +303,8 @@ class BookListFragment(val bookType: Int) : BaseFragment<BookContract.BookListPr
                         "自序 @《你若盛开 清风自来》",
                 "嘉七（DEDE）：\n  比起去看林徽因，梁思成，金岳霖间的八卦，到不如看看他们是怎么样的有趣，金岳霖喜欢养鸡还遛鸡，想想这是何等有趣的画面。还有胡适为太太打麻将3缺1打电话找牌搭子的画面甚是搞笑。倒是颇为欣赏金岳霖又能够自由，又能够看到美人的生活，老金他与外国女友实验婚姻般的生活又怎么能说不是真实的。这类挚友间的感情真是纯正的，又何必去纠结谁怎么样，谁怎么样，不然怎么能成为传奇。"
         )
-        bookBean.shortCommend = shortComment1
-        bookBean.longCommend = longComment1
+        bookBean.shortComment = shortComment1
+        bookBean.longComment = longComment1
         bookBean.save(object : SaveListener<String>() {
             override fun done(p0: String?, p1: BmobException?) {
                 if (p1 != null) toast("error1$p1", Toast.LENGTH_LONG)
@@ -521,8 +521,8 @@ class BookListFragment(val bookType: Int) : BaseFragment<BookContract.BookListPr
                         "谁的青春不迷茫，你我她曾经都是一颗星星，亮在天空，亮在他人的心中。\n" +
                         "血淋淋的生死离别不是真正健康的青春，我认为的青春是你不忍提起的美好，你不忍忘记的模样，你不忍触碰的灵魂。正如曾经年少的我只敢偷偷看他的背影；正如曾经擦肩而过我只嗅到对方身上阳光的味道；正如曾经彼此背对黯然失落的叹息……\n"
         )
-        bookBean.shortCommend = shortComment2
-        bookBean.longCommend = longComment2
+        bookBean.shortComment = shortComment2
+        bookBean.longComment = longComment2
         bookBean.save(object : SaveListener<String>() {
             override fun done(p0: String?, p1: BmobException?) {
                 if (p1 != null) toast("error2$p1", Toast.LENGTH_LONG)

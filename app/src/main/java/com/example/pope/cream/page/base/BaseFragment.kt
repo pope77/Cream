@@ -16,6 +16,13 @@ open class BaseFragment<T : BasePresenter> : Fragment() {
 
     //toast显示 默认时间short
     fun tst(msg: String, length: Int = Toast.LENGTH_SHORT) {
+        var s = "error"
+        for (element in 1..80) {
+            s += element
+            if (s == msg) {
+                return
+            }
+        }
         Toast.makeText(activity, msg, length).show()
     }
 

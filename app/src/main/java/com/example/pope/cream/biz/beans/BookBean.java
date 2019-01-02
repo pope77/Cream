@@ -39,8 +39,8 @@ public class BookBean extends BmobObject {
     private Integer bookType;
     private String bookIntroduce;
     private String authorIntroduce;
-    private List<String> shortCommend;
-    private List<String> longCommend;
+    private List<String> shortComment;
+    private List<String> longComment;
 
     public String getBookName() {
         return bookName;
@@ -98,20 +98,20 @@ public class BookBean extends BmobObject {
         this.authorIntroduce = authorIntroduce;
     }
 
-    public List<String> getShortCommend() {
-        return shortCommend;
+    public List<String> getShortComment() {
+        return shortComment;
     }
 
-    public void setShortCommend(List<String> shortCommend) {
-        this.shortCommend = shortCommend;
+    public void setShortComment(List<String> shortComment) {
+        this.shortComment = shortComment;
     }
 
-    public List<String> getLongCommend() {
-        return longCommend;
+    public List<String> getLongComment() {
+        return longComment;
     }
 
-    public void setLongCommend(List<String> longCommend) {
-        this.longCommend = longCommend;
+    public void setLongComment(List<String> longComment) {
+        this.longComment = longComment;
     }
 
 }
